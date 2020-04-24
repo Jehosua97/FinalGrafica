@@ -1,15 +1,22 @@
 /*---------------------------------------------------------*/
-/* ----------------   Práctica 8 --------------------------*/
+/* ----------------   Práctica 9 --------------------------*/
 /*-----------------    2020-2   ---------------------------*/
-/*------------- Alumno: Joya Venegas Jehosua Alan --------*/
-#define STB_IMAGE_IMPLEMENTATION
-#include "esfera.h"
-#include "camera.h"
+/*------------- Alumno:                     ---------------*/
+//#define STB_IMAGE_IMPLEMENTATION
+#include <glew.h>
+#include <glfw3.h>
+#include <stb_image.h>
 
-Esfera my_sphere(1.0f);
+#include "camera.h"
+#include "Model.h"
+#include "Texture.h"
+
+// Other Libs
+#include "SOIL2/SOIL2.h"
 
 void resize(GLFWwindow* window, int width, int height);
-void my_input(GLFWwindow *window);
+//void my_input(GLFWwindow *window);
+void my_input(GLFWwindow *window, int key, int scancode, int action, int mode);
 void mouse_callback(GLFWwindow *window, double xpos, double ypos);
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
@@ -19,7 +26,7 @@ int SCR_WIDTH = 3800;
 int SCR_HEIGHT = 7600;
 
 GLFWmonitor *monitors;
-GLuint VBO, VAO, EBO;
+GLuint skyboxVBO, skyboxVAO;
 
 //Camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -32,29 +39,30 @@ double	deltaTime = 0.0f,
 		lastFrame = 0.0f;
 
 //Lighting
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPosition(0.0f, 4.0f, 3.0f);
+glm::vec3 lightDirection(0.0f, -1.0f, 0.0f);
 
 void myData(void);
-void display(Shader);
+void display(Shader, Model, Model);
 void getResolution(void);
 void animate(void);
 void LoadTextures(void);
 unsigned int generateTextures(char*, bool);
 
-//For Keyboard
-float	movX = 0.0f,
-		movY = 0.0f,
-		movZ = -5.0f,
-		rotX = 0.0f;
-
 //Texture
 unsigned int	t_smile,
-				t_casaMain,
+				t_toalla,
 				t_unam,
-				t_unamtrans,
-				t_cubo03,
 				t_white,
-				t_pika;
+				t_panda,
+				t_cubo,
+				t_caja,
+				t_caja_brillo;
+
+//For model
+bool animacion = false;
+float movAuto_z = 0.0f;
+bool avanza = true;
 
 
 unsigned int generateTextures(const char* filename, bool alfa)
@@ -106,109 +114,111 @@ void getResolution()
 void LoadTextures()
 {
 
-	t_smile = generateTextures("Texturas/awesomeface.png", 1);
-	t_casaMain = generateTextures("Texturas/MainCasa.png", 1);
-	t_unam = generateTextures("Texturas/escudo_unam.jpg", 0);
-	t_unamtrans = generateTextures("Texturas/escudo_unam.png", 1);
-	t_white = generateTextures("Texturas/white.jpg", 0);
-	t_pika = generateTextures("Texturas/pikapikajpg.jpg", 0);
-	t_cubo03 = generateTextures("Texturas/Cube03.jpg", 0);
 	
 }
 
 void myData()
 {	
-	float vertices[] = {
-		// positions          // texture coords
-		 0.5f,  0.5f, 0.0f,   0.66f, 0.66f, // top right		//Cara principal  0
-		 0.5f, -0.5f, 0.0f,   0.66f, 0.33f, // bottom right1
-		-0.5f, -0.5f, 0.0f,   0.33f, 0.33f, // bottom left2
-		-0.5f, -0.5f, 0.0f,   0.33f, 0.33f, // bottom left3
-		0.5f,  0.5f, 0.0f,   0.66f, 0.66f, // top right		//Cara principal  4
-		-0.5f,  0.5f, 0.0f,   0.33f, 0.66f,  // top left 5
+	GLfloat skyboxVertices[] = {
+		// Positions
+		-1.0f,  1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
 
+		-1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
 
-		 0.5f,  0.5f, 0.0f,   0.33f, 0.66f, // top right		//Cara Lateral derecho  6
-		 0.5f, -0.5f, 0.0f,   0.33f, 0.33f, // bottom right1  7
-		-0.5f, -0.5f, 0.0f,   0.0f, 0.33f, // bottom left2  8
-		-0.5f, -0.5f, 0.0f,   0.0f, 0.33f, // bottom left2   9
-		 0.5f,  0.5f, 0.0f,   0.33f, 0.66f, // top right		10
-		-0.5f,  0.5f, 0.0f,   0.0f, 0.66f,  // top left 5  11
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
 
-		0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right		//Lateral izquierdo
-		 0.5f, -0.5f, 0.0f,   1.0f, 0.66f, // bottom right
-		-0.5f, -0.5f, 0.0f,   0.66f, 0.66f, // bottom left
-		-0.5f, -0.5f, 0.0f,   0.66f, 0.66f, // bottom left
-		0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right		//Lateral izquierdo
-		-0.5f,  0.5f, 0.0f,   0.66f, 1.0f,  // top left 
+		-1.0f, -1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
 
-		 0.5f,  0.5f, 0.0f,   0.66f, 1.0f, // top right		//Atras
-		 0.5f, -0.5f, 0.0f,   0.66f, 0.66f, // bottom right
-		-0.5f, -0.5f, 0.0f,   0.33f, 0.66f, // bottom left
-		-0.5f, -0.5f, 0.0f,   0.33f, 0.66f, // bottom left
-		0.5f,  0.5f, 0.0f,   0.66f, 1.0f, // top right		//Atras
-		-0.5f,  0.5f, 0.0f,   0.33f, 1.0f,  // top left 
+		-1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f, -1.0f,
 
-
-		 0.5f,  0.5f, 0.0f,   0.33f, 1.0f, // top right		//Arriba
-		 0.5f, -0.5f, 0.0f,   0.33f, 0.66f, // bottom right
-		-0.5f, -0.5f, 0.0f,   0.0f, 0.66f, // bottom left
-		-0.5f, -0.5f, 0.0f,   0.0f, 0.66f, // bottom left
-		0.5f,  0.5f, 0.0f,   0.33f, 1.0f, // top right		//Arriba
-		-0.5f,  0.5f, 0.0f,   0.0f, 1.0f,  // top left 
-
-
-		0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right		//Abajo
-		 0.5f, -0.5f, 0.0f,   1.0f, 0.66f, // bottom right
-		-0.5f, -0.5f, 0.0f,   0.66f, 0.66f, // bottom left
-		-0.5f, -0.5f, 0.0f,   0.66f, 0.66f, // bottom left
-		0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right		//Abajo1
-		-0.5f,  0.5f, 0.0f,   0.66f, 1.0f,  // top left 
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f
 	};
 
-	unsigned int indices[] = {
-		0, 1, 3, // first triangle
-		1, 2, 3,  // second triangle
+	glGenVertexArrays(1, &skyboxVAO);
+	glGenBuffers(1, &skyboxVBO);
 
-		4, 5, 7,
-		5, 6, 7
-	};
-	
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &EBO);
+	glBindVertexArray(skyboxVAO);
 
-	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-	// position attribute
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+	// SkyBox
 	glEnableVertexAttribArray(0);
-	// texture coord attribute
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid *)0);
 
 }
 
 void animate(void)
 {
+	if (animacion)
+	{
+		movAuto_z += 0.03f;
 
+		printf("Posicion %f \n", movAuto_z);
+	}
 }
 
-void display(Shader shader)
+void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo, Model llantas, Model piso)
 {
-	//Enable Shader
 	shader.use();
 
+	//Setup Advanced Lights
+	shader.setVec3("viewPos", camera.Position);
+	shader.setVec3("dirLight.direction", lightDirection);
+	shader.setVec3("dirLight.ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+	shader.setVec3("dirLight.diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
+	shader.setVec3("dirLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+
+	shader.setVec3("pointLight[0].position", lightPosition);
+	shader.setVec3("pointLight[0].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+	shader.setVec3("pointLight[0].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
+	shader.setVec3("pointLight[0].specular", glm::vec3(1.0f, 1.0f, 1.0f));
+	shader.setFloat("pointLight[0].constant", 1.0f); 
+	shader.setFloat("pointLight[0].linear", 0.009f);  
+	shader.setFloat("pointLight[0].quadratic", 0.032f); 
+
+	shader.setVec3("pointLight[1].position", glm::vec3(0.0, 0.0f, 0.0f));
+	shader.setVec3("pointLight[1].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+	shader.setVec3("pointLight[1].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
+	shader.setVec3("pointLight[1].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+	shader.setFloat("pointLight[1].constant", 1.0f);
+	shader.setFloat("pointLight[1].linear", 0.009f);
+	shader.setFloat("pointLight[1].quadratic", 0.032f);
+	
+	shader.setFloat("material_shininess", 32.0f);
+
 	// create transformations and Projection
-	glm::mat4 temp = glm::mat4(1.0f);
-	glm::mat4 temp2 = glm::mat4(1.0f);
-	glm::mat4 tempol = glm::mat4(1.0f);
+	glm::mat4 tmp = glm::mat4(1.0f);
 	glm::mat4 model = glm::mat4(1.0f);		// initialize Matrix, Use this matrix for individual models
 	glm::mat4 view = glm::mat4(1.0f);		//Use this matrix for ALL models
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
@@ -218,67 +228,60 @@ void display(Shader shader)
 	view = camera.GetViewMatrix();
 
 	// pass them to the shaders
-	shader.setVec3("viewPos", camera.Position);
 	shader.setMat4("model", model);
 	shader.setMat4("view", view);
 	// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
 	shader.setMat4("projection", projection);
 
-
-	glBindVertexArray(VAO);
-	//Colocar código aquí
-
-	//model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-	//model = glm::scale(model, glm::vec3(5.0f, 3.0f, 1.0f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.8f, -1.0f));
+	model = glm::scale(model, glm::vec3(0.007f, 0.007f, 0.007f));
 	shader.setMat4("model", model);
-	tempol = model;
-	glBindTexture(GL_TEXTURE_2D, t_casaMain);
-	shader.setVec3("aColor", 1.0f, 1.0f, 1.0f);
-	glDrawArrays(GL_TRIANGLE_FAN, 0, 3);
-	glDrawArrays(GL_TRIANGLE_FAN, 3, 3);
+	piso.Draw(shader);
 
-	model = glm::translate(tempol, glm::vec3(0.5f, 0.0f, -0.5f));
-	model = glm::rotate(model, 3.14159f / 2, glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	tmp = model = glm::translate(model, glm::vec3(15.0f, -1.75f, movAuto_z));
+	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+	//model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
 	shader.setMat4("model", model);
-	glBindTexture(GL_TEXTURE_2D, t_casaMain);
-	shader.setVec3("aColor", 1.0f, 1.0f, 1.0f);
-	glDrawArrays(GL_TRIANGLE_FAN, 6, 3);
-	glDrawArrays(GL_TRIANGLE_FAN, 9, 3);
+	modelo.Draw(shader);
 
-	model = glm::translate(tempol, glm::vec3(-0.5f, 0.0f, -0.5f));
-	model = glm::rotate(model, 3.14159f / 2, glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(tmp, glm::vec3(0.85f, 0.25f, 1.29f));
+	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
 	shader.setMat4("model", model);
-	glBindTexture(GL_TEXTURE_2D, t_casaMain);
-	shader.setVec3("aColor", 1.0f, 1.0f, 1.0f);
-	glDrawArrays(GL_TRIANGLE_FAN, 12, 3);
-	glDrawArrays(GL_TRIANGLE_FAN, 15, 3);
+	llantas.Draw(shader);	//Izq delantera
 
-	model = glm::translate(tempol, glm::vec3(0.0f, 0.0f, -1.0f));
-	model = glm::rotate(model, 3.14159f , glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(tmp, glm::vec3(-0.85f, 0.25f, 1.29f));
+	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	glBindTexture(GL_TEXTURE_2D, t_casaMain);
-	shader.setVec3("aColor", 1.0f, 1.0f, 1.0f);
-	glDrawArrays(GL_TRIANGLE_FAN, 18, 3);
-	glDrawArrays(GL_TRIANGLE_FAN, 21, 3);
+	llantas.Draw(shader);	//Der delantera
 
-	model = glm::translate(tempol, glm::vec3(0.0f, 0.5f, -0.5f));
-	model = glm::rotate(model, 3.14159f / 2, glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::translate(tmp, glm::vec3(-0.85f, 0.25f, -1.45f));
+	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	glBindTexture(GL_TEXTURE_2D, t_casaMain);
-	shader.setVec3("aColor", 1.0f, 1.0f, 1.0f);
-	glDrawArrays(GL_TRIANGLE_FAN, 24, 3);
-	glDrawArrays(GL_TRIANGLE_FAN, 27, 3);
+	llantas.Draw(shader);	//Der trasera
 
-	model = glm::translate(tempol, glm::vec3(0.0f, -0.5f, -0.5f));
-	model = glm::rotate(model, 3.14159f / 2, glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::translate(tmp, glm::vec3(0.85f, 0.25f, -1.45f));
+	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
 	shader.setMat4("model", model);
-	glBindTexture(GL_TEXTURE_2D, t_casaMain);
-	shader.setVec3("aColor", 0.0f, 0.0f, 0.2f);
-	glDrawArrays(GL_TRIANGLE_FAN, 30, 3);
-	glDrawArrays(GL_TRIANGLE_FAN, 33, 3);
+	llantas.Draw(shader);	//Izq trase
 
+	// Draw skybox as last
+	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
+	skyboxShader.use();
+	view = glm::mat4(glm::mat3(camera.GetViewMatrix()));	// Remove any translation component of the view matrix
+
+	skyboxShader.setMat4("view", view);
+	skyboxShader.setMat4("projection", projection);
+
+	// skybox cube
+	glBindVertexArray(skyboxVAO);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, skybox);
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 	glBindVertexArray(0);
-
+	glDepthFunc(GL_LESS); // Set depth function back to default
 }
 
 int main()
@@ -299,7 +302,7 @@ int main()
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Practica 8 20202", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Practica 9", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -311,6 +314,7 @@ int main()
     glfwSetFramebufferSizeCallback(window, resize);
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
+	glfwSetKeyCallback(window, my_input);
 
 	//To Enable capture of our mouse
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -322,12 +326,33 @@ int main()
 	//Datos a utilizar
 	LoadTextures();
 	myData();
-	my_sphere.init();
 	glEnable(GL_DEPTH_TEST);
+	
+	//For Models
+	Shader modelShader("Shaders/shader_Lights.vs", "Shaders/shader_Lights.fs");
+	//For Primitives
+	//Shader primitivasShader("shaders/shader_texture_color.vs", "shaders/shader_texture_color.fs");
+	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
+	// Load model
+	Model ourModel = ((char *)"Models/Lambo/carroseria.obj");
+	Model llantasModel = ((char *)"Models/Lambo/Wheel.obj");
+	Model pisoModel = ((char *)"Models/piso/piso.obj");
 
-	Shader projectionShader("shaders/shader_texture_color.vs", "shaders/shader_texture_color.fs");
 
-    // render loop
+	// Load textures
+	vector<const GLchar*> faces;
+	faces.push_back("SkyBox/right.tga");
+	faces.push_back("SkyBox/left.tga");
+	faces.push_back("SkyBox/top.tga");
+	faces.push_back("SkyBox/bottom.tga");
+	faces.push_back("SkyBox/back.tga");
+	faces.push_back("SkyBox/front.tga");
+
+	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
+    
+	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
+	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+	// render loop
     // While the windows is not closed
     while (!glfwWindowShouldClose(window))
     {
@@ -338,16 +363,16 @@ int main()
 		lastFrame = currentFrame;
         // input
         // -----
-        my_input(window);
+        //my_input(window);
 		animate();
 
         // render
         // Backgound color
-        glClearColor(0.0f, 0.4f, 1.0f, 1.0f);
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		//Mi función de dibujo
-		display(projectionShader);
+		//display(modelShader, ourModel, llantasModel);
+		display(modelShader, SkyBoxshader, cubemapTexture, ourModel, llantasModel, pisoModel);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -357,8 +382,8 @@ int main()
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
+	glDeleteVertexArrays(1, &skyboxVAO);
+	glDeleteBuffers(1, &skyboxVBO);
 
     glfwTerminate();
     return 0;
@@ -366,7 +391,7 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void my_input(GLFWwindow *window)
+void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
@@ -379,8 +404,13 @@ void my_input(GLFWwindow *window)
 		camera.ProcessKeyboard(LEFT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
-	
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+		lightPosition.z -=0.5f;
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+		lightPosition.z += 0.5f;
 
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		animacion = true;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
