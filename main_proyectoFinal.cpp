@@ -209,20 +209,20 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo, Mo
 	shader.setVec3("dirLight.specular", glm::vec3(1.0f, 1.0f, 1.0f));
 
 	shader.setVec3("pointLight[0].position", lightPosition);
-	shader.setVec3("pointLight[0].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+	shader.setVec3("pointLight[0].ambient", glm::vec3(1.0f, 1.0f, 1.0f));	//Luz ambiental de 0 a 1
 	shader.setVec3("pointLight[0].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 	shader.setVec3("pointLight[0].specular", glm::vec3(1.0f, 1.0f, 1.0f));
 	shader.setFloat("pointLight[0].constant", 1.0f); 
-	shader.setFloat("pointLight[0].linear", 0.009f);  
-	shader.setFloat("pointLight[0].quadratic", 0.032f); 
+	shader.setFloat("pointLight[0].linear", 0.001f);  
+	shader.setFloat("pointLight[0].quadratic", 0.000032f); 
 
 	shader.setVec3("pointLight[1].position", glm::vec3(0.0, 0.0f, 0.0f));
 	shader.setVec3("pointLight[1].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 	shader.setVec3("pointLight[1].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 	shader.setVec3("pointLight[1].specular", glm::vec3(0.0f, 0.0f, 0.0f));
 	shader.setFloat("pointLight[1].constant", 1.0f);
-	shader.setFloat("pointLight[1].linear", 0.009f);
-	shader.setFloat("pointLight[1].quadratic", 0.032f);
+	shader.setFloat("pointLight[1].linear", 0.009f);						//Luz direccional
+	shader.setFloat("pointLight[1].quadratic", 0.032f);						//Luz quién sabe
 	
 	shader.setFloat("material_shininess", 32.0f);
 
@@ -249,7 +249,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo, Mo
 
 	model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	tmp = model = glm::translate(model, glm::vec3(15.0f, -1.75f, movAuto_z));
-	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+	model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 	//model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
 	shader.setMat4("model", model);
 	modelo.Draw(shader);
@@ -343,7 +343,7 @@ int main()
 	//Shader primitivasShader("shaders/shader_texture_color.vs", "shaders/shader_texture_color.fs");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 	// Load model
-	Model ourModel = ((char *)"../../FinalGrafica/Models/Lambo/carroseria.obj");
+	Model ourModel = ((char *)"../../FinalGrafica/Models/Basic House 1/Basic House 1.obj");
 	Model llantasModel = ((char *)"../../FinalGrafica/Models/Lambo/Wheel.obj");
 	Model pisoModel = ((char *)"../../FinalGrafica/Models/piso/piso.obj");
 
