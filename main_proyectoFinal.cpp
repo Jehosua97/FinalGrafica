@@ -3,16 +3,25 @@
 /*-----------------    2020-2   ---------------------------*/
 /*------------- Alumno:                     ---------------*/
 //#define STB_IMAGE_IMPLEMENTATION
+
+//Para texturas, modelos, skybox
+//../../FinalGrafica/Texturas
+//../../FinalGrafica/Models
+//../../FinalGrafica/SkyBox
+
+//FinalGrafica <- REPO (Texturas, Models, Skybox)
+//ProyectoFinal <- Solución de Visual Studio
+
 #include <glew.h>
 #include <glfw3.h>
 #include <stb_image.h>
 
-#include "camera.h"
-#include "Model.h"
-#include "Texture.h"
+#include "../ProyectoFinal/ProyectoFinal/camera.h"
+#include "../ProyectoFinal/ProyectoFinal/Model.h"
+#include "../ProyectoFinal/ProyectoFinal/Texture.h"
 
 // Other Libs
-#include "SOIL2/SOIL2.h"
+#include "../ProyectoFinal/ProyectoFinal/SOIL2/SOIL2.h"
 
 void resize(GLFWwindow* window, int width, int height);
 //void my_input(GLFWwindow *window);
@@ -341,12 +350,12 @@ int main()
 
 	// Load textures
 	vector<const GLchar*> faces;
-	faces.push_back("SkyBox/right.tga");
-	faces.push_back("SkyBox/left.tga");
-	faces.push_back("SkyBox/top.tga");
-	faces.push_back("SkyBox/bottom.tga");
-	faces.push_back("SkyBox/back.tga");
-	faces.push_back("SkyBox/front.tga");
+	faces.push_back("../../FinalGrafica/SkyBox/right.tga");
+	faces.push_back("../../FinalGrafica/SkyBox/left.tga");
+	faces.push_back("../../FinalGrafica/SkyBox/top.tga");
+	faces.push_back("../../FinalGrafica/SkyBox/bottom.tga");
+	faces.push_back("../../FinalGrafica/SkyBox/back.tga");
+	faces.push_back("../../FinalGrafica/SkyBox/front.tga");
 
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
     
