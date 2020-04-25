@@ -233,7 +233,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo, Mo
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 
 	//Use "projection" to include Camera
-	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 1000.0f);
 	view = camera.GetViewMatrix();
 
 	// pass them to the shaders
@@ -242,8 +242,9 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo, Mo
 	// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
 	shader.setMat4("projection", projection);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.8f, -1.0f));
-	model = glm::scale(model, glm::vec3(0.007f, 0.007f, 0.007f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(290.0f, 290.0f, 1.0f));
 	shader.setMat4("model", model);
 	piso.Draw(shader);
 
@@ -345,7 +346,7 @@ int main()
 	// Load model
 	Model ourModel = ((char *)"../../FinalGrafica/Models/Basic House 1/Basic House 1.obj");
 	Model llantasModel = ((char *)"../../FinalGrafica/Models/Lambo/Wheel.obj");
-	Model pisoModel = ((char *)"../../FinalGrafica/Models/piso/piso.obj");
+	Model pisoModel = ((char *)"../../FinalGrafica/Models/bocetoMedidas.obj");
 
 
 	// Load textures
@@ -360,7 +361,7 @@ int main()
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
     
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
-	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 600.0f);
 	// render loop
     // While the windows is not closed
     while (!glfwWindowShouldClose(window))
