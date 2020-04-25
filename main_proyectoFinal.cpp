@@ -73,6 +73,13 @@ bool animacion = false;
 float movAuto_z = 0.0f;
 bool avanza = true;
 
+//Para movimiento y escalado de modelos (registro de coordenadas y escalas)
+float movX = 0.0f, movY = 3.0f, movZ = 0.0f, escala = 1.0f;
+bool preciso = false;
+
+//Para escalamiento de todo
+float a = 0.2f;
+
 
 unsigned int generateTextures(const char* filename, bool alfa)
 {
@@ -197,7 +204,7 @@ void animate(void)
 	}
 }
 
-void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo, Model llantas, Model piso)
+void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 {
 	shader.use();
 
@@ -246,36 +253,22 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo, Mo
 	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(290.0f, 290.0f, 1.0f));
 	shader.setMat4("model", model);
-	piso.Draw(shader);
+	modelo[0].Draw(shader);
 
-	model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	tmp = model = glm::translate(model, glm::vec3(15.0f, -1.75f, movAuto_z));
-	model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+	//model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	tmp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));
+	model = glm::scale(model, glm::vec3(escala, escala, escala));
 	//model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
 	shader.setMat4("model", model);
-	modelo.Draw(shader);
+	modelo[1].Draw(shader);
 
+	/**
 	model = glm::translate(tmp, glm::vec3(0.85f, 0.25f, 1.29f));
 	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
 	shader.setMat4("model", model);
 	llantas.Draw(shader);	//Izq delantera
+	*/
 
-	model = glm::translate(tmp, glm::vec3(-0.85f, 0.25f, 1.29f));
-	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
-	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	llantas.Draw(shader);	//Der delantera
-
-	model = glm::translate(tmp, glm::vec3(-0.85f, 0.25f, -1.45f));
-	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
-	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	llantas.Draw(shader);	//Der trasera
-
-	model = glm::translate(tmp, glm::vec3(0.85f, 0.25f, -1.45f));
-	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
-	shader.setMat4("model", model);
-	llantas.Draw(shader);	//Izq trase
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -344,9 +337,61 @@ int main()
 	//Shader primitivasShader("shaders/shader_texture_color.vs", "shaders/shader_texture_color.fs");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 	// Load model
-	Model ourModel = ((char *)"../../FinalGrafica/Models/Basic House 1/Basic House 1.obj");
-	Model llantasModel = ((char *)"../../FinalGrafica/Models/Lambo/Wheel.obj");
-	Model pisoModel = ((char *)"../../FinalGrafica/Models/bocetoMedidas.obj");
+	Model modelo[47] = {
+		((char *)"../../FinalGrafica/Models/bocetoMedidas.obj"),							//0 - Boceto, piso
+		((char *)"../../FinalGrafica/Models/Basic House 1/Basic House 1.obj"),				//1 - Casita de prueba (reservado pa cualquier cosa)
+
+		//De 2 a 16 sigue Mildred...
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+
+		//17 empieza Joya hasta 31...
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+
+		//De 31 a 46 Chavira...
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+	};
 
 
 	// Load textures
@@ -382,7 +427,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//display(modelShader, ourModel, llantasModel);
-		display(modelShader, SkyBoxshader, cubemapTexture, ourModel, llantasModel, pisoModel);
+		display(modelShader, SkyBoxshader, cubemapTexture, modelo);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -419,8 +464,53 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 		lightPosition.z += 0.5f;
 
+
+	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
+		if (preciso)
+			movY += 0.1f;
+		else
+			movY += 1.0f;
+	if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+		if (preciso)
+			movY -= 0.1f;
+		else
+			movY -= 1.0f;
+	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+		if (preciso)
+			movX -= 0.1f;
+		else
+			movX -= 1.0f;
+	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+		if (preciso)
+			movX += 0.1f;
+		else
+			movX += 1.0f;
+	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+		if (preciso)
+			movZ += 0.1f;
+		else
+			movZ += 1.0f;
+	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+		if (preciso)
+			movZ -= 0.1f;
+		else
+			movZ -= 1.0f;
+	if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
+		if (preciso)
+			escala -= 0.1f;
+		else
+			escala -= 1.0f;
+	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
+		if (preciso)
+			escala += 0.1f;
+		else
+			escala += 1.0f;
+
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-		animacion = true;
+		//animacion = true;
+		preciso = !preciso;
+
+	printf("Posicion: %f, %f, %f \tEscala: %f\n", movX, movY, movZ, escala);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
