@@ -343,9 +343,9 @@ int main()
 	//Shader primitivasShader("shaders/shader_texture_color.vs", "shaders/shader_texture_color.fs");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 	// Load model
-	Model ourModel = ((char *)"Models/Lambo/carroseria.obj");
-	Model llantasModel = ((char *)"Models/Lambo/Wheel.obj");
-	Model pisoModel = ((char *)"Models/piso/piso.obj");
+	Model ourModel = ((char *)"../../FinalGrafica/Models/Lambo/carroseria.obj");
+	Model llantasModel = ((char *)"../../FinalGrafica/Models/Lambo/Wheel.obj");
+	Model pisoModel = ((char *)"../../FinalGrafica/Models/piso/piso.obj");
 
 
 	// Load textures
