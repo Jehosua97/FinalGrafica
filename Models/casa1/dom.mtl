@@ -1,0 +1,94 @@
+# Created with Anim8or 0.97d beta
+# Object "object02":
+
+newmtl podloga
+Ka 0.878 0.878 0.878
+Kd 0.878 0.878 0.878
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka podloga.jpg
+map_Kd podloga.jpg
+
+newmtl komin1
+Ka 0.878 0.878 0.878
+Kd 0.878 0.878 0.878
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka sufit.jpg
+map_Kd sufit.jpg
+
+newmtl elewacja
+Ka 0.878 0.878 0.878
+Kd 0.878 0.878 0.878
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka elewacja.jpg
+map_Kd elewacja.jpg
+
+newmtl srodek
+Ka 0.725 0.725 0.725
+Kd 0.725 0.725 0.725
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka srodek.jpg
+map_Kd srodek.jpg
+
+newmtl sufit
+Ka 0.953 0.953 0.953
+Kd 0.953 0.953 0.953
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka sufit.jpg
+map_Kd sufit.jpg
+
+
+newmtl daszek
+Ka 0.878 0.878 0.878
+Kd 0.878 0.878 0.878
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka daszek.jpg
+map_Kd daszek.jpg
+
+newmtl rama
+Ka 0.467 0.302 0
+Kd 0.467 0.302 0
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka rama.jpg
+map_Kd rama.jpg
+
+newmtl szyba
+Ka 0.808 0.871 0.937
+Kd 0.808 0.871 0.937
+Ks 1 1 1
+d 0.7
+Ns 752.6
+map_Ka szyba.jpg
+map_Kd szyba.jpg
+
+newmtl chrom
+Ka 0.878 0.878 0.878
+Kd 0.878 0.878 0.878
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka sufit.jpg
+map_Kd sufit.jpg
+
+
+newmtl komin2
+Ka 0 0 0
+Kd 0 0 0
+Ks 1 1 1
+d 1.0
+Ns 752.6
+map_Ka sufit.jpg
+map_Kd sufit.jpg
