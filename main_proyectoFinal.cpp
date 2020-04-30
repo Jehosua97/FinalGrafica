@@ -74,7 +74,7 @@ float movAuto_z = 0.0f;
 bool avanza = true;
 
 //Para movimiento y escalado de modelos (registro de coordenadas y escalas)
-float movX = 0.0f, movY = 3.0f, movZ = 0.0f, escala = 1.0f;
+float movX = 0.0f, movY = 3.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f;
 bool preciso = false;
 
 //Para escalamiento de todo
@@ -275,9 +275,29 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	//CASAS DE ABAJO - CHAVIRA
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
 	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
+	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);*/
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.1f, -0.5f, 65.0f));			//21
+	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));		
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[33].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 64.0f));				//22
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));		
+	model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
 	
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(50.1f, -1.0f, 71.5f));				//22
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[35].Draw(shader);
+
+
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -515,11 +535,17 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		else
 			escala += 1.0f;
 
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		rotacion = (float)((int)(rotacion + 90.0f) % 360);
+	
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		rotacion = (float) ((int) (rotacion - 90.0f) % 360);
+
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		//animacion = true;
 		preciso = !preciso;
 
-	printf("Posicion: %f, %f, %f \tEscala: %f\n", movX, movY, movZ, escala);
+	printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", movX, movY, movZ, escala, rotacion);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
