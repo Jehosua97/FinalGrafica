@@ -261,6 +261,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	//CASAS DE EN MEDIO - MILDRED
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
 	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
+	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);*/
 
@@ -268,6 +269,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	//CASAS DE ARRIBA - JEHOSUA
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
 	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
+	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);*/
 
