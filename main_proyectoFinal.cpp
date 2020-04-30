@@ -249,35 +249,35 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
 	shader.setMat4("projection", projection);
 
+
+	//PLANO DE REFERENCIA
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
 	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(290.0f, 290.0f, 1.0f));
 	shader.setMat4("model", model);
 	modelo[0].Draw(shader);
 
-	//model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	tmp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));
-	model = glm::scale(model, glm::vec3(escala, escala, escala));
-	//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f)); //Para casa4
-	//model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	//CASAS DE EN MEDIO - MILDRED
+	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
+	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
 	shader.setMat4("model", model);
-	modelo[32].Draw(shader);
+	modelo[32].Draw(shader);*/
 
-	/*//model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	tmp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movX+30.0f, movY, movZ));
-	model = glm::scale(model, glm::vec3(escala, escala, escala));
-	//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f)); //Para casa4
-	//model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+
+	//CASAS DE ARRIBA - JEHOSUA
+	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
+	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
 	shader.setMat4("model", model);
-	modelo[34].Draw(shader);*/
+	modelo[32].Draw(shader);*/
 
-	/**
-	model = glm::translate(tmp, glm::vec3(0.85f, 0.25f, 1.29f));
-	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+
+	//CASAS DE ABAJO - CHAVIRA
+	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
+	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
 	shader.setMat4("model", model);
-	llantas.Draw(shader);	//Izq delantera
-	*/
-
+	modelo[32].Draw(shader);*/
+	
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
