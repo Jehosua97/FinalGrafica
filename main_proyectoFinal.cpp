@@ -263,6 +263,14 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);
 
+	/*//model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	tmp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movX+30.0f, movY, movZ));
+	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f)); //Para casa4
+	//model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);*/
+
 	/**
 	model = glm::translate(tmp, glm::vec3(0.85f, 0.25f, 1.29f));
 	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
@@ -377,10 +385,10 @@ int main()
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 
 		//De 32 a 46 Chavira...
-		((char *)"../../FinalGrafica/Models/casita/dom.obj"),				//32
-		((char *)"../../FinalGrafica/Models/casa2/untitled2.obj"),				//33
-		((char *)"../../FinalGrafica/Models/casa3/untitled.obj"),				//34
-		((char *)"../../FinalGrafica/Models/casa4/Cyprys_House.obj"),				//35
+		((char *)"../../FinalGrafica/Models/casa1/casa1.obj"),				//32
+		((char *)"../../FinalGrafica/Models/casa2/casa2.obj"),				//33
+		((char *)"../../FinalGrafica/Models/casa3/casa3.obj"),				//34
+		((char *)"../../FinalGrafica/Models/casa4/casa4.obj"),				//35
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//36
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//37
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//38
@@ -407,7 +415,7 @@ int main()
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
     
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
-	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 600.0f);
+	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 	// render loop
     // While the windows is not closed
     while (!glfwWindowShouldClose(window))
