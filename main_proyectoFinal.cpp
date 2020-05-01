@@ -337,7 +337,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-71.0f, -0.5f, -45.0f));				//10
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-72.0f, -0.5f, -44.0f));				//10
 	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
