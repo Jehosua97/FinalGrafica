@@ -258,6 +258,24 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[0].Draw(shader);
 
+	/*
+	32
+	Escala: 1.2f en todas
+	Pos Y: -1.0f
+
+	33
+	Escala: 1.0f en todas, o comentado
+	Pos Y: -0.5f
+
+	34
+	Escala: 1.5f en todas
+	Pos Y: -1.0f
+
+	35
+	Escala: 1.f en todas
+	Pos Y: -1.0f
+	*/
+
 	//CASAS DE EN MEDIO - MILDRED
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
 	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
@@ -279,7 +297,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
 	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[32].Draw(shader);*/
+	modelo[35].Draw(shader);*/
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.1f, -0.5f, 65.0f));			//21
 	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));		
@@ -293,13 +311,53 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[34].Draw(shader);
 	
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(50.1f, -1.0f, 71.5f));				//22
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(50.1f, -1.0f, 71.5f));				//23
 	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[35].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.6f, -1.0f, 88.2f));				//24
+	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
+	model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[32].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.0f, 92.0f));				//25
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+	//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.1f, -1.0f, 91.2f));				//26
+	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[32].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(74.3f, -1.0f, 88.8f));				//27
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.8f, -0.5f, 119.0f));				//28
+	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[33].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(6.0f, -1.0f, 113.8f));				//29
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[35].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.2f, -0.5f, 119.0f));				//30
+	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[33].Draw(shader);
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
