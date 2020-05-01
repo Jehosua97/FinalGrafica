@@ -283,6 +283,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[35].Draw(shader);*/
 
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-46.0f, -0.5f, -121.0f));				//1
 	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -350,17 +351,65 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);*/
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-0.7f, -1.0f, 20.89f));				//17
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[32].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.59f, -1.0f, 21.29f));				//16
+	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(73.59f, -1.0, 44.59f));				//20
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[33].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.19f, -1.0f, 21.0f));				//18
+	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-68.30f, -1.0f, 50.49f));				//19
+	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[35].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.4f, -1.0f, 0.20f));				//14
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[32].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(68.8f, -1.0f, -6.29f));				//15
+	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[35].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(74.09f, -1.0f, -44.4f));				//11
+	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-50.89f, -1.0f, -29.5f));				//12
+	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[35].Draw(shader);
 
-
-
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.9f, -1.0f, -23.50f));				//13
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[33].Draw(shader);
 
 	//CASAS DE ABAJO - CHAVIRA
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
@@ -501,21 +550,21 @@ int main()
 		((char *)"../../FinalGrafica/Models/Basic House 1/Basic House 1.obj"),				//1 - Casita de prueba (reservado pa cualquier cosa)
 
 		//De 2 a 16 sigue Mildred...
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //2
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //3
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //4
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //5
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //6
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //7
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //8
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //9
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //10
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //11
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //12
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //13
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //14
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //15
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //16
 
 		//17 empieza Joya hasta 31...
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
