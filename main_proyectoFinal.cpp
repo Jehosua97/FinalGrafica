@@ -77,8 +77,8 @@ bool avanza = true;
 float movX = 0.0f, movY = 3.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f;
 bool preciso = false;
 
-//Para escalamiento de todo
-float a = 0.2f;
+//Para cambiar de plano
+int valorPlano = 0;
 
 
 unsigned int generateTextures(const char* filename, bool alfa)
@@ -252,11 +252,11 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 	//PLANO DE REFERENCIA
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 0.0f));
-	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-	model = glm::scale(model, glm::vec3(290.0f, 290.0f, 1.0f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.09f, 0.0f));
+	//model = glm::rotate(model, glm::radians(270.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(290.0f, 1.0f, 290.0f));
 	shader.setMat4("model", model);
-	modelo[0].Draw(shader);
+	modelo[valorPlano].Draw(shader);
 
 	/*
 	32
@@ -351,61 +351,61 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);*/
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-0.7f, -1.0f, 20.89f));				//17
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 20.9f));				//17
+	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
+	//model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.59f, -1.0f, 21.29f));				//16
-	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.59f, -1.0f, 21.3f));				//16
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
 	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(73.59f, -1.0, 44.59f));				//20
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(73.6f, -0.5f, 44.6f));				//20
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[33].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.19f, -1.0f, 21.0f));				//18
-	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.2f, -1.0f, 21.0f));				//18
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-68.30f, -1.0f, 50.49f));				//19
-	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-68.3f, -1.0f, 50.5f));				//19
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
 	model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[35].Draw(shader);
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.4f, -1.0f, 0.20f));				//14
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(68.8f, -1.0f, -6.29f));				//15
-	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(68.8f, -1.0f, -6.3f));				//15
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
 	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[35].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(74.09f, -1.0f, -44.4f));				//11
-	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(74.1f, -1.0f, -44.4f));				//11
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
 	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-50.89f, -1.0f, -29.5f));				//12
-	model = glm::scale(model, glm::vec3(1.30f, 1.30f, 1.30f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-50.9f, -1.0f, -29.5f));				//12
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
 	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[35].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.9f, -1.0f, -23.50f));				//13
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.9f, -0.5f, -23.5f));				//13
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -547,7 +547,7 @@ int main()
 	// Load model
 	Model modelo[47] = {
 		((char *)"../../FinalGrafica/Models/bocetoMedidas.obj"),							//0 - Boceto, piso
-		((char *)"../../FinalGrafica/Models/Basic House 1/Basic House 1.obj"),				//1 - Casita de prueba (reservado pa cualquier cosa)
+		((char *)"../../FinalGrafica/Models/bocetoTexturas.obj"),				//1 - Casita de prueba (reservado pa cualquier cosa)
 
 		//De 2 a 16 sigue Mildred...
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //2
@@ -723,6 +723,9 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		//animacion = true;
 		preciso = !preciso;
+
+	if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
+		valorPlano = 1 - valorPlano;
 
 	printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", movX, movY, movZ, escala, rotacion);
 }
