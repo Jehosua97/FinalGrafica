@@ -272,7 +272,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	Pos Y: -1.0f
 
 	35
-	Escala: 1.f en todas
+	Escala: 1.3f en todas
 	Pos Y: -1.0f
 	*/
 
