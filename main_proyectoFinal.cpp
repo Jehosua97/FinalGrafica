@@ -219,9 +219,9 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setVec3("pointLight[0].ambient", glm::vec3(1.0f, 1.0f, 1.0f));	//Luz ambiental de 0 a 1
 	shader.setVec3("pointLight[0].diffuse", glm::vec3(1.0f, 1.0f, 1.0f));
 	shader.setVec3("pointLight[0].specular", glm::vec3(1.0f, 1.0f, 1.0f));
-	shader.setFloat("pointLight[0].constant", 1.0f); 
-	shader.setFloat("pointLight[0].linear", 0.001f);  
-	shader.setFloat("pointLight[0].quadratic", 0.000032f); 
+	shader.setFloat("pointLight[0].constant", 1.0f);
+	shader.setFloat("pointLight[0].linear", 0.001f);
+	shader.setFloat("pointLight[0].quadratic", 0.000032f);
 
 	shader.setVec3("pointLight[1].position", glm::vec3(0.0, 0.0f, 0.0f));
 	shader.setVec3("pointLight[1].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
@@ -230,7 +230,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setFloat("pointLight[1].constant", 1.0f);
 	shader.setFloat("pointLight[1].linear", 0.009f);						//Luz direccional
 	shader.setFloat("pointLight[1].quadratic", 0.032f);						//Luz quién sabe
-	
+
 	shader.setFloat("material_shininess", 32.0f);
 
 	// create transformations and Projection
@@ -276,6 +276,73 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	Pos Y: -1.0f
 	*/
 
+	//CASAS DE ARRIBA - JEHOSUA
+	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
+	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
+	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[35].Draw(shader);*/
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-46.0f, -0.5f, -121.0f));				//1
+	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[33].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, -120.0f));				//2
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+	//model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(46.0f, -1.0f, -121.0f));				//3
+	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
+	//model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[32].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.0f, -1.0f, -88.8f));				//4
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+	model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-25.0f, -1.0f, -94.0f));				//5
+	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
+	model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[32].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.0f, -0.5f, -96.0f));				//6
+	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[33].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(69.0f, -1.0f, -95.0f));				//7
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[35].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-51.0f, -1.0f, -74.0f));				//8
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[35].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, -1.0f, -68.0f));				//9
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+	model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[34].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-71.0f, -0.5f, -45.0f));				//10
+	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[33].Draw(shader);
+
 	//CASAS DE EN MEDIO - MILDRED
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
 	model = glm::scale(model, glm::vec3(escala, escala, escala));						//Utilizar sólo un modelo con las variables por vez.
@@ -284,66 +351,16 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	modelo[32].Draw(shader);*/
 
 
-	//CASAS DE ARRIBA - JEHOSUA
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.1f, -0.5f, 65.0f));			//1
-		//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));		
-	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[33].Draw(shader);
-	/*
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 64.0f));				//2
-	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
-	model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(50.1f, -1.0f, 71.5f));				//3
-	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
-	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[35].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.6f, -1.0f, 88.2f));				//4
-	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
-	model = glm::rotate(model, glm::radians(-270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[32].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.0f, 92.0f));				//5
-	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
-	//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.1f, -1.0f, 91.2f));				//6
-	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[32].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(74.3f, -1.0f, 88.8f));				//7
-	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
-	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.8f, -0.5f, 119.0f));				//8
-	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[33].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(6.0f, -1.0f, 113.8f));				//9
-	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
-	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[35].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.2f, -0.5f, 119.0f));				//10
-	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[33].Draw(shader);*/
+
+
 
 	//CASAS DE ABAJO - CHAVIRA
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
