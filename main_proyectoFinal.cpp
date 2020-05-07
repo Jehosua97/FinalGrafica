@@ -604,12 +604,12 @@ int main()
 
 	// Load textures
 	vector<const GLchar*> faces;
-	faces.push_back("../../FinalGrafica/SkyBox/right.tga");
-	faces.push_back("../../FinalGrafica/SkyBox/left.tga");
-	faces.push_back("../../FinalGrafica/SkyBox/top.tga");
-	faces.push_back("../../FinalGrafica/SkyBox/bottom.tga");
-	faces.push_back("../../FinalGrafica/SkyBox/back.tga");
-	faces.push_back("../../FinalGrafica/SkyBox/front.tga");
+	faces.push_back("../../FinalGrafica/SkyBox/derecha.tga"); //derecha
+	faces.push_back("../../FinalGrafica/SkyBox/izquierda.tga"); //izquierda
+	faces.push_back("../../FinalGrafica/SkyBox/arriba.tga"); //arriba
+	faces.push_back("../../FinalGrafica/SkyBox/abajo.tga"); //abajo
+	faces.push_back("../../FinalGrafica/SkyBox/frente.tga"); //frente
+	faces.push_back("../../FinalGrafica/SkyBox/atras.tga"); //atrás
 
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
     
