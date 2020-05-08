@@ -575,14 +575,14 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 
 
-=======
-	modelo[18].Draw(shader);*/
+
+	//modelo[18].Draw(shader);*/
 
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[19].Draw(shader);*/
->>>>>>> 4b346997d67332c54df3cfa7c51787242eac9352
+
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(14.0f, -1.1f, -12.0f));				//Arbol 19
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1032,7 +1032,6 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[18].Draw(shader);
 
-<<<<<<< HEAD
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-22.0f, -1.0f, -42.0f));				//Flower 20
 	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1104,7 +1103,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 
 
-=======
+
 	//PERRO
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movPerroX, movY, movPerroZ));				//Cuerpo
 	model = glm::scale(model, glm::vec3(escala, escala, escala));
@@ -1141,7 +1140,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::rotate(model, glm::radians(20.0f - rotaColita), glm::vec3(0.0f, 0.0f, 1.0f));
 	shader.setMat4("model", model);
 	modelo[41].Draw(shader);
->>>>>>> 4b346997d67332c54df3cfa7c51787242eac9352
+
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
