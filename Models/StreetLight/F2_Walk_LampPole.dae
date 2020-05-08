@@ -1,0 +1,338 @@
+<?xml version="1.0"?>
+<COLLADA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+  <asset>
+    <created>2019-04-06T20:13:43.6290495-04:00</created>
+    <modified>2019-04-06T20:13:43.6290495-04:00</modified>
+  </asset>
+  <library_images>
+    <image id="LampPole">
+      <init_from>./LampPole.png</init_from>
+    </image>
+    <image id="Light">
+      <init_from>./Light.png</init_from>
+    </image>
+    <image id="Shadow_Tex">
+      <init_from>./Shadow_Tex.png</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="mt_LampPole_mat_id" name="mt_LampPole_mat">
+      <instance_effect url="#mt_LampPole_eff_id" />
+    </material>
+    <material id="mt_Light_mat_id" name="mt_Light_mat">
+      <instance_effect url="#mt_Light_eff_id" />
+    </material>
+    <material id="mt_Light2_mat_id" name="mt_Light2_mat">
+      <instance_effect url="#mt_Light2_eff_id" />
+    </material>
+    <material id="mt_Walk_Shadow_Tex_mat_id" name="mt_Walk_Shadow_Tex_mat">
+      <instance_effect url="#mt_Walk_Shadow_Tex_eff_id" />
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="mt_LampPole_eff_id" name="mt_LampPole_eff">
+      <profile_COMMON>
+        <newparam sid="mt_LampPole_surf">
+          <surface type="2D">
+            <init_from>LampPole</init_from>
+            <format>PNG</format>
+          </surface>
+        </newparam>
+        <newparam sid="mt_LampPole_samp">
+          <sampler2D>
+            <source>mt_LampPole_surf</source>
+            <wrap_s>WRAP</wrap_s>
+            <wrap_t>MIRROR</wrap_t>
+            <minfilter>LINEAR_MIPMAP_NEAREST</minfilter>
+            <magfilter>LINEAR</magfilter>
+            <mipfilter>LINEAR</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="mt_LampPole_tech">
+          <phong>
+            <diffuse>
+              <texture texture="mt_LampPole_samp" texcoord="uv" />
+            </diffuse>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="mt_Light_eff_id" name="mt_Light_eff">
+      <profile_COMMON>
+        <newparam sid="mt_Light_surf">
+          <surface type="2D">
+            <init_from>Light</init_from>
+            <format>PNG</format>
+          </surface>
+        </newparam>
+        <newparam sid="mt_Light_samp">
+          <sampler2D>
+            <source>mt_Light_surf</source>
+            <wrap_s>MIRROR</wrap_s>
+            <wrap_t>MIRROR</wrap_t>
+            <minfilter>LINEAR_MIPMAP_NEAREST</minfilter>
+            <magfilter>LINEAR</magfilter>
+            <mipfilter>LINEAR</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="mt_Light_tech">
+          <phong>
+            <diffuse>
+              <texture texture="mt_Light_samp" texcoord="uv" />
+            </diffuse>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="mt_Light2_eff_id" name="mt_Light2_eff">
+      <profile_COMMON>
+        <newparam sid="mt_Light2_surf">
+          <surface type="2D">
+            <init_from>Light</init_from>
+            <format>PNG</format>
+          </surface>
+        </newparam>
+        <newparam sid="mt_Light2_samp">
+          <sampler2D>
+            <source>mt_Light2_surf</source>
+            <wrap_s>MIRROR</wrap_s>
+            <wrap_t>MIRROR</wrap_t>
+            <minfilter>LINEAR_MIPMAP_NEAREST</minfilter>
+            <magfilter>LINEAR</magfilter>
+            <mipfilter>LINEAR</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="mt_Light2_tech">
+          <phong>
+            <diffuse>
+              <texture texture="mt_Light2_samp" texcoord="uv" />
+            </diffuse>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="mt_Walk_Shadow_Tex_eff_id" name="mt_Walk_Shadow_Tex_eff">
+      <profile_COMMON>
+        <newparam sid="mt_Walk_Shadow_Tex_surf">
+          <surface type="2D">
+            <init_from>Shadow_Tex</init_from>
+            <format>PNG</format>
+          </surface>
+        </newparam>
+        <newparam sid="mt_Walk_Shadow_Tex_samp">
+          <sampler2D>
+            <source>mt_Walk_Shadow_Tex_surf</source>
+            <wrap_s>MIRROR</wrap_s>
+            <wrap_t>MIRROR</wrap_t>
+            <minfilter>LINEAR_MIPMAP_LINEAR</minfilter>
+            <magfilter>LINEAR</magfilter>
+            <mipfilter>LINEAR</mipfilter>
+          </sampler2D>
+        </newparam>
+        <technique sid="mt_Walk_Shadow_Tex_tech">
+          <phong>
+            <diffuse>
+              <texture texture="mt_Walk_Shadow_Tex_samp" texcoord="uv" />
+            </diffuse>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="LampPole_01_0_0_geo_id" name="LampPole_01_0_0">
+      <mesh>
+        <source id="LampPole_01_0_0_Position_id" name="LampPole_01_0_0_Position">
+          <float_array id="LampPole_01_0_0_Position_array_id" count="276">-0.424264 34 0 0 34 0.424264 -0.424264 35 0 0 35 0.424264 0 35 -0.424264 0.424264 35 0 0 34 -0.424264 0.424264 34 0 0 34 0.424264 0.424264 34 0 0 35 0.424264 0.424264 35 0 0 34 -0.424264 -0.424264 34 0 0 35 -0.424264 -0.424264 35 0 -1.41421 33.4 0 0 33.4 1.41421 -1.41421 34 0 0 34 1.41421 0 34 -1.41421 1.41421 34 0 0 33.4 -1.41421 1.41421 33.4 0 0 33.4 1.41421 1.41421 33.4 0 0 34 1.41421 1.41421 34 0 0 33.4 -1.41421 -1.41421 33.4 0 0 34 -1.41421 -1.41421 34 0 -1.41421 29.4 0 0 29.4 1.41421 -2.0275 33.4 0 0 33.4 2.0275 0 33.4 -2.0275 2.0275 33.4 0 0 29.4 -1.41421 1.41421 29.4 0 0 29.4 -1.41421 1.41421 29.4 0 -1.41421 29.4 0 0 29.4 1.41421 0 29.4 1.41421 1.41421 29.4 0 0 33.4 2.0275 2.0275 33.4 0 0 29.4 -1.41421 -1.41421 29.4 0 0 33.4 -2.0275 -2.0275 33.4 0 0.390999 10 -0.273149 -0.192033 10 -0.570219 0.390999 29.4 -0.273149 -0.192033 29.4 -0.570219 -0.192033 10 -0.570219 -0.654726 10 -0.107526 -0.192033 29.4 -0.570219 -0.654726 29.4 -0.107526 -0.654726 10 -0.107526 -0.357656 10 0.475505 -0.654726 29.4 -0.107526 -0.357656 29.4 0.475505 -0.357656 10 0.475505 0.288632 10 0.373142 -0.357656 29.4 0.475505 0.288632 29.4 0.373142 0.288632 10 0.373142 0.390999 10 -0.273149 0.288632 29.4 0.373142 0.390999 29.4 -0.273149 -0.948405 0 -0.169855 -0.502798 0 0.704693 -0.948405 10 -0.169855 -0.502798 10 0.704693 -0.502798 0 0.704693 0.466636 0 0.551146 -0.502798 10 0.704693 0.466636 10 0.551146 0.466636 0 0.551146 0.620186 0 -0.418291 0.466636 10 0.551146 0.620186 10 -0.418291 0.620186 0 -0.418291 -0.254365 0 -0.863896 0.620186 10 -0.418291 -0.254365 10 -0.863896 -0.254365 0 -0.863896 -0.948405 0 -0.169855 -0.254365 10 -0.863896 -0.948405 10 -0.169855</float_array>
+          <technique_common>
+            <accessor source="#LampPole_01_0_0_Position_array_id" count="92" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="LampPole_01_0_0_Normal_id" name="LampPole_01_0_0_Normal">
+          <float_array id="LampPole_01_0_0_Normal_array_id" count="276">-0.706733 -0.0325071 0.706733 -0.706733 -0.0325071 0.706733 -0.706733 -0.0325071 0.706733 -0.706733 -0.0325071 0.706733 0.706733 -0.0325073 -0.706733 0.706733 -0.0325073 -0.706733 0.706733 -0.0325073 -0.706733 0.706733 -0.0325073 -0.706733 0.706733 -0.0325072 0.706733 0.706733 -0.0325072 0.706733 0.706733 -0.0325072 0.706733 0.706733 -0.0325072 0.706733 -0.706733 -0.032507 -0.706733 -0.706733 -0.032507 -0.706733 -0.706733 -0.032507 -0.706733 -0.706733 -0.032507 -0.706733 -0.702987 -0.107783 0.702987 -0.702987 -0.107783 0.702987 -0.702987 -0.107783 0.702987 -0.702987 -0.107783 0.702987 0.702987 -0.107784 -0.702987 0.702987 -0.107784 -0.702987 0.702987 -0.107784 -0.702987 0.702987 -0.107784 -0.702987 0.702987 -0.107783 0.702987 0.702987 -0.107783 0.702987 0.702987 -0.107783 0.702987 0.702987 -0.107783 0.702987 -0.702988 -0.107783 -0.702987 -0.702988 -0.107783 -0.702987 -0.702988 -0.107783 -0.702987 -0.702988 -0.107783 -0.702987 -0.702987 -0.107783 0.702987 -0.702987 -0.107783 0.702987 -0.702987 -0.107783 0.702987 -0.702987 -0.107783 0.702987 0.702987 -0.107784 -0.702987 0.702987 -0.107784 -0.702987 0.702987 -0.107784 -0.702987 0.702987 -0.107784 -0.702987 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0.702987 -0.107783 0.702987 0.702987 -0.107783 0.702987 0.702987 -0.107783 0.702987 0.702987 -0.107783 0.702987 -0.702988 -0.107783 -0.702987 -0.702988 -0.107783 -0.702987 -0.702988 -0.107783 -0.702987 -0.702988 -0.107783 -0.702987 0.891007 0 -0.453989 -0.156436 0 -0.987688 0.891007 0 -0.453989 -0.156436 0 -0.987688 -0.156436 0 -0.987688 -0.987688 0 -0.156435 -0.156436 0 -0.987688 -0.987688 0 -0.156435 -0.987688 0 -0.156435 -0.453988 0 0.891007 -0.987688 0 -0.156435 -0.453988 0 0.891007 -0.453988 0 0.891007 0.707107 0 0.707107 -0.453988 0 0.891007 0.707107 0 0.707107 0.707107 0 0.707107 0.891007 0 -0.453989 0.707107 0 0.707107 0.891007 0 -0.453989 -0.987688 0 -0.156435 -0.453989 0 0.891007 -0.987688 0 -0.156435 -0.453989 0 0.891007 -0.453989 0 0.891007 0.707106 0 0.707107 -0.453989 0 0.891007 0.707106 0 0.707107 0.707106 0 0.707107 0.891007 0 -0.453989 0.707106 0 0.707107 0.891007 0 -0.453989 0.891007 0 -0.453989 -0.156436 0 -0.987688 0.891007 0 -0.453989 -0.156436 0 -0.987688 -0.156436 0 -0.987688 -0.987688 0 -0.156435 -0.156436 0 -0.987688 -0.987688 0 -0.156435</float_array>
+          <technique_common>
+            <accessor source="#LampPole_01_0_0_Normal_array_id" count="92" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="LampPole_01_0_0_Color_id" name="LampPole_01_0_0_Color">
+          <float_array id="LampPole_01_0_0_Color_array_id" count="368">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0.5039371 1 1 1 0.5039371 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0.5039371 1 1 1 0.5039371 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0.5039371 1 1 1 0.5039371 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0.5039371 1 1 1 0.5039371 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0.5039371 1 1 1 0.5039371 1 1 1 0 1 1 1 0 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0 1 1 1 0 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0 1 1 1 0 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0 1 1 1 0 1 1 1 0.5984253 1 1 1 0.5984253 1 1 1 0 1 1 1 0 1 1 1 0.5984253 1 1 1 0.5984253</float_array>
+          <technique_common>
+            <accessor source="#LampPole_01_0_0_Color_array_id" count="92" stride="4">
+              <param name="R" type="float" />
+              <param name="G" type="float" />
+              <param name="B" type="float" />
+              <param name="A" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="LampPole_01_0_0_TexCoord0_id" name="LampPole_01_0_0_TexCoord0">
+          <float_array id="LampPole_01_0_0_TexCoord0_array_id" count="184">1.51326 0.75 1.98674 0.75 1.51326 1 1.98674 1 1.98674 1 1.51326 1 1.98674 0.75 1.51326 0.75 1.51326 0.75 1.98674 0.75 1.51326 1 1.98674 1 1.51326 0.75 1.98674 0.75 1.51326 1 1.98674 1 1.51326 0.75 1.98674 0.75 1.51326 1 1.98674 1 1.98674 1 1.51326 1 1.98674 0.75 1.51326 0.75 1.51326 0.75 1.98674 0.75 1.51326 1 1.98674 1 1.51326 0.75 1.98674 0.75 1.51326 1 1.98674 1 1.51326 0 1.98674 0 1.51326 1 1.98674 1 1.98674 1 1.51326 1 1.98674 0 1.51326 0 0.0123106 -1 0.5 -1 0.0123106 1 0.5 1 1.51326 0 1.98674 0 1.51326 1 1.98674 1 1.51326 0 1.98674 0 1.51326 1 1.98674 1 3.01705 -0.875 3.5 -0.875 3.01705 1 3.5 1 3.01705 -0.875 3.5 -0.875 3.01705 1 3.5 1 3.01705 -0.875 3.5 -0.875 3.01705 1 3.5 1 3.01705 -0.875 3.5 -0.875 3.01705 1 3.5 1 3.01705 -0.875 3.5 -0.875 3.01705 1 3.5 1 4 -0.875 4.48295 -0.875 4 1 4.48295 1 4 -0.875 4.48295 -0.875 4 1 4.48295 1 4 -0.875 4.48295 -0.875 4 1 4.48295 1 4 -0.875 4.48295 -0.875 4 1 4.48295 1 4 -0.875 4.48295 -0.875 4 1 4.48295 1</float_array>
+          <technique_common>
+            <accessor source="#LampPole_01_0_0_TexCoord0_array_id" count="92" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="LampPole_01_0_0_vtx_id">
+          <input semantic="POSITION" source="#LampPole_01_0_0_Position_id" />
+          <input semantic="NORMAL" source="#LampPole_01_0_0_Normal_id" />
+        </vertices>
+        <triangles material="Mdl_0_Mtl_mt_LampPole" count="46">
+          <input semantic="VERTEX" source="#LampPole_01_0_0_vtx_id" offset="0" />
+          <input semantic="COLOR" source="#LampPole_01_0_0_Color_id" offset="0" />
+          <input semantic="TEXCOORD" source="#LampPole_01_0_0_TexCoord0_id" offset="0" set="0" />
+          <p>0 1 2 1 3 2 4 5 6 5 7 6 8 9 10 9 11 10 12 13 14 13 15 14 16 17 18 17 19 18 20 21 22 21 23 22 24 25 26 25 27 26 28 29 30 29 31 30 32 33 34 33 35 34 36 37 38 37 39 38 40 41 42 41 43 42 44 45 46 45 47 46 48 49 50 49 51 50 52 53 54 53 55 54 56 57 58 57 59 58 60 61 62 61 63 62 64 65 66 65 67 66 68 69 70 69 71 70 72 73 74 73 75 74 76 77 78 77 79 78 80 81 82 81 83 82 84 85 86 85 87 86 88 89 90 89 91 90</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="LampPole_Light_1_0_geo_id" name="LampPole_Light_1_0">
+      <mesh>
+        <source id="LampPole_Light_1_0_Position_id" name="LampPole_Light_1_0_Position">
+          <float_array id="LampPole_Light_1_0_Position_array_id" count="12">-11.7 20.3 2.5 11.7 20.3 2.5 -11.7 43.7 2.5 11.7 43.7 2.5</float_array>
+          <technique_common>
+            <accessor source="#LampPole_Light_1_0_Position_array_id" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="LampPole_Light_1_0_TexCoord0_id" name="LampPole_Light_1_0_TexCoord0">
+          <float_array id="LampPole_Light_1_0_TexCoord0_array_id" count="8">-0.5 0.5 0.5 0.5 -0.5 1.5 0.5 1.5</float_array>
+          <technique_common>
+            <accessor source="#LampPole_Light_1_0_TexCoord0_array_id" count="4" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="LampPole_Light_1_0_vtx_id">
+          <input semantic="POSITION" source="#LampPole_Light_1_0_Position_id" />
+        </vertices>
+        <triangles material="Mdl_0_Mtl_mt_Light" count="2">
+          <input semantic="VERTEX" source="#LampPole_Light_1_0_vtx_id" offset="0" />
+          <input semantic="TEXCOORD" source="#LampPole_Light_1_0_TexCoord0_id" offset="0" set="0" />
+          <p>0 1 2 1 3 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="LampPole_Light1_2_0_geo_id" name="LampPole_Light1_2_0">
+      <mesh>
+        <source id="LampPole_Light1_2_0_Position_id" name="LampPole_Light1_2_0_Position">
+          <float_array id="LampPole_Light1_2_0_Position_array_id" count="12">-15.6 0 15.6 15.6 0 15.6 -15.6 -1.90735E-06 -15.6 15.6 -1.90735E-06 -15.6</float_array>
+          <technique_common>
+            <accessor source="#LampPole_Light1_2_0_Position_array_id" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="LampPole_Light1_2_0_TexCoord0_id" name="LampPole_Light1_2_0_TexCoord0">
+          <float_array id="LampPole_Light1_2_0_TexCoord0_array_id" count="8">-0.5 0.5 0.5 0.5 -0.5 1.5 0.5 1.5</float_array>
+          <technique_common>
+            <accessor source="#LampPole_Light1_2_0_TexCoord0_array_id" count="4" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="LampPole_Light1_2_0_vtx_id">
+          <input semantic="POSITION" source="#LampPole_Light1_2_0_Position_id" />
+        </vertices>
+        <triangles material="Mdl_0_Mtl_mt_Light2" count="2">
+          <input semantic="VERTEX" source="#LampPole_Light1_2_0_vtx_id" offset="0" />
+          <input semantic="TEXCOORD" source="#LampPole_Light1_2_0_TexCoord0_id" offset="0" set="0" />
+          <p>0 1 2 1 3 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="LampPole_Shadow_3_0_geo_id" name="LampPole_Shadow_3_0">
+      <mesh>
+        <source id="LampPole_Shadow_3_0_Position_id" name="LampPole_Shadow_3_0_Position">
+          <float_array id="LampPole_Shadow_3_0_Position_array_id" count="12">-2.45 0 2.45 2.45 0 2.45 -2.45 0 -2.45 2.45 0 -2.45</float_array>
+          <technique_common>
+            <accessor source="#LampPole_Shadow_3_0_Position_array_id" count="4" stride="3">
+              <param name="X" type="float" />
+              <param name="Y" type="float" />
+              <param name="Z" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="LampPole_Shadow_3_0_TexCoord0_id" name="LampPole_Shadow_3_0_TexCoord0">
+          <float_array id="LampPole_Shadow_3_0_TexCoord0_array_id" count="8">0.5 0 1.5 0 0.5 1 1.5 1</float_array>
+          <technique_common>
+            <accessor source="#LampPole_Shadow_3_0_TexCoord0_array_id" count="4" stride="2">
+              <param name="S" type="float" />
+              <param name="T" type="float" />
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="LampPole_Shadow_3_0_vtx_id">
+          <input semantic="POSITION" source="#LampPole_Shadow_3_0_Position_id" />
+        </vertices>
+        <triangles material="Mdl_0_Mtl_mt_Walk_Shadow_Tex" count="2">
+          <input semantic="VERTEX" source="#LampPole_Shadow_3_0_vtx_id" offset="0" />
+          <input semantic="TEXCOORD" source="#LampPole_Shadow_3_0_TexCoord0_id" offset="0" set="0" />
+          <p>0 1 2 1 3 2</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="F2_Walk_LampPole_00_id" name="F2_Walk_LampPole_00">
+      <node id="LampPole_01_0_0_node_id" name="LampPole_01_0_0_node" type="NODE">
+        <matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#LampPole_01_0_0_geo_id">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Mdl_0_Mtl_mt_LampPole" target="#mt_LampPole_mat_id" />
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="LampPole_Light_1_0_node_id" name="LampPole_Light_1_0_node" type="NODE">
+        <matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#LampPole_Light_1_0_geo_id">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Mdl_0_Mtl_mt_Light" target="#mt_Light_mat_id" />
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="LampPole_Light1_2_0_node_id" name="LampPole_Light1_2_0_node" type="NODE">
+        <matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#LampPole_Light1_2_0_geo_id">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Mdl_0_Mtl_mt_Light2" target="#mt_Light2_mat_id" />
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+      <node id="LampPole_Shadow_3_0_node_id" name="LampPole_Shadow_3_0_node" type="NODE">
+        <matrix>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#LampPole_Shadow_3_0_geo_id">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Mdl_0_Mtl_mt_Walk_Shadow_Tex" target="#mt_Walk_Shadow_Tex_mat_id" />
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#F2_Walk_LampPole_00_id" />
+  </scene>
+</COLLADA>

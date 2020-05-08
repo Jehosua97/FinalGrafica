@@ -487,12 +487,39 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[18].Draw(shader);*/
-	
+	modelo[18].Draw(shader);
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[19].Draw(shader);
+	modelo[19].Draw(shader); 
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.0f, movZ));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);*/
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.2f, movZ));				//Lamp 21
+	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[21].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-64.5, -1.2f, 110.0f));				//Lamp 21
+	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[21].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-64.5, -1.2f, 110.0f));				//Lamp 21
+	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[21].Draw(shader);
+
+
+
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(14.0f, -1.1f, -12.0f));				//Arbol 19
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -942,6 +969,78 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[18].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-22.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-18.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-14.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-10.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-6.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-2.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(6.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(14.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(18.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.0f, -1.0f, -42.0f));				//Flower 20
+	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[20].Draw(shader);
+
+
+
+
+
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
 	skyboxShader.use();
@@ -1034,8 +1133,8 @@ int main()
 		((char *)"../../FinalGrafica/Models/Tree2/N64_Tree.obj"), //17
 		((char *)"../../FinalGrafica/Models/Tree1/n64tree.obj"), //18
 		((char *)"../../FinalGrafica/Models/Tree3/Tree3.obj"),	//19
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/Flowers/flowers.obj"), //20
+		((char *)"../../FinalGrafica/Models/StreetLight/lamp.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),

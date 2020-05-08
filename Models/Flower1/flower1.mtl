@@ -1,0 +1,50 @@
+# Blender MTL File: 'None'
+# Material Count: 4
+
+newmtl Material2114
+Ns 96.078443
+Ka 1.000000 1.000000 1.000000
+Kd 0.972549 0.972549 0.972549
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\wwjeh\\Documents\\Semestre 8\\Compu Grafica\\Proyecto\\FinalGrafica\\Models\\Basic Flower Bed 1\\Material2114.png
+map_d C:\\Users\\wwjeh\\Documents\\Semestre 8\\Compu Grafica\\Proyecto\\FinalGrafica\\Models\\Basic Flower Bed 1\\Material2114.png
+
+newmtl Material2115
+Ns 96.078443
+Ka 1.000000 1.000000 1.000000
+Kd 0.972549 0.972549 0.972549
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\wwjeh\\Documents\\Semestre 8\\Compu Grafica\\Proyecto\\FinalGrafica\\Models\\Basic Flower Bed 1\\Material2115.png
+map_d C:\\Users\\wwjeh\\Documents\\Semestre 8\\Compu Grafica\\Proyecto\\FinalGrafica\\Models\\Basic Flower Bed 1\\Material2115.png
+
+newmtl Material2116
+Ns 96.078443
+Ka 1.000000 1.000000 1.000000
+Kd 0.972549 0.972549 0.972549
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\wwjeh\\Documents\\Semestre 8\\Compu Grafica\\Proyecto\\FinalGrafica\\Models\\Basic Flower Bed 1\\Material2116.png
+map_d C:\\Users\\wwjeh\\Documents\\Semestre 8\\Compu Grafica\\Proyecto\\FinalGrafica\\Models\\Basic Flower Bed 1\\Material2116.png
+
+newmtl Material2117
+Ns 96.078443
+Ka 1.000000 1.000000 1.000000
+Kd 0.972549 0.972549 0.972549
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\wwjeh\\Documents\\Semestre 8\\Compu Grafica\\Proyecto\\FinalGrafica\\Models\\Basic Flower Bed 1\\Material2117.png
+map_d C:\\Users\\wwjeh\\Documents\\Semestre 8\\Compu Grafica\\Proyecto\\FinalGrafica\\Models\\Basic Flower Bed 1\\Material2117.png
