@@ -425,11 +425,11 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	modelo[33].Draw(shader);
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 64.0f));				//22
-	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));		
+	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
 	model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[34].Draw(shader);
-	
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(50.1f, -1.0f, 71.5f));				//23
 	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -477,6 +477,470 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[33].Draw(shader);
+
+	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -0.7f, movZ));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+	
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);*/
+	
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(14.0f, -1.1f, -12.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(14.0f, -1.1f, -6.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(14.0f, -1.1f, 0.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(14.0f, -1.1f, 6.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.0f, -1.1f, -41.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.0f, -1.1f, -48.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, -1.1f, -41.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, -1.1f, -46.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, -1.1f, -51.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, -1.1f, 91.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.1f, 91.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-5.0f, -1.1f, 91.0f));				//Arbol 19
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[19].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-76.0f, -0.7f, 104.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-76.0f, -0.7f, 58.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.0f, -0.7f, 31.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.0f, -0.7f, -30.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.0f, -0.7f, -74.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-74.0f, -0.7f, -122.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-13.0f, -0.7f, 121.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-13.0f, -0.7f, 121.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(61.0f, -0.7f, 121.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -0.7f, 103.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -0.7f, 75.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -0.7f, 30.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -0.7f, -28.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -0.7f, -58.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -0.7f, -105.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(63.0f, -0.7f, -123.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(15.0f, -0.7f, -123.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-31.0f, -0.7f, -123.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-45.0f, -0.7f, 90.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-26.0f, -0.7f, 63.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-21.0f, -0.7f, 63.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-16.0f, -0.7f, 63.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(16.0f, -0.7f, 21.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(20.0f, -0.7f, 21.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(24.0f, -0.7f, 21.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(28.0f, -0.7f, 21.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-44.0f, -0.7f, 5.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-44.0f, -0.7f, 1.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-44.0f, -0.7f, -3.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-44.0f, -0.7f, -7.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-44.0f, -0.7f, -93.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(9.0f, -0.7f, -93.0f));				//Arbol 17
+	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
+	shader.setMat4("model", model);
+	modelo[17].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(31.0f, -1.1f, 120.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(13.0f, -1.1f, 120.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-31.0f, -1.1f, 120.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-59.0f, -1.1f, 120.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-76.0f, -1.1f, 74.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-76.0f, -1.1f, 16.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-76.0f, -1.1f, -13.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-76.0f, -1.1f, -58.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-76.0f, -1.1f, -104.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-12.0f, -1.1f, -123.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-12.0f, -1.1f, -123.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(30.0f, -1.1f, -123.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -1.1f, -75.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -1.1f, -16.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -1.1f, 13.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(75.0f, -1.1f, 59.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, -1.1f, 89.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(28.0f, -1.1f, 63.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(23.0f, -1.1f, 63.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(18.0f, -1.1f, 63.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-15.0f, -1.1f, 21.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-19.0f, -1.1f, 21.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.1f, 21.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-27.0f, -1.1f, 21.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(46.0f, -1.1f, 4.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(46.0f, -1.1f, 0.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(46.0f, -1.1f, -4.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(46.0f, -1.1f, -8.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-18.0f, -1.1f, -30.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-13.0f, -1.1f, -30.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.0f, -1.1f, -30.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-3.0f, -1.1f, -30.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(2.0f, -1.1f, -30.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(7.0f, -1.1f, -30.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(12.0f, -1.1f, -30.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-7.0f, -1.1f, -93.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(45.0f, -1.1f, -93.0f));				//Arbol 18
+	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[18].Draw(shader);
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -567,9 +1031,9 @@ int main()
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //16
 
 		//17 empieza Joya hasta 31...
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/Tree2/N64_Tree.obj"), //17
+		((char *)"../../FinalGrafica/Models/Tree1/n64tree.obj"), //18
+		((char *)"../../FinalGrafica/Models/Tree3/Tree3.obj"),	//19
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
