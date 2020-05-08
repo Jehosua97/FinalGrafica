@@ -1,7 +1,7 @@
-/*---------------------------------------------------------*/
-/* ----------------   Práctica 9 --------------------------*/
-/*-----------------    2020-2   ---------------------------*/
-/*------------- Alumno:                     ---------------*/
+/*-------------------------------------------------------*/
+/* ----------------   Proyecto Final --------------------*/
+/*--------------------    2020-2   ----------------------*/
+/*------- Alumno:                              ----------*/
 //#define STB_IMAGE_IMPLEMENTATION
 
 //Para texturas, modelos, skybox
@@ -15,6 +15,7 @@
 #include <glew.h>
 #include <glfw3.h>
 #include <stb_image.h>
+#include <math.h>
 
 #include "../ProyectoFinal/ProyectoFinal/camera.h"
 #include "../ProyectoFinal/ProyectoFinal/Model.h"
@@ -40,12 +41,12 @@ GLuint skyboxVBO, skyboxVAO;
 //Camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
 double	lastX = 0.0f,
-		lastY = 0.0f;
+lastY = 0.0f;
 bool firstMouse = true;
 
 //Timing
 double	deltaTime = 0.0f,
-		lastFrame = 0.0f;
+lastFrame = 0.0f;
 
 //Lighting
 glm::vec3 lightPosition(0.0f, 4.0f, 3.0f);
@@ -60,13 +61,13 @@ unsigned int generateTextures(char*, bool);
 
 //Texture
 unsigned int	t_smile,
-				t_toalla,
-				t_unam,
-				t_white,
-				t_panda,
-				t_cubo,
-				t_caja,
-				t_caja_brillo;
+t_toalla,
+t_unam,
+t_white,
+t_panda,
+t_cubo,
+t_caja,
+t_caja_brillo;
 
 //For model
 bool animacion = false;
@@ -76,9 +77,31 @@ bool avanza = true;
 //Para movimiento y escalado de modelos (registro de coordenadas y escalas)
 float movX = 0.0f, movY = 3.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f;
 bool preciso = false;
+float incPreciso = 0.1f;
+float incNormal = 1.0f;
+float incRotacion = 7.5f;
 
 //Para cambiar de plano
 int valorPlano = 1;
+
+
+//VARIABLES DE ANIMACIÓN
+//Perro
+float rotaPata = 0.0f;
+float rotaColita = 0.0f;
+bool animacionPerro = false;
+float movPerroX = 0.0f;
+float movPerroZ = 0.0f;
+float gradosPerro = 0.0f;
+float iniPerroX = -23.0f;
+float iniPerroY = -1.0f;
+float iniPerroZ = -86.0f;
+float elipseX = 0.0f;
+float elipseZ = 0.0f;
+float anguloPerro = 0.0f;
+float incGradosPerro = 1.0f;
+bool estadosPerro[10] = { true };
+bool alternaPatas = true;
 
 
 unsigned int generateTextures(const char* filename, bool alfa)
@@ -95,7 +118,7 @@ unsigned int generateTextures(const char* filename, bool alfa)
 	// load image, create texture and generate mipmaps
 	int width, height, nrChannels;
 	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
-	
+
 	unsigned char *data = stbi_load(filename, &width, &height, &nrChannels, 0);
 	if (data)
 	{
@@ -130,11 +153,11 @@ void getResolution()
 void LoadTextures()
 {
 
-	
+
 }
 
 void myData()
-{	
+{
 	GLfloat skyboxVertices[] = {
 		// Positions
 		-1.0f,  1.0f, -1.0f,
@@ -196,11 +219,40 @@ void myData()
 
 void animate(void)
 {
-	if (animacion)
-	{
-		movAuto_z += 0.03f;
+	if (animacionPerro) {
 
-		printf("Posicion %f \n", movAuto_z);
+
+		if (estadosPerro[0]) {
+			elipseX = (1 + cos(glm::radians(gradosPerro)));
+			elipseZ = (0.7 + (0.7 * sin(glm::radians(gradosPerro))));
+			movPerroX = movX + iniPerroX + elipseX * 30;
+			movPerroZ = movZ + iniPerroZ + elipseZ * 30;
+			gradosPerro = (float)((int)(gradosPerro + incGradosPerro) % 360);
+		}
+
+		if (alternaPatas) {
+			if (rotaPata < 45.0f)
+				rotaPata += incRotacion;
+			else
+				alternaPatas = false;
+			if (rotaColita < 20.0f)
+				rotaColita += incRotacion * 1.2;
+		}
+
+		else
+		{
+			if (rotaPata > -20.0f)
+				rotaPata -= incRotacion;
+			else
+				alternaPatas = true;
+			if (rotaColita > -20.0f)
+				rotaColita -= incRotacion * 1.2;
+		}
+
+	}
+	else {
+		movPerroX = movX;
+		movPerroZ = movZ;
 	}
 }
 
@@ -484,13 +536,13 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
 	shader.setMat4("model", model);
 	modelo[17].Draw(shader);
-	
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 18
 	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[18].Draw(shader);*/
-	
+
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -944,6 +996,43 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[18].Draw(shader);
 
+	//PERRO
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(movPerroX, movY, movPerroZ));				//Cuerpo
+	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	tmp = model = glm::rotate(model, glm::radians(-gradosPerro), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[36].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(0.255f, 1.115f, 0.76f));						//Pata frontal izquierda
+	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::rotate(model, glm::radians(40.0f - rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[37].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(-0.34f, 1.1f, 0.8f));							//Pata frontal derecha
+	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::rotate(model, glm::radians(rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[38].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(0.22f, 1.08f, -0.5f));							//Pata trasera izquierda
+	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::rotate(model, glm::radians(rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[39].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(-0.25f, 0.92f, -0.54f));						//Pata trasera derecha
+	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::rotate(model, glm::radians(40.0f - rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[40].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(0.01f, 1.42f, -0.58f));						//Colita
+	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::rotate(model, glm::radians(20.0f - rotaColita), glm::vec3(0.0f, 0.0f, 1.0f));
+	shader.setMat4("model", model);
+	modelo[41].Draw(shader);
+
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
 	skyboxShader.use();
@@ -963,32 +1052,32 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 int main()
 {
-    // glfw: initialize and configure
-    // ------------------------------
-    glfwInit();
-    /*glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);*/
+	// glfw: initialize and configure
+	// ------------------------------
+	glfwInit();
+	/*glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);*/
 
 #ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
 #endif
 
-    // glfw window creation
-    // --------------------
+	// glfw window creation
+	// --------------------
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Practica 9", NULL, NULL);
-    if (window == NULL)
-    {
-        std::cout << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Practica 9", NULL, NULL);
+	if (window == NULL)
+	{
+		std::cout << "Failed to create GLFW window" << std::endl;
+		glfwTerminate();
+		return -1;
+	}
 	glfwSetWindowPos(window, 0, 30);
-    glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, resize);
+	glfwMakeContextCurrent(window);
+	glfwSetFramebufferSizeCallback(window, resize);
 	glfwSetCursorPosCallback(window, mouse_callback);
 	glfwSetScrollCallback(window, scroll_callback);
 	glfwSetKeyCallback(window, my_input);
@@ -1004,7 +1093,7 @@ int main()
 	LoadTextures();
 	myData();
 	glEnable(GL_DEPTH_TEST);
-	
+
 	//For Models
 	Shader modelShader("Shaders/shader_Lights.vs", "Shaders/shader_Lights.fs");
 	//For Primitives
@@ -1054,15 +1143,15 @@ int main()
 		((char *)"../../FinalGrafica/Models/casa2/casa2.obj"),				//33
 		((char *)"../../FinalGrafica/Models/casa3/casa3.obj"),				//34
 		((char *)"../../FinalGrafica/Models/casa4/casa4.obj"),				//35
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//36
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//37
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//38
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//39
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//40
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//41
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//42
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//43
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//44
+		((char *)"../../FinalGrafica/Models/dog/test/cuerpo.obj"),						//36
+		((char *)"../../FinalGrafica/Models/dog/test/frontalIzquierda.obj"),			//37
+		((char *)"../../FinalGrafica/Models/dog/test/frontalDerecha.obj"),				//38
+		((char *)"../../FinalGrafica/Models/dog/test/traseraIzquierda.obj"),			//39
+		((char *)"../../FinalGrafica/Models/dog/test/traseraDerecha.obj"),				//40
+		((char *)"../../FinalGrafica/Models/dog/test/colita.obj"),						//41
+		((char *)"../../FinalGrafica/Models/tree/n64tree.obj"),						//42
+		((char *)"../../FinalGrafica/Models/flores/untitled.obj"),				//43
+		((char *)"../../FinalGrafica/Models/flores/untitled2.obj"),				//44
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//45
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//46
 	};
@@ -1078,44 +1167,44 @@ int main()
 	faces.push_back("../../FinalGrafica/SkyBox/atras.tga"); //atrás
 
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
-    
+
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 	// render loop
-    // While the windows is not closed
-    while (!glfwWindowShouldClose(window))
-    {
+	// While the windows is not closed
+	while (!glfwWindowShouldClose(window))
+	{
 		// per-frame time logic
 		// --------------------
 		double currentFrame = glfwGetTime();
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
-        // input
-        // -----
-        //my_input(window);
+		// input
+		// -----
+		//my_input(window);
 		animate();
 
-        // render
-        // Backgound color
-        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		// render
+		// Backgound color
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//display(modelShader, ourModel, llantasModel);
 		display(modelShader, SkyBoxshader, cubemapTexture, modelo);
 
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
+		// glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+		// -------------------------------------------------------------------------------
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
 
-    // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
+	// glfw: terminate, clearing all previously allocated GLFW resources.
+	// ------------------------------------------------------------------
 	glDeleteVertexArrays(1, &skyboxVAO);
 	glDeleteBuffers(1, &skyboxVBO);
 
-    glfwTerminate();
-    return 0;
+	glfwTerminate();
+	return 0;
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
@@ -1134,61 +1223,72 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-		lightPosition.z -=0.5f;
+		lightPosition.z -= 0.5f;
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 		lightPosition.z += 0.5f;
 
 
 	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
 		if (preciso)
-			movY += 0.1f;
+			movY += incPreciso;
 		else
-			movY += 1.0f;
+			movY += incNormal;
 	if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
 		if (preciso)
-			movY -= 0.1f;
+			movY -= incPreciso;
 		else
-			movY -= 1.0f;
+			movY -= incNormal;
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
 		if (preciso)
-			movX -= 0.1f;
+			movX -= incPreciso;
 		else
-			movX -= 1.0f;
+			movX -= incNormal;
 	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
 		if (preciso)
-			movX += 0.1f;
+			movX += incPreciso;
 		else
-			movX += 1.0f;
+			movX += incNormal;
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
 		if (preciso)
-			movZ += 0.1f;
+			movZ += incPreciso;
 		else
-			movZ += 1.0f;
+			movZ += incNormal;
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 		if (preciso)
-			movZ -= 0.1f;
+			movZ -= incPreciso;
 		else
-			movZ -= 1.0f;
+			movZ -= incNormal;
 	if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
 		if (preciso)
-			escala -= 0.1f;
+			escala -= incPreciso;
 		else
-			escala -= 1.0f;
+			escala -= incNormal;
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		if (preciso)
-			escala += 0.1f;
+			escala += incPreciso;
 		else
-			escala += 1.0f;
+			escala += incNormal;
 
-	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-		rotacion = (float)((int)(rotacion + 90.0f) % 360);
-	
-	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-		rotacion = (float) ((int) (rotacion - 90.0f) % 360);
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+		rotacion = (float)((int)(rotacion + incRotacion) % 360);
+		if (rotaPata < 45.0f)
+			rotaPata += incRotacion;
+		if (rotaColita < 20.0f)
+			rotaColita += incRotacion * 1.2;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+		rotacion = (float)((int)(rotacion - incRotacion) % 360);
+		if (rotaPata > -20.0f)
+			rotaPata -= incRotacion;
+		if (rotaColita > -20.0f)
+			rotaColita -= incRotacion * 1.2;
+	}
 
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		//animacion = true;
-		preciso = !preciso;
+		animacionPerro = !animacionPerro;
+	//preciso = !preciso;
 
 	if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
 		valorPlano = 1 - valorPlano;
@@ -1200,8 +1300,8 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 // ---------------------------------------------------------------------------------------------
 void resize(GLFWwindow* window, int width, int height)
 {
-    // Set the Viewport to the size of the created window
-    glViewport(0, 0, width, height);
+	// Set the Viewport to the size of the created window
+	glViewport(0, 0, width, height);
 }
 
 // glfw: whenever the mouse moves, this callback is called
