@@ -75,7 +75,7 @@ float movAuto_z = 0.0f;
 bool avanza = true;
 
 //Para movimiento y escalado de modelos (registro de coordenadas y escalas)
-float movX = 0.0f, movY = 3.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f;
+float movX = 0.0f, movY = -1.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f;
 bool preciso = false;
 float incPreciso = 0.1f;
 float incNormal = 1.0f;
@@ -99,7 +99,7 @@ float iniPerroZ = -86.0f;
 float elipseX = 0.0f;
 float elipseZ = 0.0f;
 float anguloPerro = 0.0f;
-float incGradosPerro = 1.0f;
+float incGradosPerro = 2.0f;
 bool estadosPerro[10] = { true };
 bool alternaPatas = true;
 
@@ -541,7 +541,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-<<<<<<< HEAD
+
 	modelo[18].Draw(shader);
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
@@ -555,27 +555,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[20].Draw(shader);*/
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.2f, movZ));				//Lamp 21
-	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
-	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[21].Draw(shader);
-
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-64.5, -1.2f, 110.0f));				//Lamp 21
-	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
-	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[21].Draw(shader);
-
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-64.5, -1.2f, 110.0f));				//Lamp 21
-	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
-	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[21].Draw(shader);
-
-
-
-
+	
 	//modelo[18].Draw(shader);*/
 
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
@@ -1032,6 +1012,28 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[18].Draw(shader);
 
+	//FAROS
+
+	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.2f, movZ));				//Lamp 21
+	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[21].Draw(shader);*/
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-64.5, -1.2f, 110.0f));				//Lamp 21
+	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[21].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-64.5, -1.2f, 110.0f));				//Lamp 21
+	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[21].Draw(shader);
+
+	//FLORES
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-22.0f, -1.0f, -42.0f));				//Flower 20
 	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1100,11 +1102,8 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[20].Draw(shader);
 
-
-
-
-
 	//PERRO
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movPerroX, movY, movPerroZ));				//Cuerpo
 	model = glm::scale(model, glm::vec3(escala, escala, escala));
 	tmp = model = glm::rotate(model, glm::radians(-gradosPerro), glm::vec3(0.0f, 1.0f, 0.0f));
