@@ -1345,6 +1345,26 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[41].Draw(shader);
 
+	//PORTERIAS
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, -23.5f));				//Porteria
+	model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[22].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, 5.0f));				//Porteria
+	model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[22].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.5f, -8.0f));				//Balon
+	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[23].Draw(shader);
+
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -1439,9 +1459,9 @@ int main()
 		((char *)"../../FinalGrafica/Models/Tree1/n64tree.obj"), //18
 		((char *)"../../FinalGrafica/Models/Tree3/Tree3.obj"),	//19
 		((char *)"../../FinalGrafica/Models/Flowers/flowers.obj"), //20
-		((char *)"../../FinalGrafica/Models/StreetLight/lamp.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/StreetLight/lamp.obj"),//21
+		((char *)"../../FinalGrafica/Models/Porteria/Porteria.obj"),//22
+		((char *)"../../FinalGrafica/Models/SoccerBall/SoccerBall.obj"),//23
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
