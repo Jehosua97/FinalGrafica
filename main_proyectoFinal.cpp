@@ -78,7 +78,7 @@ float movX = 0.0f, movY = 3.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f;
 bool preciso = false;
 
 //Para cambiar de plano
-int valorPlano = 0;
+int valorPlano = 1;
 
 
 unsigned int generateTextures(const char* filename, bool alfa)
@@ -478,6 +478,8 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[33].Draw(shader);
 
+	//ÁRBOLES
+
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -0.7f, movZ));				//Arbol 17
 	model = glm::scale(model, glm::vec3(0.03f, 0.05f, 0.03f));
 	shader.setMat4("model", model);
@@ -489,10 +491,10 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[18].Draw(shader);*/
 	
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
+	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[19].Draw(shader);
+	modelo[19].Draw(shader);*/
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(14.0f, -1.1f, -12.0f));				//Arbol 19
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1011,7 +1013,7 @@ int main()
 	// Load model
 	Model modelo[47] = {
 		((char *)"../../FinalGrafica/Models/bocetoMedidas.obj"),							//0 - Boceto, piso
-		((char *)"../../FinalGrafica/Models/bocetoTexturas.obj"),				//1 - Casita de prueba (reservado pa cualquier cosa)
+		((char *)"../../FinalGrafica/Models/pruebaAlberca.obj"),							//1 - Casita de prueba (reservado pa cualquier cosa)
 
 		//De 2 a 16 sigue Mildred...
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //2
