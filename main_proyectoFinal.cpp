@@ -75,7 +75,7 @@ float movAuto_z = 0.0f;
 bool avanza = true;
 
 //Para movimiento y escalado de modelos (registro de coordenadas y escalas)
-float movX = 0.0f, movY = 1.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f;
+float movX = 0.0f, movY = 1.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f, rotacionY=0.0f;
 bool preciso = false;
 float incPreciso = 0.1f;
 float incNormal = 1.0f;
@@ -463,6 +463,8 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[33].Draw(shader);
+
+
 
 	//CASAS DE ABAJO - CHAVIRA
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
@@ -1365,6 +1367,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[23].Draw(shader);
 
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.6f, -1.0f, 5.0f));				//Canasta
 	model = glm::scale(model, glm::vec3(2.0f, 2.3f, 2.0f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1383,6 +1386,116 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[25].Draw(shader);
 	
+
+	//BARDAS
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-82.0f, -1.0f, -22.0f));				
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-82.0f, -1.0f, 23.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-82.0f, -1.0f, -67.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-82.0f, -1.0f, 66.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(72.0f, -1.0f, -66.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(72.0f, -1.0f, 67.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(72.0f, -1.0f, -23.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(72.0f, -1.0f, 22.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.0f, -129.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(23.0f, -1.0f, -129.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(23.0f, -1.0f, 118.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.0f, 118.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[2].Draw(shader);
+
+
+	//autos
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(58.0f, -1.0f, -31.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-91.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[3].Draw(shader); //challenger
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-58.39f, -0.5f, -51.19f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[4].Draw(shader); //pink sedan 
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-3.20, -0.6, -108.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	shader.setMat4("model", model);
+	modelo[5].Draw(shader); //mercedes
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(27.0f, -0.6, 47.0f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	shader.setMat4("model", model);
+	modelo[5].Draw(shader); //mercedes
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-29.6f, -0.5f, 106.5f));
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(270.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[4].Draw(shader); //challenger
+
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -1456,10 +1569,10 @@ int main()
 		((char *)"../../FinalGrafica/Models/pruebaAlberca.obj"),							//1 - Casita de prueba (reservado pa cualquier cosa)
 
 		//De 2 a 16 sigue Mildred...
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //2
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //3
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //4
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //5
+		((char *)"../../FinalGrafica/Models/contorno/reja.obj"), //2
+		((char *)"../../FinalGrafica/Models/challenger/CHALLENGER71.obj"), //3
+		((char *)"../../FinalGrafica/Models/carro/clasico.obj"), //4
+		((char *)"../../FinalGrafica/Models/mercedes/mercedes.obj"), //5
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //6
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //7
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //8
