@@ -89,7 +89,7 @@ int valorPlano = 1;
 //Perro
 float rotaPata = 0.0f, rotaColita = 0.0f;
 bool animacionPerro = false;
-float movPerroX = 0.0f, movPerroY = -1.0f, movPerroZ = 0.0f, gradosPerro = 0.0f;
+float movPerroX = 35.0f, movPerroY = -1.0f, movPerroZ = -65.0f, gradosPerro = 0.0f;
 float iniPerroX = -25.0f, iniPerroY = -1.0f, iniPerroZ = -86.0f;
 float elipseX = 0.0f, elipseZ = 0.0f;
 float anguloPerro = 0.0f, incGradosPerro = 1.0f;
@@ -296,29 +296,27 @@ void animate(void)
 		}
 
 
-		if (!pausaPatas){
-			if (alternaPatas) {
-				if (rotaPata < 45.0f)
-					rotaPata += incRotacionPerro;
-				else
-					alternaPatas = false;
-				if (rotaColita < 20.0f)
-					rotaColita += incRotacionPerro * 1.2;
-			}
-			else
-			{
-				if (rotaPata > -20.0f)
-					rotaPata -= incRotacionPerro;
-				else
-					alternaPatas = true;
-				if (rotaColita > -20.0f)
-					rotaColita -= incRotacionPerro * 1.2;
-			}
-		}
+		
 	}
-	else {
-		movPerroX = 35.0f;
-		movPerroZ = -0.65f;
+
+	if (!pausaPatas) {
+		if (alternaPatas) {
+			if (rotaPata < 45.0f)
+				rotaPata += incRotacionPerro;
+			else
+				alternaPatas = false;
+			if (rotaColita < 20.0f)
+				rotaColita += incRotacionPerro * 1.2;
+		}
+		else
+		{
+			if (rotaPata > -20.0f)
+				rotaPata -= incRotacionPerro;
+			else
+				alternaPatas = true;
+			if (rotaColita > -20.0f)
+				rotaColita -= incRotacionPerro * 1.2;
+		}
 	}
 }
 
@@ -426,13 +424,13 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-25.0f, -1.0f, -94.0f));				//5
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-25.0f, -1.0f, -92));				//5
 	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
 	model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.0f, -0.5f, -96.0f));				//6
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.0f, -0.5f, -94.0f));				//6
 	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -560,13 +558,13 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[32].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.0f, 92.0f));				//25
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.0f, 90.0f));				//25
 	model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
 	//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[34].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.1f, -1.0f, 91.2f));				//26
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.1f, -1.0f, 89.2f));				//26
 	model = glm::scale(model, glm::vec3(1.2f, 1.2f, 1.2f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
