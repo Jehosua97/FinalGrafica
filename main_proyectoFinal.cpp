@@ -75,11 +75,11 @@ float movAuto_z = 0.0f;
 bool avanza = true;
 
 //Para movimiento y escalado de modelos (registro de coordenadas y escalas)
-float movX = 0.0f, movY = 1.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f, rotacionY=0.0f;
+float movX = 0.0f, movY = 0.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f, rotacionY = 0.0f;
 bool preciso = false;
 float incPreciso = 0.1f;
 float incNormal = 1.0f;
-float incRotacion = 7.5f;
+float incRotacion = 90.0f;
 
 //Para cambiar de plano
 int valorPlano = 1;
@@ -87,23 +87,21 @@ int valorPlano = 1;
 
 //VARIABLES DE ANIMACIÓN
 //Perro
-float rotaPata = 0.0f;
-float rotaColita = 0.0f;
+float rotaPata = 0.0f, rotaColita = 0.0f;
 bool animacionPerro = false;
-float movPerroX = 0.0f;
-float movPerroY = -1.0f;
-float movPerroZ = 0.0f;
-float gradosPerro = 0.0f;
-float iniPerroX = -23.0f;
-float iniPerroY = -1.0f;
-float iniPerroZ = -86.0f;
-float elipseX = 0.0f;
-float elipseZ = 0.0f;
-float anguloPerro = 0.0f;
-float incGradosPerro = 2.0f;
+float movPerroX = 0.0f, movPerroY = -1.0f, movPerroZ = 0.0f, gradosPerro = 0.0f;
+float iniPerroX = -25.0f, iniPerroY = -1.0f, iniPerroZ = -86.0f;
+float elipseX = 0.0f, elipseZ = 0.0f;
+float anguloPerro = 0.0f, incGradosPerro = 1.0f;
 bool estadosPerro[10] = { true };
 bool alternaPatas = true;
+float escalaPerro = 0.35f;
+float incRotacionPerro = 7.5f;
+bool pausaPatas = false;
+float velMovPerro = 0.5f;
 
+//temporal
+int ba = 37;
 
 unsigned int generateTextures(const char* filename, bool alfa)
 {
@@ -222,38 +220,105 @@ void animate(void)
 {
 	if (animacionPerro) {
 
-
+		//iniPerroX = -25.0f, iniPerroY = -1.0f, iniPerroZ = -86.0f;
+		//La elipse inicia en x = 35.0f, y = -1.0f, z = -65.0f
 		if (estadosPerro[0]) {
 			elipseX = (1 + cos(glm::radians(gradosPerro)));
 			elipseZ = (0.7 + (0.7 * sin(glm::radians(gradosPerro))));
-			movPerroX = movX + iniPerroX + elipseX * 30;
-			movPerroZ = movZ + iniPerroZ + elipseZ * 30;
+			movPerroX = iniPerroX + elipseX * 30;
+			movPerroZ = iniPerroZ + elipseZ * 30;
 			gradosPerro = (float)((int)(gradosPerro + incGradosPerro) % 360);
+			if (gradosPerro == 0.0f) {
+				estadosPerro[0] = false;
+				estadosPerro[1] = true;
+			}
+		}
+	
+		//Se detiene frente a la casa:
+		//	Posicion: 36.999992, -1.100000, -24.000017
+		if (estadosPerro[1]) {
+			movPerroZ += velMovPerro;
+			if (movPerroZ > -24.0f) {
+				estadosPerro[1] = false;
+				estadosPerro[2] = true;
+				gradosPerro += 90.0f; //El valor ya se niega en el modelo
+			}
 		}
 
-		if (alternaPatas) {
-			if (rotaPata < 45.0f)
-				rotaPata += incRotacion;
+		//Se detiene antes de dar el salto en:
+		//	Posicion: 28.999992, -1.100000, -24.000017 
+		if (estadosPerro[2]) {
+			movPerroX -= velMovPerro;
+			if (movPerroX < 30.0f) {
+				estadosPerro[2] = false;
+				estadosPerro[3] = true;
+				pausaPatas = true;
+			}
+		}
+
+		//Cae en:
+		//	Posicion: 17.999992, -1.100000, -24.000017 
+		if (estadosPerro[3]) {
+			movPerroX -= velMovPerro;
+			movPerroY = -0.04f * pow(movPerroX - 24, 2) + 1.5f;
+			//Ecuación Parábola
+			if (movPerroX < 18.0f) {
+				estadosPerro[3] = false;
+				estadosPerro[4] = true;
+				pausaPatas = false;
+				movPerroY = -1.0f;
+			}
+		}
+
+		//Camina hacia:
+		//	Posicion: 13.999992, -1.100000, -24.000017 
+		if (estadosPerro[4]) {
+			movPerroX -= velMovPerro;
+			if (movPerroX < 14.0f) {
+				estadosPerro[4] = false;
+				estadosPerro[5] = true;
+				gradosPerro += 90.0f + 27.1213f;	//tan^-1 (1.7826) = 62.8786... -90 ~= 27.1213
+													//El valor ya se niega en el modelo
+			}
+		}
+		//Atraviesa hacia:
+		//	Posicion: 34.899986, -1.100000, -24.000017 
+		//Sube adonde empezó:
+		//	x = 35.0f, y = -1.0f, z = -65.0f
+		if (estadosPerro[5]) {
+			movPerroX += velMovPerro * 0.5121;
+			movPerroZ -= velMovPerro;	//1.95 veces /\ X
+			if (movPerroX > 35.0f) {
+				estadosPerro[5] = false;
+				estadosPerro[0] = true;
+				gradosPerro = 0.0f;
+			}
+		}
+
+
+		if (!pausaPatas){
+			if (alternaPatas) {
+				if (rotaPata < 45.0f)
+					rotaPata += incRotacionPerro;
+				else
+					alternaPatas = false;
+				if (rotaColita < 20.0f)
+					rotaColita += incRotacionPerro * 1.2;
+			}
 			else
-				alternaPatas = false;
-			if (rotaColita < 20.0f)
-				rotaColita += incRotacion * 1.2;
+			{
+				if (rotaPata > -20.0f)
+					rotaPata -= incRotacionPerro;
+				else
+					alternaPatas = true;
+				if (rotaColita > -20.0f)
+					rotaColita -= incRotacionPerro * 1.2;
+			}
 		}
-
-		else
-		{
-			if (rotaPata > -20.0f)
-				rotaPata -= incRotacion;
-			else
-				alternaPatas = true;
-			if (rotaColita > -20.0f)
-				rotaColita -= incRotacion * 1.2;
-		}
-
 	}
 	else {
-		movPerroX = movX;
-		movPerroZ = movZ;
+		movPerroX = 35.0f;
+		movPerroZ = -0.65f;
 	}
 }
 
@@ -463,8 +528,6 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[33].Draw(shader);
-
-
 
 	//CASAS DE ABAJO - CHAVIRA
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Ejemplo.
@@ -1312,42 +1375,48 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	//PERRO
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movPerroX, movPerroY, movPerroZ));				//Cuerpo
-	model = glm::scale(model, glm::vec3(escala, escala, escala));
 	tmp = model = glm::rotate(model, glm::radians(-gradosPerro), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
 	shader.setMat4("model", model);
 	modelo[36].Draw(shader);
 
-	model = glm::translate(tmp, glm::vec3(0.255f, 1.115f, 0.76f));						//Pata frontal izquierda
-	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::translate(tmp, glm::vec3(0.095f, 0.39f, 0.27f));						//Pata frontal izquierda
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
 	model = glm::rotate(model, glm::radians(40.0f - rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[37].Draw(shader);
 
-	model = glm::translate(tmp, glm::vec3(-0.34f, 1.1f, 0.8f));							//Pata frontal derecha
-	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::translate(tmp, glm::vec3(-0.115f, 0.39f, 0.28f));							//Pata frontal derecha
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
 	model = glm::rotate(model, glm::radians(rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[38].Draw(shader);
 
-	model = glm::translate(tmp, glm::vec3(0.22f, 1.08f, -0.5f));							//Pata trasera izquierda
-	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::translate(tmp, glm::vec3(0.095f, 0.325f, -0.19f));							//Pata trasera izquierda
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
 	model = glm::rotate(model, glm::radians(rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[39].Draw(shader);
 
-	model = glm::translate(tmp, glm::vec3(-0.25f, 0.92f, -0.54f));						//Pata trasera derecha
-	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::translate(tmp, glm::vec3(-0.0775f, 0.335f, -0.19f));						//Pata trasera derecha
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
 	model = glm::rotate(model, glm::radians(40.0f - rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[40].Draw(shader);
 
-	model = glm::translate(tmp, glm::vec3(0.01f, 1.42f, -0.58f));						//Colita
-	model = glm::scale(model, glm::vec3(escala, escala, escala));
+	model = glm::translate(tmp, glm::vec3(0.0f, 0.485f, -0.2f));							//Colita
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
 	model = glm::rotate(model, glm::radians(20.0f - rotaColita), glm::vec3(0.0f, 0.0f, 1.0f));
 	shader.setMat4("model", model);
 	modelo[41].Draw(shader);
 
-	//CANCHAS FUTBOL Y BASKETBALL
+	//ALBERCA
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(6.975f, -2.49f, -64.25f));
+	model = glm::scale(model, glm::vec3(289.775f, 289.775f, 289.775f));		
+	shader.setMat4("model", model);
+	modelo[45].Draw(shader);
+
+	//CANCHAS FUTBOL BASKETBALL
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, -23.5f));				//Porteria
 	model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
@@ -1367,7 +1436,6 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[23].Draw(shader);
 
-
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.6f, -1.0f, 5.0f));				//Canasta
 	model = glm::scale(model, glm::vec3(2.0f, 2.3f, 2.0f));
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1385,11 +1453,10 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[25].Draw(shader);
-	
 
 	//BARDAS
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-82.0f, -1.0f, -22.0f));				
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-82.0f, -1.0f, -22.0f));
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -1616,7 +1683,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/tree/n64tree.obj"),						//42
 		((char *)"../../FinalGrafica/Models/flores/untitled.obj"),				//43
 		((char *)"../../FinalGrafica/Models/flores/untitled2.obj"),				//44
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//45
+		((char *)"../../FinalGrafica/Models/alberca/alberca.obj"),				//45
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//46
 	};
 
@@ -1739,6 +1806,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 			rotaPata += incRotacion;
 		if (rotaColita < 20.0f)
 			rotaColita += incRotacion * 1.2;
+		ba--;
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
@@ -1747,13 +1815,14 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 			rotaPata -= incRotacion;
 		if (rotaColita > -20.0f)
 			rotaColita -= incRotacion * 1.2;
+		ba++;
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS){
 		//animacion = true;
 		animacionPerro = !animacionPerro;
-	preciso = !preciso;
-
+		preciso = !preciso;
+	}
 	if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
 		valorPlano = 1 - valorPlano;
 
