@@ -1561,6 +1561,48 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[4].Draw(shader); //challenger
 
+	//Sombrillas
+	//Sombrillas de día
+	if (true) {		//Cambiar 'true' por variable de control de día y noche en el futuro.
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.5f, -2.6f, -77.0f));			//21
+		model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		shader.setMat4("model", model);
+		modelo[47].Draw(shader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-21.85f, -2.6f, -71.15f));			//21
+		model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		shader.setMat4("model", model);
+		modelo[47].Draw(shader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-20.2f, -2.6f, -65.3f));			//21
+		model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
+		//model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
+		shader.setMat4("model", model);
+		modelo[47].Draw(shader);
+	}
+	//Sombrillas de noche
+	else {
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.5f, -2.6f, -77.0f));			//21
+		model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		shader.setMat4("model", model);
+		modelo[48].Draw(shader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-21.85f, -2.6f, -71.15f));			//21
+		model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		shader.setMat4("model", model);
+		modelo[48].Draw(shader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-20.2f, -2.6f, -65.3f));			//21
+		model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
+		//model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
+		shader.setMat4("model", model);
+		modelo[48].Draw(shader);
+	}
+
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -1629,9 +1671,9 @@ int main()
 	//Shader primitivasShader("shaders/shader_texture_color.vs", "shaders/shader_texture_color.fs");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 	// Load model
-	Model modelo[47] = {
+	Model modelo[62] = {
 		((char *)"../../FinalGrafica/Models/bocetoMedidas.obj"),							//0 - Boceto, piso
-		((char *)"../../FinalGrafica/Models/pruebaAlberca.obj"),							//1 - Casita de prueba (reservado pa cualquier cosa)
+		((char *)"../../FinalGrafica/Models/pruebaAlberca.obj"),							//1 - Plano con hueco de alberca y texturas
 
 		//De 2 a 16 sigue Mildred...
 		((char *)"../../FinalGrafica/Models/contorno/reja.obj"), //2
@@ -1678,11 +1720,28 @@ int main()
 		((char *)"../../FinalGrafica/Models/dog/test/traseraIzquierda.obj"),			//39
 		((char *)"../../FinalGrafica/Models/dog/test/traseraDerecha.obj"),				//40
 		((char *)"../../FinalGrafica/Models/dog/test/colita.obj"),						//41
-		((char *)"../../FinalGrafica/Models/tree/n64tree.obj"),						//42
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),						//42
 		((char *)"../../FinalGrafica/Models/flores/untitled.obj"),				//43
 		((char *)"../../FinalGrafica/Models/flores/untitled2.obj"),				//44
 		((char *)"../../FinalGrafica/Models/alberca/alberca.obj"),				//45
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),				//46
+		((char *)"../../FinalGrafica/Models/sombrilla/sombrillaA.obj"),				//46
+
+		//Extensión Chavira 47 a 61
+		((char *)"../../FinalGrafica/Models/sombrilla/sombrillaB.obj"),  //47
+		((char *)"../../FinalGrafica/Models/sombrilla/sombrillaC.obj"),  //48
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //49
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //50
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //51
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //52
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //53
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //54
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //55
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //56
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //57
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //58
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //59
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //60
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //61
 	};
 
 
