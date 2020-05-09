@@ -1606,6 +1606,25 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 		modelo[48].Draw(shader);
 	}
 
+	//Camastros
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-22.3f, -1.1f, -78.4f));
+	model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[42].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-20.65f, -1.1f, -72.55f));
+	model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[42].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-19.0f, -1.1f, -66.7f));
+	model = glm::scale(model, glm::vec3(0.7f, 0.7f, 0.7f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[42].Draw(shader);
+
 	//CRASH
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Cuerpo
 	//tmp = model = glm::rotate(model, glm::radians(-gradosPerro), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1765,7 +1784,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/dog/test/traseraIzquierda.obj"),			//39
 		((char *)"../../FinalGrafica/Models/dog/test/traseraDerecha.obj"),				//40
 		((char *)"../../FinalGrafica/Models/dog/test/colita.obj"),						//41
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),						//42
+		((char *)"../../FinalGrafica/Models/camastro/camastro.obj"),						//42
 		((char *)"../../FinalGrafica/Models/flores/untitled.obj"),				//43
 		((char *)"../../FinalGrafica/Models/flores/untitled2.obj"),				//44
 		((char *)"../../FinalGrafica/Models/alberca/alberca.obj"),				//45
