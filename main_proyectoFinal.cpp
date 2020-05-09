@@ -1345,7 +1345,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[41].Draw(shader);
 
-	//CANCHAS FUTBOL BASKETBALL
+	//CANCHAS FUTBOL Y BASKETBALL
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, -23.5f));				//Porteria
 	model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
@@ -1382,9 +1382,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[25].Draw(shader);
-
-
-
+	
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -1485,7 +1483,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/Basket/Basketball.obj"),//24
 		((char *)"../../FinalGrafica/Models/Basketball/Basketball.obj"),//25
 		((char *)"../../FinalGrafica/Models/Fence/fobj_fence.obj"),//26
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/Brick/Brick.obj"),//27
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
