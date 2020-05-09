@@ -1,0 +1,209 @@
+# Material file for crash.obj
+
+newmtl Tex_0000_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0000_0.png
+
+newmtl Tex_0001_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0001_0.png
+
+newmtl Tex_0002_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0002_0.png
+
+newmtl Tex_0003_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0003_0.png
+
+newmtl Tex_0004_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0004_0.png
+
+newmtl Tex_0005_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0005_0.png
+
+newmtl Tex_0006_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0006_0.png
+
+newmtl Tex_0007_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0007_0.png
+
+newmtl Tex_0008_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0008_0.png
+
+newmtl Tex_0009_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0009_0.png
+
+newmtl Tex_0010_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0010_0.png
+
+newmtl Tex_0011_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0011_0.png
+
+newmtl Tex_0012_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0012_0.png
+
+newmtl Tex_0013_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0013_0.png
+
+newmtl Tex_0014_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0014_0.png
+
+newmtl Tex_0015_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0015_0.png
+
+newmtl Tex_0016_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0016_0.png
+
+newmtl Tex_0018_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0018_0.png
+
+newmtl Tex_0019_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0019_0.png
+
+newmtl setka_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 1.0 1.0 1.0
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0023_0.png
+
+newmtl Tex_0020_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0020_0.png
+
+newmtl Tex_0021_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0021_0.png
+
+newmtl Tex_0022_0_png
+	Ns 10
+	d 1
+	illum 2
+	Kd 0.588 0.588 0.588
+	Ks 0.0 0.0 0.0
+	Ka 0.588 0.588 0.588
+	map_Kd Tex_0022_0.png
+

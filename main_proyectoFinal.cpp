@@ -100,6 +100,9 @@ float incRotacionPerro = 7.5f;
 bool pausaPatas = false;
 float velMovPerro = 0.5f;
 
+//CRASH
+
+
 //temporal
 int ba = 37;
 
@@ -1603,6 +1606,48 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 		modelo[48].Draw(shader);
 	}
 
+	//CRASH
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Cuerpo
+	//tmp = model = glm::rotate(model, glm::radians(-gradosPerro), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	shader.setMat4("model", model);
+	modelo[28].Draw(shader);
+	/*
+	model = glm::translate(tmp, glm::vec3(0.095f, 0.39f, 0.27f));						//Pata frontal izquierda
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
+	model = glm::rotate(model, glm::radians(40.0f - rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[37].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(-0.115f, 0.39f, 0.28f));							//Pata frontal derecha
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
+	model = glm::rotate(model, glm::radians(rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[38].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(0.095f, 0.325f, -0.19f));							//Pata trasera izquierda
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
+	model = glm::rotate(model, glm::radians(rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[39].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(-0.0775f, 0.335f, -0.19f));						//Pata trasera derecha
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
+	model = glm::rotate(model, glm::radians(40.0f - rotaPata), glm::vec3(-1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[40].Draw(shader);
+
+	model = glm::translate(tmp, glm::vec3(0.0f, 0.485f, -0.2f));							//Colita
+	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
+	model = glm::rotate(model, glm::radians(20.0f - rotaColita), glm::vec3(0.0f, 0.0f, 1.0f));
+	shader.setMat4("model", model);
+	modelo[41].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));			//21
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	//model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[27].Draw(shader);*/
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -1639,7 +1684,7 @@ int main()
 	monitors = glfwGetPrimaryMonitor();
 	getResolution();
 
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Practica 9", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Proyecto Final", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -1671,7 +1716,7 @@ int main()
 	//Shader primitivasShader("shaders/shader_texture_color.vs", "shaders/shader_texture_color.fs");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 	// Load model
-	Model modelo[62] = {
+	Model modelo[77] = {
 		((char *)"../../FinalGrafica/Models/bocetoMedidas.obj"),							//0 - Boceto, piso
 		((char *)"../../FinalGrafica/Models/pruebaAlberca.obj"),							//1 - Plano con hueco de alberca y texturas
 
@@ -1703,11 +1748,11 @@ int main()
 		((char *)"../../FinalGrafica/Models/Basket/Basketball.obj"),//24
 		((char *)"../../FinalGrafica/Models/Basketball/Basketball.obj"),//25
 		((char *)"../../FinalGrafica/Models/Fence/fobj_fence.obj"),//26
-		((char *)"../../FinalGrafica/Models/Brick/Brick.obj"),//27
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),
+		((char *)"../../FinalGrafica/Models/Crash/CrsahAkuAku.obj"),//27
+		((char *)"../../FinalGrafica/Models/Crash/torso.obj"),//28
+		((char *)"../../FinalGrafica/Models/Crash/BrazoDerecho.obj"),//29
+		((char *)"../../FinalGrafica/Models/Crash/BrazoIzq.obj"),//30
+		((char *)"../../FinalGrafica/Models/Crash/CejasAku.obj"),//31
 
 		//De 32 a 46 Chavira...
 		((char *)"../../FinalGrafica/Models/casa1/casa1.obj"),				//32
@@ -1742,6 +1787,24 @@ int main()
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //59
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //60
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //61
+
+		//Extensión Joya 62 a 76
+		((char *)"../../FinalGrafica/Models/Crash/CodoDerecho.obj"),  //62
+		((char *)"../../FinalGrafica/Models/Crash/CodoIzq.obj"),  //63
+		((char *)"../../FinalGrafica/Models/Crash/ManoDerecho.obj"),  //64
+		((char *)"../../FinalGrafica/Models/Crash/ManoIzq.obj"),  //65
+		((char *)"../../FinalGrafica/Models/Crash/PiernaDer.obj"),  //66
+		((char *)"../../FinalGrafica/Models/Crash/PiernaIzq.obj"),  //67
+		((char *)"../../FinalGrafica/Models/Crash/RodillaDer.obj"),  //68
+		((char *)"../../FinalGrafica/Models/Crash/RodillaIzq.obj"),  //69
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //70
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //71
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //72
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //73
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //74
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //75
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //76
+
 	};
 
 
