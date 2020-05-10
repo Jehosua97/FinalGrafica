@@ -21,6 +21,12 @@
 #include "../ProyectoFinal/ProyectoFinal/Model.h"
 #include "../ProyectoFinal/ProyectoFinal/Texture.h"
 
+#include <windows.h>
+#include <iostream>
+#pragma comment(lib, "winmm.lib")
+void play(void);
+
+
 // Other Libs
 #include "../ProyectoFinal/ProyectoFinal/SOIL2/SOIL2.h"
 
@@ -99,6 +105,8 @@ float escalaPerro = 0.35f;
 float incRotacionPerro = 7.5f;
 bool pausaPatas = false;
 float velMovPerro = 0.5f;
+
+
 
 //CRASH
 
@@ -1728,7 +1736,6 @@ int main()
 	LoadTextures();
 	myData();
 	glEnable(GL_DEPTH_TEST);
-
 	//For Models
 	Shader modelShader("Shaders/shader_Lights.vs", "Shaders/shader_Lights.fs");
 	//For Primitives
@@ -1840,6 +1847,10 @@ int main()
 
 	glm::mat4 projection = glm::mat4(1.0f);	//This matrix is for Projection
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+
+	//Música
+	//play();
+
 	// render loop
 	// While the windows is not closed
 	while (!glfwWindowShouldClose(window))
@@ -1961,9 +1972,13 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		//animacion = true;
 		animacionPerro = !animacionPerro;
 		preciso = !preciso;
+		play();
 	}
 	if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
 		valorPlano = 1 - valorPlano;
+
+	if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
+		play();
 
 	printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", movX, movY, movZ, escala, rotacion);
 }
@@ -2001,4 +2016,9 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	camera.ProcessMouseScroll(yoffset);
+}
+
+void play() {
+	std::cout << "Reproduciendo música";
+	PlaySound("..\\..\\a.wav", NULL, SND_ASYNC);
 }
