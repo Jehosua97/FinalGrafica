@@ -1425,6 +1425,12 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[45].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.19f, -1.9f, -55.59f));	
+	model = glm::scale(model, glm::vec3(1.2f, 1.0f, 1.2f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[71].Draw(shader);
+
 	//CANCHAS FUTBOL BASKETBALL
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.0f, -23.5f));				//Porteria
@@ -1824,7 +1830,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/Crash/RodillaDer.obj"),  //68
 		((char *)"../../FinalGrafica/Models/Crash/RodillaIzq.obj"),  //69
 		((char *)"../../FinalGrafica/Models/Rick/Rick.obj"),  //70
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //71
+		((char *)"../../FinalGrafica/Models/Candy/Candy.obj"),  //71
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //72
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //73
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //74
