@@ -60,6 +60,7 @@ void getResolution(void);
 void animate(void);
 void LoadTextures(void);
 unsigned int generateTextures(char*, bool);
+int hora, minuto;
 
 //Texture
 unsigned int	t_smile,
