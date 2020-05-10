@@ -1628,9 +1628,9 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	//CRASH
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Cuerpo
 	//tmp = model = glm::rotate(model, glm::radians(-gradosPerro), glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	//model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	shader.setMat4("model", model);
-	modelo[28].Draw(shader);
+	modelo[70].Draw(shader);
 	/*
 	model = glm::translate(tmp, glm::vec3(0.095f, 0.39f, 0.27f));						//Pata frontal izquierda
 	model = glm::scale(model, glm::vec3(escalaPerro, escalaPerro, escalaPerro));
@@ -1766,7 +1766,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/SoccerBall/SoccerBall.obj"),//23
 		((char *)"../../FinalGrafica/Models/Basket/Basketball.obj"),//24
 		((char *)"../../FinalGrafica/Models/Basketball/Basketball.obj"),//25
-		((char *)"../../FinalGrafica/Models/Fence/fobj_fence.obj"),//26
+		((char *)"../../FinalGrafica/Models/DUMMY.obj"),//26
 		((char *)"../../FinalGrafica/Models/Crash/CrsahAkuAku.obj"),//27
 		((char *)"../../FinalGrafica/Models/Crash/torso.obj"),//28
 		((char *)"../../FinalGrafica/Models/Crash/BrazoDerecho.obj"),//29
@@ -1816,7 +1816,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/Crash/PiernaIzq.obj"),  //67
 		((char *)"../../FinalGrafica/Models/Crash/RodillaDer.obj"),  //68
 		((char *)"../../FinalGrafica/Models/Crash/RodillaIzq.obj"),  //69
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //70
+		((char *)"../../FinalGrafica/Models/Rick/Rick.obj"),  //70
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //71
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //72
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //73
