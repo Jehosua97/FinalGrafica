@@ -2151,12 +2151,13 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	modelo[68].Draw(shader);
 
 	model = glm::translate(temp, glm::vec3(0.17f, 0.72f, 0.0f));				//Rodilla Izquierda
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.17f, 0.72f, 0.0f));				//Rodilla Izquierda
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[69].Draw(shader);
 
-	model = glm::translate(temp, glm::vec3(0.04f, 0.97f, 0.90f));				//Aku Aku
+	model = glm::translate(temp, glm::vec3(0.04f, 0.97f, 1.0f));				//Aku Aku			
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
