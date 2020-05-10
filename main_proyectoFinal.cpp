@@ -2151,7 +2151,6 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	modelo[68].Draw(shader);
 
 	model = glm::translate(temp, glm::vec3(0.17f, 0.72f, 0.0f));				//Rodilla Izquierda
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.17f, 0.72f, 0.0f));				//Rodilla Izquierda
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -2163,12 +2162,61 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[27].Draw(shader);
 
-	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, movY, movZ));				//Cuerpo
-	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+/*--------------------RICK----------------------------------------------------------*/
+
+	temp=model = glm::translate(glm::mat4(1.0f), glm::vec3(10.30f, 0.3f, 0.0f));				//Torso			
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[6].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.10f, 0.3f, 0.0f));				//Brazo Derecho		
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[7].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(0.10f, 0.3f, 0.0f));				//Brazo Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[8].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.47f, 0.305f, -0.01));				//Codo Derecho	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[9].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(0.47f, 0.305f, -0.01));				//Codo Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[10].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.07f, -0.21f, 0.0f));				//Pierna Derecha
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[11].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(0.05f, -0.21f, 0.0f));				//Pierna Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[12].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.09f, -0.63f, 0.0f));				//Brazo Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[28].Draw(shader);*/
+	modelo[13].Draw(shader);
 
+	model = glm::translate(temp, glm::vec3(0.07f, -0.63f, 0.0f));				//Brazo Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[14].Draw(shader);
 
 	/*
 	model = glm::translate(tmp, glm::vec3(0.095f, 0.39f, 0.27f));						//Pata frontal izquierda
@@ -2282,15 +2330,15 @@ int main()
 		((char *)"../../FinalGrafica/Models/challenger/CHALLENGER71.obj"), //3
 		((char *)"../../FinalGrafica/Models/carro/clasico.obj"), //4
 		((char *)"../../FinalGrafica/Models/mercedes/mercedes.obj"), //5
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //6
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //7
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //8
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //9
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //10
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //11
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //12
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //13
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //14
+		((char *)"../../FinalGrafica/Models/Rick/Torso.obj"), //6
+		((char *)"../../FinalGrafica/Models/Rick/BrazoDer.obj"), //7
+		((char *)"../../FinalGrafica/Models/Rick/BrazoIzq.obj"), //8
+		((char *)"../../FinalGrafica/Models/Rick/CodoDere.obj"), //9
+		((char *)"../../FinalGrafica/Models/Rick/CodoIzq.obj"), //10
+		((char *)"../../FinalGrafica/Models/Rick/PiernaDer.obj"), //11
+		((char *)"../../FinalGrafica/Models/Rick/PiernaIzq.obj"), //12
+		((char *)"../../FinalGrafica/Models/Rick/RodillaDer.obj"), //13
+		((char *)"../../FinalGrafica/Models/Rick/RodillaIzq.obj"), //14
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //15
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"), //16
 
