@@ -24,7 +24,7 @@
 #include <windows.h>
 #include <iostream>
 #pragma comment(lib, "winmm.lib")
-void play(void);
+void playMusic(void);
 
 
 // Other Libs
@@ -82,6 +82,85 @@ bool preciso = false;
 float incPreciso = 0.1f;
 float incNormal = 1.0f;
 float incRotacion = 90.0f;
+
+//ANIMACIÓN POR KEYFRAMES
+//Reutilizar variables movX, movY, movZ y rotacion
+//Keyframes
+//Teclado
+float	posX = 0.0f,
+posY = 0.0f,
+posZ = 0.0f,
+rotRodIzq = 0.0f,
+giroMonito = 0.0f,
+movBrazo = 0.0f,
+movCabe = 0.0f;
+
+//Incrementos
+float	incX = 0.0f,
+incY = 0.0f,
+incZ = 0.0f,
+rotInc = 0.0f,
+giroMonitoInc = 0.0f,
+movBrazoInc = 0.0f,
+movCabeInc = 0.0f;
+
+#define MAX_FRAMES 9
+int i_max_steps = 190;
+int i_curr_steps = 0;
+typedef struct _frame
+{
+	//Variables para GUARDAR Key Frames
+	float posX;		//Variable para PosicionX
+	float posY;		//Variable para PosicionY
+	float posZ;		//Variable para PosicionZ
+	float rotRodIzq;
+	float giroMonito;
+	float movBrazo;
+	float movCabe;
+
+}FRAME;
+
+FRAME KeyFrame[MAX_FRAMES];
+int FrameIndex = 0;			//introducir datos
+bool play = false;
+int playIndex = 0;
+
+void saveFrame(void) {
+	printf("frameindex %d\n", FrameIndex);
+
+	KeyFrame[FrameIndex].posX = posX;
+	KeyFrame[FrameIndex].posY = posY;
+	KeyFrame[FrameIndex].posZ = posZ;
+
+	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
+	KeyFrame[FrameIndex].giroMonito = giroMonito;
+	KeyFrame[FrameIndex].movBrazo = movBrazo;
+	KeyFrame[FrameIndex].movCabe = movCabe;
+
+	FrameIndex++;
+}
+
+void resetElements(void) {
+	posX = KeyFrame[0].posX;
+	posY = KeyFrame[0].posY;
+	posZ = KeyFrame[0].posZ;
+
+	rotRodIzq = KeyFrame[0].rotRodIzq;
+	giroMonito = KeyFrame[0].giroMonito;
+	movBrazo = KeyFrame[0].movBrazo;
+	movCabe = KeyFrame[0].movCabe;
+}
+
+void interpolation(void) {
+	incX = (KeyFrame[playIndex + 1].posX - KeyFrame[playIndex].posX) / i_max_steps;
+	incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
+	incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
+
+	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
+	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;
+	movBrazoInc = (KeyFrame[playIndex + 1].movBrazo - KeyFrame[playIndex].movBrazo) / i_max_steps;
+	movCabeInc = (KeyFrame[playIndex + 1].movCabe - KeyFrame[playIndex].movCabe) / i_max_steps;
+}
 
 //Para cambiar de plano
 int valorPlano = 1;
@@ -141,8 +220,6 @@ float escalaPerro = 0.35f;
 float incRotacionPerro = 7.5f;
 bool pausaPatas = false;
 float velMovPerro = 0.5f;
-
-
 
 //CRASH
 
@@ -265,8 +342,37 @@ void myData()
 
 void animate(void)
 {
-	if (animacionPerro) {
+	if (play) {
+		if (i_curr_steps >= i_max_steps) { //end of animation between frames?
+			playIndex++;
+			if (playIndex > FrameIndex - 2) {	//end of total animation?
+				printf("termina anim\n");
+				playIndex = 0;
+				play = false;
+			}
+			else { //Next frame interpolations
+				i_curr_steps = 0; //Reset counter
+								  //Interpolation
+				interpolation();
+			}
+		}
+		else {
+			//Draw animation
+			posX += incX;
+			posY += incY;
+			posZ += incZ;
 
+			rotRodIzq += rotInc;
+			giroMonito += giroMonitoInc;
+			movBrazo += movBrazoInc;
+			movCabe += movCabeInc;
+
+			i_curr_steps++;
+		}
+	}
+
+
+	if (animacionPerro) {
 		//iniPerroX = -25.0f, iniPerroY = -1.0f, iniPerroZ = -86.0f;
 		//La elipse inicia en x = 35.0f, y = -1.0f, z = -65.0f
 		if (estadosPerro[0]) {
@@ -280,7 +386,7 @@ void animate(void)
 				estadosPerro[1] = true;
 			}
 		}
-	
+
 		//Se detiene frente a la casa:
 		//	Posicion: 36.999992, -1.100000, -24.000017
 		if (estadosPerro[1]) {
@@ -343,7 +449,7 @@ void animate(void)
 		}
 
 
-		
+
 	}
 
 	if (!pausaPatas) {
@@ -703,7 +809,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 		shader.setFloat("material_shininess", 32.0f);
 	}
-	
+
 
 	// create transformations and Projection
 	glm::mat4 tmp = glm::mat4(1.0f);
@@ -967,7 +1073,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
 	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[19].Draw(shader); 
+	modelo[19].Draw(shader);
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.0f, movZ));				//Flower 20
 	model = glm::scale(model, glm::vec3(4.0f, 4.0f, 4.0f));
@@ -975,7 +1081,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[20].Draw(shader);*/
 
-	
+
 	//modelo[18].Draw(shader);*/
 
 	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(movX, -1.1f, movZ));				//Arbol 19
@@ -1529,7 +1635,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[21].Draw(shader);
-	
+
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(22.0f, -1.2f, 110.0f));				//Lamp 21
 	model = glm::scale(model, glm::vec3(0.4f, 0.25f, 0.4f));
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1766,11 +1872,11 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 	//ALBERCA
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(6.975f, -2.49f, -64.25f));
-	model = glm::scale(model, glm::vec3(289.775f, 289.775f, 289.775f));		
+	model = glm::scale(model, glm::vec3(289.775f, 289.775f, 289.775f));
 	shader.setMat4("model", model);
 	modelo[45].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.19f, -1.9f, -55.59f));	
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.19f, -1.9f, -55.59f));
 	model = glm::scale(model, glm::vec3(1.2f, 1.0f, 1.2f));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -2184,6 +2290,16 @@ int main()
 
 	};
 
+	//Inicializacion de KeyFrames
+	for (int i = 0; i < MAX_FRAMES; i++) {
+		KeyFrame[i].posX = 0;
+		KeyFrame[i].posY = 0;
+		KeyFrame[i].posZ = 0;
+		KeyFrame[i].rotRodIzq = 0;
+		KeyFrame[i].giroMonito = 0;
+		KeyFrame[i].movBrazo = 0;
+		KeyFrame[i].movCabe = 0;
+	}
 
 	// Load textures
 	vector<const GLchar*> faces;
@@ -2261,59 +2377,41 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 
 
 	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
-		if (preciso) {
-			lightPosition0.y += incPreciso;
-			movY += incPreciso;
-		}
-		else {
-			lightPosition0.y += incNormal;
-			movY += incNormal;
-		}
+		if (preciso)
+			posY += incPreciso;
+		else
+			posY += incNormal;
+
 	if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
-		if (preciso) {
-			movY -= incPreciso;
-			lightPosition0.y -= incPreciso;
-		}
-		else {
-			movY -= incNormal;
-			lightPosition0.y -= incNormal;
-		}
+		if (preciso)
+			posY -= incPreciso;
+		else
+			posY -= incNormal;
+
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		if (preciso) {
-			lightPosition0.x -= incPreciso;
-			movX -= incPreciso;
-		}
-		else {
-			lightPosition0.x -= incNormal;
-			movX -= incNormal;
-		}
+		if (preciso)
+			posX -= incPreciso;
+		else
+			posX -= incNormal;
+
 	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
-		if (preciso) {
-			lightPosition0.x += incPreciso;
-			movX += incPreciso;
-		}
-		else {
-			lightPosition0.x += incNormal;
-			movX += incNormal;
-		}
+		if (preciso)
+			posX += incPreciso;
+		else
+			posX += incNormal;
+
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		if (preciso) {
-			lightPosition0.z += incPreciso;
-			movZ += incPreciso;
-		}
-		else {
-			lightPosition0.z += incNormal;
-			movZ += incNormal;
-		}
+		if (preciso)
+			posZ += incPreciso;
+		else
+			posZ += incNormal;
+
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		if (preciso) {
-			lightPosition0.z -= incPreciso;
-			movZ -= incPreciso;
-		}
-		else {
-			lightPosition0.z -= incNormal;
-			movZ -= incNormal;
-		}
+		if (preciso)
+			posZ -= incPreciso;
+		else
+			posZ -= incNormal;
+
 	if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
 		if (preciso)
 			escala -= incPreciso;
@@ -2343,23 +2441,41 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		ba++;
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS){
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
 		//animacion = true;
 		animacionPerro = !animacionPerro;
 		preciso = !preciso;
-		play();
 	}
 	if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
 		valorPlano = 1 - valorPlano;
 
 	if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
-		play();
+		playMusic();
 
 	if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)
-		dia = false;
+		dia = !dia;
 
-	if (glfwGetKey(window, GLFW_KEY_F4) == GLFW_PRESS)
-		dia = true;
+
+	//To play KeyFrame animation 
+	if (glfwGetKey(window, GLFW_KEY_F4) == GLFW_PRESS) {
+		if (play == false && (FrameIndex > 1)) {
+			resetElements();
+			//First Interpolation				
+			interpolation();
+
+			play = true;
+			playIndex = 0;
+			i_curr_steps = 0;
+		}
+		else
+			play = false;
+	}
+
+	//To Save a KeyFrame
+	if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS)
+		if (FrameIndex < MAX_FRAMES)
+			saveFrame();
+
 
 	printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", movX, movY, movZ, escala, rotacion);
 }
@@ -2399,7 +2515,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 	camera.ProcessMouseScroll(yoffset);
 }
 
-void play() {
+void playMusic() {
 	std::cout << "Reproduciendo música";
 	PlaySound("..\\..\\a.wav", NULL, SND_ASYNC);
 }
