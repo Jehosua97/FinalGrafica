@@ -474,7 +474,7 @@ void animate(void)
 void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 {
 	shader.use();
-
+	//ILUMINACIÓN DIA Y NOCHE
 	if (dia) {
 		shader.setVec3("viewPos", camera.Position);
 		shader.setVec3("dirLight.direction", lightDirection);
@@ -2030,7 +2030,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 	//Sombrillas
 	//Sombrillas de día
-	if (true) {		//Cambiar 'true' por variable de control de día y noche en el futuro.
+	if (dia) {		//Cambiar 'true' por variable de control de día y noche en el futuro.
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.5f, -2.6f, -77.0f));			//21
 		model = glm::scale(model, glm::vec3(3.5f, 3.5f, 3.5f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
