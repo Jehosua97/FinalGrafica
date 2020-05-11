@@ -111,7 +111,7 @@ RotPDInc = 1.0f,
 RotPIInc = 1.0f;
 
 #define MAX_FRAMES 9
-int i_max_steps = 190;
+int i_max_steps = 60;
 int i_curr_steps = 0;
 typedef struct _frame
 {
@@ -128,7 +128,7 @@ typedef struct _frame
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 2;			//introducir datos
+int FrameIndex = 6;			//introducir datos
 bool play = false;
 int playIndex = 0;
 
@@ -3095,35 +3095,54 @@ int main()
 		KeyFrame[i].RotPI = 0;
 	}
 
-	KeyFrame[0].posX = 0.0f;
+	KeyFrame[0].posX = 5.39f;
 	KeyFrame[0].posY = 0.0f;
 	KeyFrame[0].posZ = 0.0f;
-	KeyFrame[0].rotRodIzq = 0.0f;
-	KeyFrame[0].movBrazo = 0.0f;
-	KeyFrame[0].movCabe = 0.0f;
-	KeyFrame[0].giroMonito = 0.0f;
-	KeyFrame[0].RotPD = 0.0f;
-	KeyFrame[0].RotPI = 0.0f;
+	KeyFrame[0].RotPD = 29.0f;
+	KeyFrame[0].RotPI = 31.0f;
+	KeyFrame[0].giroMonito = 67.0f;
 
-	KeyFrame[1].posX = 1.0f;
-	KeyFrame[1].posY = 1.0f;
-	KeyFrame[1].posZ = 1.0f;
-	KeyFrame[1].rotRodIzq = 1.0f;
-	KeyFrame[1].movBrazo = 1.0f;
-	KeyFrame[1].movCabe = 1.0f;
-	KeyFrame[1].giroMonito = 1.0f;
-	KeyFrame[1].RotPD = 1.0f;
-	KeyFrame[1].RotPI = 1.0f;
+	KeyFrame[1].posX = 18.60f;
+	KeyFrame[1].posY = 0.0f;
+	KeyFrame[1].posZ = 0.0f;
+	KeyFrame[1].RotPD = -8.0f;
+	KeyFrame[1].RotPI = -7.0f;
+	KeyFrame[1].giroMonito = 67.0f;
 
-	KeyFrame[2].posX = 3.0f;
-	KeyFrame[2].posY = 3.0f;
-	KeyFrame[2].posZ = 3.0f;
-	KeyFrame[2].rotRodIzq = 3.0f;
-	KeyFrame[2].movBrazo = 3.0f;
-	KeyFrame[2].movCabe = 3.0f;
-	KeyFrame[2].giroMonito = 3.0f;
-	KeyFrame[2].RotPD = 3.0f;
-	KeyFrame[2].RotPI = 3.0f;
+	KeyFrame[2].posX = 18.60f;
+	KeyFrame[2].posY = 0.0f;
+	KeyFrame[2].posZ = -6.89f;
+	KeyFrame[2].RotPD = 0.0f;
+	KeyFrame[2].RotPI = -3.0f;
+	KeyFrame[2].giroMonito = 168.0f;
+
+	KeyFrame[3].posX = 18.60f;
+	KeyFrame[3].posY = 0.0f;
+	KeyFrame[3].posZ = -10.40f;
+	KeyFrame[3].RotPD = -24.0f;
+	KeyFrame[3].RotPI = -25.0f;
+	KeyFrame[3].giroMonito = 168.0f;
+
+	KeyFrame[4].posX = 18.60f;
+	KeyFrame[4].posY = 0.0f;
+	KeyFrame[4].posZ = -18.0f;
+	KeyFrame[4].RotPD = 21.0f;
+	KeyFrame[4].RotPI = 21.0f;
+	KeyFrame[4].giroMonito = 168.0f;
+
+	KeyFrame[5].posX = 17.80f;
+	KeyFrame[5].posY = 0.0f;
+	KeyFrame[5].posZ = -18.0f;
+	KeyFrame[5].RotPD = 31.0f;
+	KeyFrame[5].RotPI = 31.0f;
+	KeyFrame[5].giroMonito = 249.0f;
+
+	KeyFrame[6].posX = 9.50f;
+	KeyFrame[6].posY = 0.0f;
+	KeyFrame[6].posZ = -18.0f;
+	KeyFrame[6].RotPD = 1.0f;
+	KeyFrame[6].RotPI = -1.0f;
+	KeyFrame[6].giroMonito = 249.0f;
 
 	// Load textures
 	vector<const GLchar*> faces;
