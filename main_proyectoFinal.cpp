@@ -80,14 +80,9 @@ bool avanza = true;
 //Para movimiento y escalado de modelos (registro de coordenadas y escalas)
 float movX = 0.0f, movY = 0.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f, rotacionY = 0.0f;
 bool preciso = false;
-<<<<<<< HEAD
 bool orien = true;
-float incPreciso = 0.1f;
-float incNormal = 0.01f;
-=======
 float incPreciso = 0.01f;
 float incNormal = 0.1f;
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 float incRotacion = 90.0f;
 
 //ANIMACIÓN POR KEYFRAMES
@@ -101,7 +96,7 @@ rotRodIzq = 0.0f,
 movBrazo = 0.0f,
 movCabe = 0.0f,
 giroMonito = 0.0f, //Rick
-RotPD = 0.0f, 
+RotPD = 0.0f,
 RotPI = 0.0f;
 
 //Incrementos
@@ -112,7 +107,7 @@ rotInc = 0.0f,
 movBrazoInc = 0.0f,
 movCabeInc = 0.0f,
 giroMonitoInc = 1.0f,//Rick
-RotPDInc = 1.0f, 
+RotPDInc = 1.0f,
 RotPIInc = 1.0f;
 
 #define MAX_FRAMES 9
@@ -130,7 +125,6 @@ typedef struct _frame
 	float giroMonito;//Rick
 	float RotPD = 0.0f;
 	float RotPI = 0.0f;
-
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
@@ -176,14 +170,12 @@ void interpolation(void) {
 	incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
 
 	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
-	
 	movBrazoInc = (KeyFrame[playIndex + 1].movBrazo - KeyFrame[playIndex].movBrazo) / i_max_steps;
 	movCabeInc = (KeyFrame[playIndex + 1].movCabe - KeyFrame[playIndex].movCabe) / i_max_steps;
 
 	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps; //Rick
 	RotPDInc = (KeyFrame[playIndex + 1].RotPD - KeyFrame[playIndex].RotPD) / i_max_steps;
 	RotPIInc = (KeyFrame[playIndex + 1].RotPI - KeyFrame[playIndex].RotPI) / i_max_steps;
-
 }
 
 //Para cambiar de plano
@@ -245,8 +237,6 @@ float incRotacionPerro = 7.5f;
 bool pausaPatas = false;
 float velMovPerro = 0.5f;
 
-<<<<<<< HEAD
-=======
 //CRASH
 float escalaCrash = 0.05f, movCrashX =-32.0f, movCrashY = -1.0f, movCrashZ = -67.0f, gradosCrash = 0.0f;
 float ejeCrashX = 0.0f, ejeCrashY = 1.0f, ejeCrashZ = 0.0f;
@@ -257,7 +247,6 @@ float velMovCrash = 0.7f, gradosCrashRodillaIzq = 0.0f,
 gradosCrashRodillaDer = 0.0f,gradosPiernaDer = 0.0f,gradosPiernaIzq = 0.0f,gradosManoIzq = 0.0f,contsaludo = 0.0f;
 bool aku = false, bin = true, CaminataCrash = false;
 float gradosCrashdorso = 0.0f, gradosCrashCodoIzq = 0.0f, gradosCrashCodoDer = 0.0f;
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 
 //temporal
 int ba = 30;
@@ -703,190 +692,295 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 		shader.setFloat("pointLight[0].constant", 1.0f);
 		shader.setFloat("pointLight[0].linear", 0.001f);
 		shader.setFloat("pointLight[0].quadratic", 0.000032f);
-		//Luz quién sabe
 
 		shader.setVec3("pointLight[1].position", lightPosition0);
 		shader.setVec3("pointLight[1].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[1].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[1].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[1].constant", 0.0f);
+		shader.setFloat("pointLight[1].linear", 0.001f);
+		shader.setFloat("pointLight[1].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[2].position", lightPosition1);
 		shader.setVec3("pointLight[2].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[2].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[2].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[2].constant", 0.0f);
+		shader.setFloat("pointLight[2].linear", 0.001f);
+		shader.setFloat("pointLight[2].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[3].position", lightPosition2);
 		shader.setVec3("pointLight[3].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[3].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[3].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[3].constant", 0.0f);
+		shader.setFloat("pointLight[3].linear", 0.001f);
+		shader.setFloat("pointLight[3].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[4].position", lightPosition3);
 		shader.setVec3("pointLight[4].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[4].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[4].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[4].constant", 0.0f);
+		shader.setFloat("pointLight[4].linear", 0.001f);
+		shader.setFloat("pointLight[4].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[5].position", lightPosition4);
 		shader.setVec3("pointLight[5].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[5].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[5].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[5].constant", 0.0f);
+		shader.setFloat("pointLight[5].linear", 0.001f);
+		shader.setFloat("pointLight[5].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[6].position", lightPosition5);
 		shader.setVec3("pointLight[6].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[6].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[6].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[6].constant", 0.0f);
+		shader.setFloat("pointLight[6].linear", 0.001f);
+		shader.setFloat("pointLight[6].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[7].position", lightPosition6);
 		shader.setVec3("pointLight[7].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[7].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[7].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[7].constant", 0.0f);
+		shader.setFloat("pointLight[7].linear", 0.001f);
+		shader.setFloat("pointLight[7].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[8].position", lightPosition7);
 		shader.setVec3("pointLight[8].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[8].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[8].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[8].constant", 0.0f);
+		shader.setFloat("pointLight[8].linear", 0.001f);
+		shader.setFloat("pointLight[8].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[9].position", lightPosition8);
 		shader.setVec3("pointLight[9].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[9].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[9].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[9].constant", 0.0f);
+		shader.setFloat("pointLight[9].linear", 0.001f);
+		shader.setFloat("pointLight[9].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[10].position", lightPosition9);
 		shader.setVec3("pointLight[10].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[10].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[10].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[10].constant", 0.0f);
+		shader.setFloat("pointLight[10].linear", 0.001f);
+		shader.setFloat("pointLight[10].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[11].position", lightPosition10);
 		shader.setVec3("pointLight[11].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[11].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[11].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[11].constant", 0.0f);
+		shader.setFloat("pointLight[11].linear", 0.001f);
+		shader.setFloat("pointLight[11].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[12].position", lightPosition11);
 		shader.setVec3("pointLight[12].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[12].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[12].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[12].constant", 0.0f);
+		shader.setFloat("pointLight[12].linear", 0.001f);
+		shader.setFloat("pointLight[12].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[13].position", lightPosition12);
 		shader.setVec3("pointLight[13].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[13].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[13].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[13].constant", 0.0f);
+		shader.setFloat("pointLight[13].linear", 0.001f);
+		shader.setFloat("pointLight[13].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[14].position", lightPosition13);
 		shader.setVec3("pointLight[14].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[14].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[14].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[14].constant", 0.0f);
+		shader.setFloat("pointLight[14].linear", 0.001f);
+		shader.setFloat("pointLight[14].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[15].position", lightPosition14);
 		shader.setVec3("pointLight[15].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[15].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[15].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[15].constant", 0.0f);
+		shader.setFloat("pointLight[15].linear", 0.001f);
+		shader.setFloat("pointLight[15].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[16].position", lightPosition15);
 		shader.setVec3("pointLight[16].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[16].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[16].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[16].constant", 0.0f);
+		shader.setFloat("pointLight[16].linear", 0.001f);
+		shader.setFloat("pointLight[16].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[17].position", lightPosition16);
 		shader.setVec3("pointLight[17].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[17].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[17].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[17].constant", 0.0f);
+		shader.setFloat("pointLight[17].linear", 0.001f);
+		shader.setFloat("pointLight[17].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[18].position", lightPosition17);
 		shader.setVec3("pointLight[18].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[18].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[18].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[18].constant", 0.0f);
+		shader.setFloat("pointLight[18].linear", 0.001f);
+		shader.setFloat("pointLight[18].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[19].position", lightPosition18);
 		shader.setVec3("pointLight[19].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[19].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[19].specular", glm::vec3(0.0f, 0.0f, 0.0f));
-
+		shader.setFloat("pointLight[19].constant", 0.0f);
+		shader.setFloat("pointLight[19].linear", 0.001f);
+		shader.setFloat("pointLight[19].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[20].position", lightPosition19);
 		shader.setVec3("pointLight[20].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[20].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[20].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[20].constant", 0.0f);
+		shader.setFloat("pointLight[20].linear", 0.001f);
+		shader.setFloat("pointLight[20].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[21].position", lightPosition20);
 		shader.setVec3("pointLight[21].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[21].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[21].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[21].constant", 0.0f);
+		shader.setFloat("pointLight[21].linear", 0.001f);
+		shader.setFloat("pointLight[21].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[22].position", lightPosition21);
 		shader.setVec3("pointLight[22].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[22].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[22].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[22].constant", 0.0f);
+		shader.setFloat("pointLight[22].linear", 0.001f);
+		shader.setFloat("pointLight[22].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[23].position", lightPosition22);
 		shader.setVec3("pointLight[23].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[23].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[23].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[23].constant", 0.0f);
+		shader.setFloat("pointLight[23].linear", 0.001f);
+		shader.setFloat("pointLight[23].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[24].position", lightPosition23);
 		shader.setVec3("pointLight[24].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[24].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[24].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[24].constant", 0.0f);
+		shader.setFloat("pointLight[24].linear", 0.001f);
+		shader.setFloat("pointLight[24].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[25].position", lightPosition24);
 		shader.setVec3("pointLight[25].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[25].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[25].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[25].constant", 0.0f);
+		shader.setFloat("pointLight[25].linear", 0.001f);
+		shader.setFloat("pointLight[25].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[26].position", lightPosition25);
 		shader.setVec3("pointLight[26].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[26].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[26].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[26].constant", 0.0f);
+		shader.setFloat("pointLight[26].linear", 0.001f);
+		shader.setFloat("pointLight[26].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[27].position", lightPosition26);
 		shader.setVec3("pointLight[27].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[27].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[27].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[27].constant", 0.0f);
+		shader.setFloat("pointLight[27].linear", 0.001f);
+		shader.setFloat("pointLight[27].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[28].position", lightPosition27);
 		shader.setVec3("pointLight[28].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[28].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[28].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[28].constant", 0.0f);
+		shader.setFloat("pointLight[28].linear", 0.001f);
+		shader.setFloat("pointLight[28].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[29].position", lightPosition28);
 		shader.setVec3("pointLight[29].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[29].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[29].specular", glm::vec3(0.0f, 0.0f, 0.0f));
-
+		shader.setFloat("pointLight[29].constant", 0.0f);
+		shader.setFloat("pointLight[29].linear", 0.001f);
+		shader.setFloat("pointLight[29].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[30].position", lightPosition29);
 		shader.setVec3("pointLight[30].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[30].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[30].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[30].constant", 0.0f);
+		shader.setFloat("pointLight[30].linear", 0.001f);
+		shader.setFloat("pointLight[30].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[31].position", lightPosition30);
 		shader.setVec3("pointLight[31].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[31].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[31].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[31].constant", 0.0f);
+		shader.setFloat("pointLight[31].linear", 0.001f);
+		shader.setFloat("pointLight[31].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[32].position", lightPosition31);
 		shader.setVec3("pointLight[32].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[32].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[32].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[32].constant", 0.0f);
+		shader.setFloat("pointLight[32].linear", 0.001f);
+		shader.setFloat("pointLight[32].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[33].position", lightPosition32);
 		shader.setVec3("pointLight[33].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[33].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[33].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[33].constant", 0.0f);
+		shader.setFloat("pointLight[33].linear", 0.001f);
+		shader.setFloat("pointLight[33].quadratic", 0.0032f);
 
 		shader.setVec3("pointLight[34].position", lightPosition33);
 		shader.setVec3("pointLight[34].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[34].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[34].specular", glm::vec3(0.0f, 0.0f, 0.0f));
+		shader.setFloat("pointLight[34].constant", 0.0f);
+		shader.setFloat("pointLight[34].linear", 0.001f);
+		shader.setFloat("pointLight[34].quadratic", 0.0032f);
 
-		shader.setVec3("pointLight[35].position", lightPosition);
+		shader.setVec3("pointLight[35].position", lightPosition34);
 		shader.setVec3("pointLight[35].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[35].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[35].specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		/*
-		shader.setVec3("pointLight[36].position", lightPosition0);
+		shader.setFloat("pointLight[35].constant", 0.0f);
+		shader.setFloat("pointLight[35].linear", 0.001f);
+		shader.setFloat("pointLight[35].quadratic", 0.0032f);
+
+		shader.setVec3("pointLight[36].position", lightPosition35);
 		shader.setVec3("pointLight[36].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[36].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		shader.setVec3("pointLight[36].specular", glm::vec3(0.0f, 0.0f, 0.0f));
-		*/
+		shader.setFloat("pointLight[36].constant", 0.0f);
+		shader.setFloat("pointLight[36].linear", 0.001f);
+		shader.setFloat("pointLight[36].quadratic", 0.0032f);
+
 
 
 		shader.setFloat("material_shininess", 32.0f);
@@ -2279,8 +2373,8 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[22].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.5f, -8.0f));				//BalonSoccer
-	model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -0.958f, -8.0f));				//BalonSoccer
+	model = glm::scale(model, glm::vec3(0.003f, 0.003f, 0.003f));
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[23].Draw(shader);
@@ -2297,8 +2391,8 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[24].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.0f, -4.7f));				//BalonBasket
-	model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-23.0f, -1.1f, -4.7f));				//BalonBasket
+	model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 	//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[25].Draw(shader);
@@ -2563,18 +2657,6 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	modelo[50].Draw(shader);
 
 	//CRASH
-<<<<<<< HEAD
-
-	/*model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 1, 0));
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));//Torso			
-	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
-	temp = model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[28].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(posX, posY, posZ));				//BrazoDerecho
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-=======
 	//temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movCrashX, movCrashY, movCrashZ));				//Cuerpo
 	temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movCrashX, movCrashY, movCrashZ));				//Cuerpo
 	model = glm::rotate(model, glm::radians(gradosCrash), glm::vec3(ejeCrashX, ejeCrashY, ejeCrashZ));
@@ -2586,108 +2668,58 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	tmp = model = glm::rotate(model, glm::radians(gradosCrash), glm::vec3(ejeCrashdorsoX, ejeCrashdorsoY, ejeCrashdorsoZ));
 	tmp = model = glm::rotate(model, glm::radians(gradosCrashCodoDer), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	shader.setMat4("model", model);
 	modelo[62].Draw(shader);
 
-<<<<<<< HEAD
-	/*model = glm::translate(temp, glm::vec3(0.35f, 1.74f, 0.0f));				//BrazoIzquierdo
-	//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-=======
 	tmp = model = glm::translate(tmp, glm::vec3(-0.16f, -0.24f, -0.07f));			//Brazoderecho
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	shader.setMat4("model", model);
 	modelo[29].Draw(shader);
 
-<<<<<<< HEAD
-	/*model = glm::translate(model, glm::vec3(-0.50f, 1.55f, -0.05f));				//CodoDerecho
-=======
 	model = glm::translate(tmp, glm::vec3(-0.15f, -0.39f, 0.0f));				//Manoderecho
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[64].Draw(shader);
 
-<<<<<<< HEAD
-	/*model = glm::translate(model, glm::vec3(0.50f, 1.60f, -0.05f));				//Codo Izquierdo
-=======
 	model = glm::translate(temp, glm::vec3(0.36f, 1.72f, 0.0f));				//CodoIZQ
 	tmp = model = glm::rotate(model, glm::radians(gradosCrash), glm::vec3(ejeCrashdorsoX, ejeCrashdorsoY, ejeCrashdorsoZ));
 	tmp = model = glm::rotate(model, glm::radians(gradosCrashCodoIzq), glm::vec3(1.0f, 0.0f, 0.0f));
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	shader.setMat4("model", model);
 	modelo[63].Draw(shader);
 
-<<<<<<< HEAD
-	/*model = glm::translate(model, glm::vec3(-0.65f, 1.20f, -0.05f));				//Mano Derecha
-=======
 	tmp = model = glm::translate(tmp, glm::vec3(0.16f, -0.21f, -0.06f));			//BrazoIzq
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[30].Draw(shader);
 
-<<<<<<< HEAD
-	/*model = glm::translate(model, glm::vec3(0.65f, 1.25f, -0.05f));				//Mano Izquierda
-=======
 	model = glm::translate(tmp, glm::vec3(0.16f, -0.38f, 0.0f));				//Manoizq
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(gradosManoIzq), glm::vec3(1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[65].Draw(shader);
 
-<<<<<<< HEAD
-	/*model = glm::translate(temp, glm::vec3(-0.09f, 0.99f, 0.0f));				//Pierna Derecha
-	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[66].Draw(shader);
-
-	/*model = glm::translate(temp, glm::vec3(0.09f, 1.0f, 0.01f));				//Pierna Izquierda
-	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.03f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-=======
 	tmp = model = glm::translate(temp, glm::vec3(-0.09f, 1.0f, 0.0f));				//Rodilla derecha
 	tmp = model = glm::rotate(model, glm::radians(gradosCrashRodillaDer), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	shader.setMat4("model", model);
 	modelo[68].Draw(shader);
 
-<<<<<<< HEAD
-	/*model = glm::translate(model, glm::vec3(-0.17f, 0.73f, 0.0f));				//Rodilla Derecha
-=======
 	model = glm::translate(tmp, glm::vec3(-0.08f, -0.26f, 0.0f));				//Pierna Derecha
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(gradosPiernaDer), glm::vec3(ejeCrashdorsoX, ejeCrashdorsoY, ejeCrashdorsoZ));
 	shader.setMat4("model", model);
 	modelo[66].Draw(shader);
 
-<<<<<<< HEAD
-	/*model = glm::translate(model, glm::vec3(0.17f, 0.72f, 0.0f));				//Rodilla Izquierda
-=======
 	tmp = model = glm::translate(temp, glm::vec3(0.10f, 1.0f, 0.0f));				//Rodilla Izq
 	tmp = model = glm::rotate(model, glm::radians(gradosCrashRodillaIzq), glm::vec3(1.0f, 0.0f, 0.0f));
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	shader.setMat4("model", model);
 	modelo[69].Draw(shader);
 
-<<<<<<< HEAD
-	model = glm::translate(model, glm::vec3(0.04f, 0.97f, 1.0f));				//Aku Aku
-	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[27].Draw(shader);*/
-=======
 	model = glm::translate(tmp, glm::vec3(0.09f, -0.3f, 0.0f));				//Pierna Izq
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(gradosPiernaIzq), glm::vec3(ejeCrashdorsoX, ejeCrashdorsoY, ejeCrashdorsoZ));
@@ -2700,14 +2732,69 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 		shader.setMat4("model", model);
 		modelo[27].Draw(shader);
 	}
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
 
 /*--------------------RICK--------------------------------------------------------*/
+
+	temp=model = glm::translate(glm::mat4(1.0f), glm::vec3(10.30f, 0.3f, 0.0f));				//Torso			
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[6].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.10f, 0.3f, 0.0f));				//Brazo Derecho		
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[7].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(0.10f, 0.3f, 0.0f));				//Brazo Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[8].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.47f, 0.305f, -0.01));				//Codo Derecho	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[9].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(0.47f, 0.305f, -0.01));				//Codo Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[10].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.07f, -0.21f, 0.0f));				//Pierna Derecha
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[11].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(0.05f, -0.21f, 0.0f));				//Pierna Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[12].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.09f, -0.63f, 0.0f));				//Brazo Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[13].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(0.07f, -0.63f, 0.0f));				//Brazo Izquierdo	
+	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[14].Draw(shader);
+
+	/*--------------------RICK--------------------------------------------------------*/
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));//Torso			
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	temp=model = glm::rotate(model, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0f));
+	temp = model = glm::rotate(model, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[6].Draw(shader);
 
@@ -2760,16 +2847,61 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[14].Draw(shader);
-	
 
-
-	/*model = glm::translate(temp, glm::vec3(movX, movY, movZ));				//portal	
+	/*model = glm::translate(temp, glm::vec3(movX, movY, movZ));				//portal
 	model = glm::scale(model, glm::vec3(0.1f, 0.1f, 1.0f));
 	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[15].Draw(shader);*/
 
+	//PERSONAS
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-25.0f, -1.1f, -74.7f));				//Personaje 1
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[52].Draw(shader);
 
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(55.0f, -1.1f, -23.7f));				//Personaje 1
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[52].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.0f, -1.1f, 49.3f));				//Personaje 2
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[53].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(29.6f, -1.1f, -63.7f));				//Personaje 2
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[53].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.1f, -17.7f));				//Personaje 3
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[54].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(32.6f, -1.1f, 100.3f));				//Personaje 3
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[54].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.1f, -4.7f));				//Personaje 4
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[55].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-55.4f, -1.1f, -54.7f));				//Personaje 4
+	model = glm::scale(model, glm::vec3(1.3f, 1.3f, 1.3f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[55].Draw(shader);
 
 
 	// Draw skybox as last
@@ -2899,10 +3031,10 @@ int main()
 		((char *)"../../FinalGrafica/Models/flores/arbustos1.obj"),  //49
 		((char *)"../../FinalGrafica/Models/flores/arbustos2.obj"),  //50
 		((char *)"../../FinalGrafica/Models/flores/arbustos3.obj"),  //51
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //52
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //53
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //54
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //55
+		((char *)"../../FinalGrafica/Models/personas/persona1.obj"),  //52
+		((char *)"../../FinalGrafica/Models/personas/persona2.obj"),  //53
+		((char *)"../../FinalGrafica/Models/personas/persona3.obj"),  //54
+		((char *)"../../FinalGrafica/Models/personas/persona4.obj"),  //55
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //56
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //57
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //58
@@ -2937,11 +3069,9 @@ int main()
 		KeyFrame[i].rotRodIzq = 0;
 		KeyFrame[i].movBrazo = 0;
 		KeyFrame[i].movCabe = 0;
-
 		KeyFrame[i].giroMonito = 0;
 		KeyFrame[i].RotPD = 0;
 		KeyFrame[i].RotPI = 0;
-
 	}
 
 	// Load textures
@@ -3098,7 +3228,8 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 
 	if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)
 		dia = !dia;
-/*------------------------------------------------------------------------*/
+
+	/*------------------------------------------------------------------------*/
 
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
 		if (orien) {
@@ -3141,20 +3272,11 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 
 	//To Save a KeyFrame
 	if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS)
-	{
 		if (FrameIndex < MAX_FRAMES)
-		{
 			saveFrame();
-		}
-	}
 
 
-<<<<<<< HEAD
-	//printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", posX, posY, posZ, escala, rotacion);
-	printf("Posicion: %f, %f, %f \tRotaciones:%f %f %f %f \tRot: %f\n", posX, posY, posZ, RotPD, RotPI, giroMonito);
-=======
-	printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f a%f\n", posX, posY, posZ, escala, rotacion, ba);
->>>>>>> e27e54a3c6eb9f0f8fbbfbd89d6ae41e95d34888
+	printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", posX, posY, posZ, escala, rotacion);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
