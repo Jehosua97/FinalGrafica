@@ -2903,6 +2903,29 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[55].Draw(shader);
 
+	//Muro alrrededor de todo
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.4f, -135.89));
+	model = glm::scale(model, glm::vec3(2905.0f, 50.0f, 10.0f));
+	shader.setMat4("model", model);
+	modelo[75].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.4f, 134.89));
+	model = glm::scale(model, glm::vec3(2905.0f, 50.0f, 10.0f));
+	shader.setMat4("model", model);
+	modelo[75].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-88.79, -1.4f, 0.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4325.0f, 50.0f, 10.0f));
+	shader.setMat4("model", model);
+	modelo[75].Draw(shader);
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(88.8, -1.4f, 0.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(4325.0f, 50.0f, 10.0f));
+	shader.setMat4("model", model);
+	modelo[75].Draw(shader);
+
 
 	// Draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
@@ -3056,7 +3079,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/Bird/centro.obj"),  //72
 		((char *)"../../FinalGrafica/Models/Bird/izq.obj"),  //73
 		((char *)"../../FinalGrafica/Models/Bird/der.obj"),  //74
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //75
+		((char *)"../../FinalGrafica/Models/Brick/Brick.obj"),  //75
 		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //76
 
 	};
