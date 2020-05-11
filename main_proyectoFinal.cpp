@@ -2353,7 +2353,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[45].Draw(shader);
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.19f, -1.9f, -55.59f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-8.19f, -2.0f, -55.59f));
 	model = glm::scale(model, glm::vec3(1.2f, 1.0f, 1.2f));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -2486,13 +2486,13 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[4].Draw(shader); //pink sedan 
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-3.20, -0.6f, -108.0f));
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-3.20, -0.9f, -107.5f));
+	model = glm::scale(model, glm::vec3(3.7f, 3.7f, 3.7f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[4].Draw(shader); //pink sedan
+	modelo[5].Draw(shader); //lobby car
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(27.0f, -0.6f, 47.0f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(27.0f, -0.9f, 47.0f));
 	model = glm::scale(model, glm::vec3(3.7f, 3.7f, 3.7f));
 	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
