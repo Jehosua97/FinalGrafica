@@ -45,7 +45,7 @@ GLFWmonitor *monitors;
 GLuint skyboxVBO, skyboxVAO;
 
 //Camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(0.0f, 3.0f, 3.0f));
 double	lastX = 0.0f,
 lastY = 0.0f;
 bool firstMouse = true;
@@ -2731,7 +2731,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 		modelo[27].Draw(shader);
 	}
 
-	/*--------------------RICK--------------------------------------------------------*/
+	/*--------------------RICK--------------------------------------------------------
 
 	temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(10.30f, 0.3f, 0.0f));				//Torso			
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
@@ -2785,11 +2785,10 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[14].Draw(shader);
+	modelo[14].Draw(shader);*/
 
 	/*--------------------RICK--------------------------------------------------------*/
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));//Torso			
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	temp = model = glm::rotate(model, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0f));
