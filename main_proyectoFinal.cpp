@@ -24,7 +24,7 @@
 #include <windows.h>
 #include <iostream>
 #pragma comment(lib, "winmm.lib")
-void playMusic(void);
+void playMusic(bool dia);
 
 
 // Other Libs
@@ -128,7 +128,7 @@ typedef struct _frame
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir datos
+int FrameIndex = 2;			//introducir datos
 bool play = false;
 int playIndex = 0;
 
@@ -238,13 +238,13 @@ bool pausaPatas = false;
 float velMovPerro = 0.5f;
 
 //CRASH
-float escalaCrash = 0.05f, movCrashX =-32.0f, movCrashY = -1.0f, movCrashZ = -67.0f, gradosCrash = 0.0f;
+float escalaCrash = 0.05f, movCrashX = -32.0f, movCrashY = -1.0f, movCrashZ = -67.0f, gradosCrash = 0.0f;
 float ejeCrashX = 0.0f, ejeCrashY = 1.0f, ejeCrashZ = 0.0f;
 float ejeCrashdorsoX = 0.0f, ejeCrashdorsoY = 1.0f, ejeCrashdorsoZ = 0.0f, conta = 0.0f;
 bool animacionCrash = false;
-bool estadosCrash[15] = { true }; 
+bool estadosCrash[15] = { true };
 float velMovCrash = 0.7f, gradosCrashRodillaIzq = 0.0f,
-gradosCrashRodillaDer = 0.0f,gradosPiernaDer = 0.0f,gradosPiernaIzq = 0.0f,gradosManoIzq = 0.0f,contsaludo = 0.0f;
+gradosCrashRodillaDer = 0.0f, gradosPiernaDer = 0.0f, gradosPiernaIzq = 0.0f, gradosManoIzq = 0.0f, contsaludo = 0.0f;
 bool aku = false, bin = true, CaminataCrash = false;
 float gradosCrashdorso = 0.0f, gradosCrashCodoIzq = 0.0f, gradosCrashCodoDer = 0.0f;
 
@@ -597,7 +597,7 @@ void animate(void)
 		//Subiendo mano derecha
 		if (estadosCrash[10]) {
 			gradosCrashCodoIzq -= 10.0f;
-			if (gradosCrashCodoIzq == -140.0f){
+			if (gradosCrashCodoIzq == -140.0f) {
 				estadosCrash[10] = false;
 				estadosCrash[11] = true;
 			}
@@ -627,7 +627,7 @@ void animate(void)
 			gradosCrashCodoIzq += 2.0f;
 			if (movCrashY < -10.0f && gradosCrashCodoIzq == 0.0f) {
 				movCrashX = -32.0f;
-				movCrashY = -1.0f; 
+				movCrashY = -1.0f;
 				movCrashZ = -67.0f;
 				aku = false;
 				estadosCrash[13] = false;
@@ -639,36 +639,36 @@ void animate(void)
 
 	if (CaminataCrash) {
 
-			if (bin){
-				if (conta==0.0f)
-				{
-					gradosCrashRodillaIzq += 20.0f;
-					gradosPiernaIzq += 15.0f;
-					gradosCrashCodoIzq -= 20.0f;
-					gradosCrashRodillaDer -= 20.0f;
-					gradosPiernaDer -= 15.0f;
-					gradosCrashCodoDer += 20.0f;
-					conta++;
-				}
-				gradosCrashRodillaIzq -= 40.0f;
-				gradosPiernaIzq -= 30.0f;
-				gradosCrashCodoIzq += 40.0f;
-				gradosCrashRodillaDer += 40.0f;
-				gradosPiernaDer += 30.0f;
-				gradosCrashCodoDer -= 40.0f;
-				conta ++;
-				bin = false;
+		if (bin) {
+			if (conta == 0.0f)
+			{
+				gradosCrashRodillaIzq += 20.0f;
+				gradosPiernaIzq += 15.0f;
+				gradosCrashCodoIzq -= 20.0f;
+				gradosCrashRodillaDer -= 20.0f;
+				gradosPiernaDer -= 15.0f;
+				gradosCrashCodoDer += 20.0f;
+				conta++;
 			}
-			else {
-				
-				gradosCrashRodillaIzq += 40.0f;
-				gradosPiernaIzq += 30.0f;
-				gradosCrashCodoIzq -= 40.0f;
-				gradosCrashRodillaDer -= 40.0f;
-				gradosPiernaDer -= 30.0f;
-				gradosCrashCodoDer += 40.0f;
-				bin = true;
-			}
+			gradosCrashRodillaIzq -= 40.0f;
+			gradosPiernaIzq -= 30.0f;
+			gradosCrashCodoIzq += 40.0f;
+			gradosCrashRodillaDer += 40.0f;
+			gradosPiernaDer += 30.0f;
+			gradosCrashCodoDer -= 40.0f;
+			conta++;
+			bin = false;
+		}
+		else {
+
+			gradosCrashRodillaIzq += 40.0f;
+			gradosPiernaIzq += 30.0f;
+			gradosCrashCodoIzq -= 40.0f;
+			gradosCrashRodillaDer -= 40.0f;
+			gradosPiernaDer -= 30.0f;
+			gradosCrashCodoDer += 40.0f;
+			bin = true;
+		}
 
 
 	}
@@ -2486,19 +2486,17 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[4].Draw(shader); //pink sedan 
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(-3.20, -0.6, -108.0f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(-3.20, -0.6f, -108.0f));
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[5].Draw(shader); //mercedes
+	modelo[4].Draw(shader); //pink sedan
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(27.0f, -0.6, 47.0f));
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(27.0f, -0.6f, 47.0f));
+	model = glm::scale(model, glm::vec3(3.7f, 3.7f, 3.7f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[5].Draw(shader); //mercedes
+	modelo[5].Draw(shader); //lobby car
 
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-29.6f, -0.5f, 106.5f));
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
@@ -2733,9 +2731,9 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 		modelo[27].Draw(shader);
 	}
 
-/*--------------------RICK--------------------------------------------------------*/
+	/*--------------------RICK--------------------------------------------------------*/
 
-	temp=model = glm::translate(glm::mat4(1.0f), glm::vec3(10.30f, 0.3f, 0.0f));				//Torso			
+	temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(10.30f, 0.3f, 0.0f));				//Torso			
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -2903,7 +2901,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[55].Draw(shader);
 
-	//Muro alrrededor de todo
+	//Muro alrededor de todo
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, -1.4f, -135.89));
 	model = glm::scale(model, glm::vec3(2905.0f, 50.0f, 10.0f));
 	shader.setMat4("model", model);
@@ -3001,7 +2999,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/contorno/reja.obj"), //2
 		((char *)"../../FinalGrafica/Models/challenger/CHALLENGER71.obj"), //3
 		((char *)"../../FinalGrafica/Models/carro/clasico.obj"), //4
-		((char *)"../../FinalGrafica/Models/mercedes/mercedes.obj"), //5
+		((char *)"../../FinalGrafica/Models/lobbycar/lobbycar.obj"), //5
 		((char *)"../../FinalGrafica/Models/Rick/Torso.obj"), //6
 		((char *)"../../FinalGrafica/Models/Rick/BrazoDer.obj"), //7
 		((char *)"../../FinalGrafica/Models/Rick/BrazoIzq.obj"), //8
@@ -3097,6 +3095,36 @@ int main()
 		KeyFrame[i].RotPI = 0;
 	}
 
+	KeyFrame[0].posX = 0.0f;
+	KeyFrame[0].posY = 0.0f;
+	KeyFrame[0].posZ = 0.0f;
+	KeyFrame[0].rotRodIzq = 0.0f;
+	KeyFrame[0].movBrazo = 0.0f;
+	KeyFrame[0].movCabe = 0.0f;
+	KeyFrame[0].giroMonito = 0.0f;
+	KeyFrame[0].RotPD = 0.0f;
+	KeyFrame[0].RotPI = 0.0f;
+
+	KeyFrame[1].posX = 1.0f;
+	KeyFrame[1].posY = 1.0f;
+	KeyFrame[1].posZ = 1.0f;
+	KeyFrame[1].rotRodIzq = 1.0f;
+	KeyFrame[1].movBrazo = 1.0f;
+	KeyFrame[1].movCabe = 1.0f;
+	KeyFrame[1].giroMonito = 1.0f;
+	KeyFrame[1].RotPD = 1.0f;
+	KeyFrame[1].RotPI = 1.0f;
+
+	KeyFrame[2].posX = 3.0f;
+	KeyFrame[2].posY = 3.0f;
+	KeyFrame[2].posZ = 3.0f;
+	KeyFrame[2].rotRodIzq = 3.0f;
+	KeyFrame[2].movBrazo = 3.0f;
+	KeyFrame[2].movCabe = 3.0f;
+	KeyFrame[2].giroMonito = 3.0f;
+	KeyFrame[2].RotPD = 3.0f;
+	KeyFrame[2].RotPI = 3.0f;
+
 	// Load textures
 	vector<const GLchar*> faces;
 	faces.push_back("../../FinalGrafica/SkyBox/derecha.tga"); //derecha
@@ -3112,7 +3140,7 @@ int main()
 	projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 
 	//Música
-	//play();
+	playMusic(dia);
 
 	// render loop
 	// While the windows is not closed
@@ -3239,18 +3267,15 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) {
 		//animacion = true;
-		animacionPerro = !animacionPerro;
-		animacionCrash = !animacionCrash;
 		preciso = !preciso;
 	}
 	if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
 		valorPlano = 1 - valorPlano;
 
-	if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
-		playMusic();
-
-	if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS) {
 		dia = !dia;
+		playMusic(dia);
+	}
 
 	/*------------------------------------------------------------------------*/
 
@@ -3277,9 +3302,13 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		orien = !orien;
 
+	if (glfwGetKey(window, GLFW_KEY_F3) == GLFW_PRESS)
+		animacionPerro = !animacionPerro;
+	if (glfwGetKey(window, GLFW_KEY_F4) == GLFW_PRESS)
+		animacionCrash = !animacionCrash;
 
 	//To play KeyFrame animation 
-	if (glfwGetKey(window, GLFW_KEY_F4) == GLFW_PRESS) {
+	if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS) {
 		if (play == false && (FrameIndex > 1)) {
 			resetElements();
 			//First Interpolation				
@@ -3293,10 +3322,12 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 			play = false;
 	}
 
-	//To Save a KeyFrame
+
+	/*//To Save a KeyFrame
 	if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS)
 		if (FrameIndex < MAX_FRAMES)
 			saveFrame();
+	*/
 
 
 	printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", posX, posY, posZ, escala, rotacion);
@@ -3337,7 +3368,10 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 	camera.ProcessMouseScroll(yoffset);
 }
 
-void playMusic() {
+void playMusic(bool dia) {
 	std::cout << "Reproduciendo música";
-	PlaySound("..\\..\\a.wav", NULL, SND_ASYNC);
+	if (dia)
+		PlaySound("..\\..\\FinalGrafica\\dia.wav", NULL, SND_ASYNC);
+	else
+		PlaySound("..\\..\\FinalGrafica\\noche.wav", NULL, SND_ASYNC);
 }
