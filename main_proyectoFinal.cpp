@@ -578,7 +578,7 @@ void animate(void)
 		}
 		//Subiendo mano derecha
 		if (estadosCrash[10]) {
-			gradosCrashCodoIzq -= 2.0f;
+			gradosCrashCodoIzq -= 10.0f;
 			if (gradosCrashCodoIzq == -140.0f){
 				estadosCrash[10] = false;
 				estadosCrash[11] = true;
@@ -2743,7 +2743,7 @@ int main()
 		((char *)"../../FinalGrafica/Models/contorno/reja.obj"), //2
 		((char *)"../../FinalGrafica/Models/challenger/CHALLENGER71.obj"), //3
 		((char *)"../../FinalGrafica/Models/carro/clasico.obj"), //4
-		((char *)"../../FinalGrafica/Models/mercedes/mercededjklss.obj"), //5
+		((char *)"../../FinalGrafica/Models/mercedes/mercedes.obj"), //5
 		((char *)"../../FinalGrafica/Models/Rick/Torso.obj"), //6
 		((char *)"../../FinalGrafica/Models/Rick/BrazoDer.obj"), //7
 		((char *)"../../FinalGrafica/Models/Rick/BrazoIzq.obj"), //8
