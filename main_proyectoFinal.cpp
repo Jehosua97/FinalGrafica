@@ -238,8 +238,8 @@ bool pausaPatas = false;
 float velMovPerro = 0.5f;
 
 //CRASH
-float escalaCrash = 0.05f, movCrashX = -32.0f, movCrashY = -1.0f, movCrashZ = -67.0f, gradosCrash = 0.0f;
-float ejeCrashX = 0.0f, ejeCrashY = 1.0f, ejeCrashZ = 0.0f;
+float escalaCrash = 0.05f, movCrashX = 1.1f, movCrashY = -1.0f, movCrashZ = 18.18f, gradosCrash = 0.0f;
+float ejeCrashX = 0.0f, ejeCrashY = 1.0f, ejeCrashZ = 0.0f, gradosCrashGlobal = 0.0f;
 float ejeCrashdorsoX = 0.0f, ejeCrashdorsoY = 1.0f, ejeCrashdorsoZ = 0.0f, conta = 0.0f;
 bool animacionCrash = false;
 bool estadosCrash[15] = { true };
@@ -247,6 +247,18 @@ float velMovCrash = 0.7f, gradosCrashRodillaIzq = 0.0f,
 gradosCrashRodillaDer = 0.0f, gradosPiernaDer = 0.0f, gradosPiernaIzq = 0.0f, gradosManoIzq = 0.0f, contsaludo = 0.0f;
 bool aku = false, bin = true, CaminataCrash = false;
 float gradosCrashdorso = 0.0f, gradosCrashCodoIzq = 0.0f, gradosCrashCodoDer = 0.0f;
+
+//CRASH2 
+float escalaCrash2 = 0.05f, movCrashX2 = 1.300000f, movCrashY2 = -1.0f, movCrashZ2 = 62.599617f, gradosCrash2 = 0.0f;
+float ejeCrashX2 = 0.0f, ejeCrashY2 = 1.0f, ejeCrashZ2 = 0.0f, gradosCrashGlobal2 = 0.0f;
+float ejeCrashdorsoX2 = 0.0f, ejeCrashdorsoY2 = 1.0f, ejeCrashdorsoZ2 = 0.0f, conta2 = 0.0f;
+bool animacionCrash2 = false;
+bool estadosCrash2[15] = { true };
+float velMovCrash2 = 0.7f, gradosCrashRodillaIzq2 = 0.0f,
+gradosCrashRodillaDer2 = 0.0f, gradosPiernaDer2 = 0.0f, gradosPiernaIzq2 = 0.0f, gradosManoIzq2 = 0.0f, contsaludo2 = 0.0f;
+bool aku2 = false, bin2 = true, CaminataCrash2 = false;
+float gradosCrashdorso2 = 0.0f, gradosCrashCodoIzq2 = 0.0f, gradosCrashCodoDer2 = 0.0f;
+
 
 //temporal
 int ba = 30;
@@ -504,7 +516,7 @@ void animate(void)
 		if (estadosCrash[0]) {
 			movCrashZ += velMovCrash;
 			CaminataCrash = true;
-			if (movCrashZ > 38.0f) {
+			if (movCrashZ > 40.0f) {
 				CaminataCrash = false;
 				estadosCrash[0] = false;
 				estadosCrash[1] = true;
@@ -539,101 +551,72 @@ void animate(void)
 				estadosCrash[4] = true;
 			}
 		}
-		//Crash caminando hasta encontrar la máscara
+		//Crash caminando hasta la casa
 		if (estadosCrash[4]) {
 			CaminataCrash = true;
 			movCrashZ += velMovCrash;
-			if (movCrashZ > 59.0f) {
+			if (movCrashZ > 61.0f) {
+			//if (movCrashZ > 50.0f) {
 				CaminataCrash = false;
 				estadosCrash[4] = false;
 				estadosCrash[5] = true;
+				movCrashX = 1.1f;
+				movCrashZ = 18.18f;
 			}
 		}
-		//Levantando las manos
+		//Caminando hasta la calle ya con mascara
 		if (estadosCrash[5]) {
-			gradosCrashCodoIzq -= 2.0f;
-			gradosCrashCodoDer -= 2.0f;
-			if (gradosCrashCodoDer == -140.0f) {
+			movCrashZ2 -= velMovCrash;
+			CaminataCrash = true;
+			if (movCrashZ2 < 50.0f) {
+				CaminataCrash = false;
 				estadosCrash[5] = false;
 				estadosCrash[6] = true;
 			}
 		}
-		//Hundiendose
+		//Crash viendo hacia otro lado
 		if (estadosCrash[6]) {
-			movCrashY -= 0.5f;
-			if (movCrashY < -10.0f) {
+			ejeCrashdorsoY2 = 1.0f;
+			gradosCrash2 -= 2.0f;
+			if (gradosCrash2 == -50.0f) {
+				ejeCrashdorsoY2 = 0.0f;
 				estadosCrash[6] = false;
 				estadosCrash[7] = true;
 			}
 		}
-		//Subiendo ya con mascara
+		//Crash viendo hacia otro lado
 		if (estadosCrash[7]) {
-			movCrashY += 0.5f;
-			aku = true;
-			if (movCrashY == -1.0f) {
+			ejeCrashdorsoY2 = 1.0f;
+			gradosCrash2 += 2.0f;
+			if (gradosCrash2 == 50.0f) {
+				ejeCrashdorsoY2 = 0.0f;
 				estadosCrash[7] = false;
 				estadosCrash[8] = true;
 			}
 		}
-		//Bajando las manos
+		//Crash viendo al centro
 		if (estadosCrash[8]) {
-			gradosCrashCodoIzq += 2.0f;
-			gradosCrashCodoDer += 2.0f;
-			if (gradosCrashCodoDer == 0.0f) {
+			ejeCrashdorsoY2 = 1.0f;
+			gradosCrash2 -= 2.0f;
+			if (gradosCrash2 == 0.0f) {
 				estadosCrash[8] = false;
 				estadosCrash[9] = true;
 			}
 		}
-		//Crashcaminando hasta la calle
+		//Crash caminando hasta la casa con mascara
 		if (estadosCrash[9]) {
 			CaminataCrash = true;
-			movCrashZ += velMovCrash;
-			if (movCrashZ > 99.0f) {
+			movCrashZ2 -= velMovCrash;
+			if (movCrashZ2 < 23.0f) {
 				CaminataCrash = false;
 				estadosCrash[9] = false;
-				estadosCrash[10] = true;
-			}
-		}
-		//Subiendo mano derecha
-		if (estadosCrash[10]) {
-			gradosCrashCodoIzq -= 10.0f;
-			if (gradosCrashCodoIzq == -140.0f) {
-				estadosCrash[10] = false;
-				estadosCrash[11] = true;
-			}
-		}
-		//ZIg mano
-		if (estadosCrash[11]) {
-			gradosManoIzq -= 2.0f;
-			if (gradosManoIzq == -20.0f) {
-				contsaludo++;
-				estadosCrash[11] = false;
-				estadosCrash[12] = true;
-			}
-		}
-		//ZAg mano
-		if (estadosCrash[12]) {
-			gradosManoIzq += 2.0f;
-			if (gradosManoIzq == 20.0f) {
-				estadosCrash[12] = false;
-				if (contsaludo == 8.0f)
-					estadosCrash[13] = true;
-				estadosCrash[11] = true;
-			}
-		}
-		//Hundiendose y reiniciando
-		if (estadosCrash[13]) {
-			movCrashY -= 0.5f;
-			gradosCrashCodoIzq += 2.0f;
-			if (movCrashY < -10.0f && gradosCrashCodoIzq == 0.0f) {
-				movCrashX = -32.0f;
-				movCrashY = -1.0f;
-				movCrashZ = -67.0f;
-				aku = false;
-				estadosCrash[13] = false;
 				estadosCrash[0] = true;
+				movCrashX2 = 1.3f;
+				movCrashZ2 = 62.599617f;
 			}
 		}
+		
+
 
 	}
 
@@ -648,6 +631,12 @@ void animate(void)
 				gradosCrashRodillaDer -= 20.0f;
 				gradosPiernaDer -= 15.0f;
 				gradosCrashCodoDer += 20.0f;
+				gradosCrashRodillaIzq2 += 20.0f;
+				gradosPiernaIzq2 += 15.0f;
+				gradosCrashCodoIzq2 -= 20.0f;
+				gradosCrashRodillaDer2 -= 20.0f;
+				gradosPiernaDer2 -= 15.0f;
+				gradosCrashCodoDer2 += 20.0f;
 				conta++;
 			}
 			gradosCrashRodillaIzq -= 40.0f;
@@ -656,6 +645,12 @@ void animate(void)
 			gradosCrashRodillaDer += 40.0f;
 			gradosPiernaDer += 30.0f;
 			gradosCrashCodoDer -= 40.0f;
+			gradosCrashRodillaIzq2 -= 40.0f;
+			gradosPiernaIzq2 -= 30.0f;
+			gradosCrashCodoIzq2 += 40.0f;
+			gradosCrashRodillaDer2 += 40.0f;
+			gradosPiernaDer2 += 30.0f;
+			gradosCrashCodoDer2 -= 40.0f;
 			conta++;
 			bin = false;
 		}
@@ -667,11 +662,18 @@ void animate(void)
 			gradosCrashRodillaDer -= 40.0f;
 			gradosPiernaDer -= 30.0f;
 			gradosCrashCodoDer += 40.0f;
+			gradosCrashRodillaIzq2 += 40.0f;
+			gradosPiernaIzq2 += 30.0f;
+			gradosCrashCodoIzq2 -= 40.0f;
+			gradosCrashRodillaDer2 -= 40.0f;
+			gradosPiernaDer2 -= 30.0f;
+			gradosCrashCodoDer2 += 40.0f;
 			bin = true;
 		}
-
-
 	}
+
+
+
 }
 
 void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
@@ -1296,6 +1298,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 	// create transformations and Projection
 	glm::mat4 temp = glm::mat4(1.0f);
+	glm::mat4 globalCrash = glm::mat4(1.0f);
 	glm::mat4 tmp = glm::mat4(1.0f);
 	glm::mat4 model = glm::mat4(1.0f);		// initialize Matrix, Use this matrix for individual models
 	glm::mat4 view = glm::mat4(1.0f);		//Use this matrix for ALL models
@@ -2655,7 +2658,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	modelo[50].Draw(shader);
 
 	//CRASH
-	//temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movCrashX, movCrashY, movCrashZ));				//Cuerpo
+	//temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));				//Cuerpo
 	temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movCrashX, movCrashY, movCrashZ));				//Cuerpo
 	model = glm::rotate(model, glm::radians(gradosCrash), glm::vec3(ejeCrashX, ejeCrashY, ejeCrashZ));
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
@@ -2726,10 +2729,86 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	if (aku) {
 		model = glm::translate(temp, glm::vec3(0.0f, 1.2f, 0.80f));				//Aku Aku
 		model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
-		model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
 		shader.setMat4("model", model);
 		modelo[27].Draw(shader);
 	}
+
+	//CRASH 2
+	//temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));				//Cuerpo
+	temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(movCrashX2, movCrashY2, movCrashZ2));				//Cuerpo
+	model = glm::rotate(model, glm::radians(gradosCrash2), glm::vec3(ejeCrashX2, ejeCrashY2, ejeCrashZ2));
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	shader.setMat4("model", model);
+	modelo[77].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(0.37f, 1.7f, 0.01f));				//CodoDerecho
+	tmp = model = glm::rotate(model, glm::radians(gradosCrash2), glm::vec3(ejeCrashdorsoX2, ejeCrashdorsoY2, ejeCrashdorsoZ2));
+	tmp = model = glm::rotate(model, glm::radians(gradosCrashCodoDer2), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	shader.setMat4("model", model);
+	modelo[80].Draw(shader);
+
+	tmp = model = glm::translate(tmp, glm::vec3(  0.170000f, -0.250000f, 0.060000f));			//Brazoderecho
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[78].Draw(shader);
+	
+	model = glm::translate(tmp, glm::vec3(0.15000f, -0.380000f, 0.000000f));				//Manoderecho
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[82].Draw(shader);
+
+	
+	model = glm::translate(temp, glm::vec3(-0.370000f, 1.730000f, -0.020000f));				//CodoIZQ
+	tmp = model = glm::rotate(model, glm::radians(gradosCrash2), glm::vec3(ejeCrashdorsoX2, ejeCrashdorsoY2, ejeCrashdorsoZ2));
+	tmp = model = glm::rotate(model, glm::radians(gradosCrashCodoIzq2), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	shader.setMat4("model", model);
+	modelo[81].Draw(shader);
+	
+	tmp = model = glm::translate(tmp, glm::vec3(-0.160000f, -0.240000f, -0.08000f));			//BrazoIzq
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[79].Draw(shader);
+	
+	model = glm::translate(tmp, glm::vec3(-0.160000f, -0.380000f, 0.000000f));				//Manoizq
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	model = glm::rotate(model, glm::radians(gradosManoIzq2), glm::vec3(1.0f, 0.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[83].Draw(shader);
+	
+	tmp = model = glm::translate(temp, glm::vec3(0.090000f, 1.000000f, 0.000000f));				//Rodilla derecha
+	tmp = model = glm::rotate(model, glm::radians(gradosCrashRodillaDer), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	shader.setMat4("model", model);
+	modelo[86].Draw(shader);
+	
+	model = glm::translate(tmp, glm::vec3(0.080000f, -0.270000f, 0.000000f));				//Pierna Derecha
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	model = glm::rotate(model, glm::radians(gradosPiernaDer), glm::vec3(ejeCrashdorsoX, ejeCrashdorsoY, ejeCrashdorsoZ));
+	shader.setMat4("model", model);
+	modelo[84].Draw(shader);
+	
+	tmp = model = glm::translate(temp, glm::vec3(-0.100000f, 1.000000f, 0.000000f));				//Rodilla Izq
+	tmp = model = glm::rotate(model, glm::radians(gradosCrashRodillaIzq), glm::vec3(1.0f, 0.0f, 0.0f));
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	shader.setMat4("model", model);
+	modelo[87].Draw(shader);
+	
+	model = glm::translate(tmp, glm::vec3(-0.090000f, -0.290000f, 0.000000f));				//Pierna Izq
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	model = glm::rotate(model, glm::radians(gradosPiernaIzq), glm::vec3(ejeCrashdorsoX, ejeCrashdorsoY, ejeCrashdorsoZ));
+	shader.setMat4("model", model);
+	modelo[85].Draw(shader);
+
+	model = glm::translate(temp, glm::vec3(-0.000000f, 1.200000f, -0.80000f));				//Aku Aku
+	tmp = model = glm::rotate(model, glm::radians(gradosCrash2), glm::vec3(ejeCrashdorsoX2, ejeCrashdorsoY2, ejeCrashdorsoZ2));
+	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
+	shader.setMat4("model", model);
+	modelo[76].Draw(shader);
 
 	/*--------------------RICK--------------------------------------------------------
 
@@ -2789,7 +2868,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 	/*--------------------RICK--------------------------------------------------------*/
 
-	model = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));//Torso			
+	//model = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));//Torso			
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	temp = model = glm::rotate(model, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -2990,7 +3069,7 @@ int main()
 	//Shader primitivasShader("shaders/shader_texture_color.vs", "shaders/shader_texture_color.fs");
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 	// Load model
-	Model modelo[77] = {
+	Model modelo[88] = {
 		((char *)"../../FinalGrafica/Models/bocetoMedidas.obj"),							//0 - Boceto, piso
 		((char *)"../../FinalGrafica/Models/pruebaAlberca.obj"),							//1 - Plano con hueco de alberca y texturas
 
@@ -3077,7 +3156,18 @@ int main()
 		((char *)"../../FinalGrafica/Models/Bird/izq.obj"),  //73
 		((char *)"../../FinalGrafica/Models/Bird/der.obj"),  //74
 		((char *)"../../FinalGrafica/Models/Brick/Brick.obj"),  //75
-		((char *)"../../FinalGrafica/Models/DUMMY.obj"),  //76
+		((char *)"../../FinalGrafica/Models/Crash/Revez/AkuAku.obj"),//76
+		((char *)"../../FinalGrafica/Models/Crash/Revez/torso.obj"),//77
+		((char *)"../../FinalGrafica/Models/Crash/Revez/BrazoDere.obj"),//78
+		((char *)"../../FinalGrafica/Models/Crash/Revez/BrazoIzq.obj"),//79
+		((char *)"../../FinalGrafica/Models/Crash/Revez/CodoDere.obj"),  //80
+		((char *)"../../FinalGrafica/Models/Crash/Revez/CodoIzqu.obj"),  //81
+		((char *)"../../FinalGrafica/Models/Crash/Revez/ManoDerecho.obj"),  //82
+		((char *)"../../FinalGrafica/Models/Crash/Revez/ManoIzq.obj"),  //83
+		((char *)"../../FinalGrafica/Models/Crash/Revez/PiernaDer.obj"),  //84
+		((char *)"../../FinalGrafica/Models/Crash/Revez/PiernaIzq.obj"),  //85
+		((char *)"../../FinalGrafica/Models/Crash/Revez/RodillaDere.obj"),  //86
+		((char *)"../../FinalGrafica/Models/Crash/Revez/RodillaIzqui.obj"),  //87
 
 	};
 
@@ -3391,5 +3481,5 @@ void playMusic(bool dia) {
 	if (dia)
 		PlaySound("..\\..\\FinalGrafica\\dia.wav", NULL, SND_ASYNC);
 	else
-		PlaySound("..\\..\\FinalGrafica\\noche.wav", NULL, SND_ASYNC);
+		PlaySound("..\\..\\FinalGrafica\\noe.wav", NULL, SND_ASYNC);
 }
