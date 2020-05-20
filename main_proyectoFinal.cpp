@@ -1,8 +1,10 @@
 /*-------------------------------------------------------*/
 /* ----------------   Proyecto Final --------------------*/
 /*--------------------    2020-2   ----------------------*/
-/*------- Alumno:                              ----------*/
-//#define STB_IMAGE_IMPLEMENTATION
+/*---------------------- Alumnos: -----------------------*/
+/*------------Alvarez Valdez Mildred Janelly-------------*/
+/*--------------Chavira Tapia Andrés Uriel---------------*/
+/*---------------Joya Venegas Jehosua Alan---------------*/
 
 //Para texturas, modelos, skybox
 //../../FinalGrafica/Texturas
@@ -3492,5 +3494,5 @@ void playMusic(bool dia) {
 	if (dia)
 		PlaySound("..\\..\\FinalGrafica\\dia.wav", NULL, SND_ASYNC);
 	else
-		PlaySound("..\\..\\FinalGrafica\\noe.wav", NULL, SND_ASYNC);
+		PlaySound("..\\..\\FinalGrafica\\noche.wav", NULL, SND_ASYNC);
 }
