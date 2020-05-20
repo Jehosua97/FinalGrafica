@@ -63,7 +63,8 @@ unsigned int generateTextures(char*, bool);
 int hora, minuto;
 
 //Texture
-unsigned int	t_smile,
+unsigned int	
+portal,
 t_toalla,
 t_unam,
 t_white,
@@ -81,8 +82,8 @@ bool avanza = true;
 float movX = 0.0f, movY = 0.0f, movZ = 0.0f, escala = 1.0f, rotacion = 0.0f, rotacionY = 0.0f;
 bool preciso = false;
 bool orien = true;
-float incPreciso = 0.01f;
-float incNormal = 0.1f;
+float incPreciso = 1.0f;
+float incNormal = 2.0f;
 float incRotacion = 90.0f;
 
 //ANIMACIÓN POR KEYFRAMES
@@ -106,12 +107,12 @@ incZ = 0.0f,
 rotInc = 0.0f,
 movBrazoInc = 0.0f,
 movCabeInc = 0.0f,
-giroMonitoInc = 1.0f,//Rick
+giroMonitoInc = 5.0f,//Rick
 RotPDInc = 1.0f,
 RotPIInc = 1.0f;
 
-#define MAX_FRAMES 9
-int i_max_steps = 60;
+#define MAX_FRAMES 14
+int i_max_steps = 25;
 int i_curr_steps = 0;
 typedef struct _frame
 {
@@ -128,7 +129,7 @@ typedef struct _frame
 }FRAME;
 
 FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 6;			//introducir datos
+int FrameIndex = 15;			//introducir datos
 bool play = false;
 int playIndex = 0;
 
@@ -311,8 +312,6 @@ void getResolution()
 
 void LoadTextures()
 {
-
-
 }
 
 void myData()
@@ -361,6 +360,7 @@ void myData()
 		-1.0f, -1.0f,  1.0f,
 		1.0f, -1.0f,  1.0f
 	};
+
 
 	glGenVertexArrays(1, &skyboxVAO);
 	glGenBuffers(1, &skyboxVBO);
@@ -556,7 +556,7 @@ void animate(void)
 			CaminataCrash = true;
 			movCrashZ += velMovCrash;
 			if (movCrashZ > 61.0f) {
-			//if (movCrashZ > 50.0f) {
+				//if (movCrashZ > 50.0f) {
 				CaminataCrash = false;
 				estadosCrash[4] = false;
 				estadosCrash[5] = true;
@@ -615,7 +615,7 @@ void animate(void)
 				movCrashZ2 = 62.599617f;
 			}
 		}
-		
+
 
 
 	}
@@ -1291,6 +1291,7 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 		shader.setFloat("pointLight[36].constant", 1.0f);
 		shader.setFloat("pointLight[36].linear", 0.001f);						//37
 		shader.setFloat("pointLight[36].quadratic", 0.0032f);
+
 
 		shader.setFloat("material_shininess", 32.0f);
 	}
@@ -2748,56 +2749,56 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[80].Draw(shader);
 
-	tmp = model = glm::translate(tmp, glm::vec3(  0.170000f, -0.250000f, 0.060000f));			//Brazoderecho
+	tmp = model = glm::translate(tmp, glm::vec3(0.170000f, -0.250000f, 0.060000f));			//Brazoderecho
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[78].Draw(shader);
-	
+
 	model = glm::translate(tmp, glm::vec3(0.15000f, -0.380000f, 0.000000f));				//Manoderecho
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[82].Draw(shader);
 
-	
+
 	model = glm::translate(temp, glm::vec3(-0.370000f, 1.730000f, -0.020000f));				//CodoIZQ
 	tmp = model = glm::rotate(model, glm::radians(gradosCrash2), glm::vec3(ejeCrashdorsoX2, ejeCrashdorsoY2, ejeCrashdorsoZ2));
 	tmp = model = glm::rotate(model, glm::radians(gradosCrashCodoIzq2), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	shader.setMat4("model", model);
 	modelo[81].Draw(shader);
-	
+
 	tmp = model = glm::translate(tmp, glm::vec3(-0.160000f, -0.240000f, -0.08000f));			//BrazoIzq
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[79].Draw(shader);
-	
+
 	model = glm::translate(tmp, glm::vec3(-0.160000f, -0.380000f, 0.000000f));				//Manoizq
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(gradosManoIzq2), glm::vec3(1.0f, 0.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[83].Draw(shader);
-	
+
 	tmp = model = glm::translate(temp, glm::vec3(0.090000f, 1.000000f, 0.000000f));				//Rodilla derecha
 	tmp = model = glm::rotate(model, glm::radians(gradosCrashRodillaDer), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	shader.setMat4("model", model);
 	modelo[86].Draw(shader);
-	
+
 	model = glm::translate(tmp, glm::vec3(0.080000f, -0.270000f, 0.000000f));				//Pierna Derecha
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(gradosPiernaDer), glm::vec3(ejeCrashdorsoX, ejeCrashdorsoY, ejeCrashdorsoZ));
 	shader.setMat4("model", model);
 	modelo[84].Draw(shader);
-	
+
 	tmp = model = glm::translate(temp, glm::vec3(-0.100000f, 1.000000f, 0.000000f));				//Rodilla Izq
 	tmp = model = glm::rotate(model, glm::radians(gradosCrashRodillaIzq), glm::vec3(1.0f, 0.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	shader.setMat4("model", model);
 	modelo[87].Draw(shader);
-	
+
 	model = glm::translate(tmp, glm::vec3(-0.090000f, -0.290000f, 0.000000f));				//Pierna Izq
 	model = glm::scale(model, glm::vec3(0.05f, 0.05f, 0.05f));
 	model = glm::rotate(model, glm::radians(gradosPiernaIzq), glm::vec3(ejeCrashdorsoX, ejeCrashdorsoY, ejeCrashdorsoZ));
@@ -2810,65 +2811,9 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[76].Draw(shader);
 
-	/*--------------------RICK--------------------------------------------------------
+	/*--------------------------------------------------RICK---------------------------------------------------------------------*/
 
-	temp = model = glm::translate(glm::mat4(1.0f), glm::vec3(10.30f, 0.3f, 0.0f));				//Torso			
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[6].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(-0.10f, 0.3f, 0.0f));				//Brazo Derecho		
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[7].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(0.10f, 0.3f, 0.0f));				//Brazo Izquierdo	
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[8].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(-0.47f, 0.305f, -0.01));				//Codo Derecho	
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[9].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(0.47f, 0.305f, -0.01));				//Codo Izquierdo	
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[10].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(-0.07f, -0.21f, 0.0f));				//Pierna Derecha
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[11].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(0.05f, -0.21f, 0.0f));				//Pierna Izquierdo	
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[12].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(-0.09f, -0.63f, 0.0f));				//Brazo Izquierdo	
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[13].Draw(shader);
-
-	model = glm::translate(temp, glm::vec3(0.07f, -0.63f, 0.0f));				//Brazo Izquierdo	
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
-	shader.setMat4("model", model);
-	modelo[14].Draw(shader);*/
-
-	/*--------------------RICK--------------------------------------------------------*/
-
-	//model = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));//Torso			
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(posX, posY, posZ));//Torso			
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
 	temp = model = glm::rotate(model, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
@@ -2876,27 +2821,27 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 
 	model = glm::translate(temp, glm::vec3(-0.1, 0.32, -0.02));				//Brazo Derecho		
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(80.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(RotPD), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[7].Draw(shader);
 
 	model = glm::translate(model, glm::vec3(-0.37, 0.01, -0.03));				//Codo Derecho	
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(RotPD), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[9].Draw(shader);
 
 	model = glm::translate(temp, glm::vec3(0.09, 0.32, -0.02));				//Brazo Izquierdo	
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(-80.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::rotate(model, glm::radians(RotPI), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[8].Draw(shader);
 
 	model = glm::translate(model, glm::vec3(0.37, 0.0, -0.03));				//Codo Izquierdo	
 	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::rotate(model, glm::radians(RotPI), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
 	modelo[10].Draw(shader);
 
@@ -2924,11 +2869,17 @@ void display(Shader shader, Shader skyboxShader, GLuint skybox, Model modelo[])
 	shader.setMat4("model", model);
 	modelo[14].Draw(shader);
 
-	/*model = glm::translate(temp, glm::vec3(movX, movY, movZ));				//portal
-	model = glm::scale(model, glm::vec3(0.1f, 0.1f, 1.0f));
-	model = glm::rotate(model, glm::radians(rotacion), glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(40.0f,0.6f,-14.0f));				//Portal
+	model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));
+	model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	shader.setMat4("model", model);
-	modelo[15].Draw(shader);*/
+	modelo[15].Draw(shader); 
+
+	model = glm::translate(glm::mat4(1.0f), glm::vec3(10.0f, 0.6f, 4.0f));				//Portal2
+	model = glm::scale(model, glm::vec3(0.25f, 0.25f, 0.25f));
+	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	shader.setMat4("model", model);
+	modelo[15].Draw(shader);
 
 	//PERSONAS
 	model = glm::translate(glm::mat4(1.0f), glm::vec3(-25.0f, -1.1f, -74.7f));				//Personaje 1
@@ -3184,54 +3135,112 @@ int main()
 		KeyFrame[i].RotPI = 0;
 	}
 
-	KeyFrame[0].posX = 5.39f;
+	KeyFrame[0].posX = 0.0f;
 	KeyFrame[0].posY = 0.0f;
 	KeyFrame[0].posZ = 0.0f;
-	KeyFrame[0].RotPD = 29.0f;
-	KeyFrame[0].RotPI = 31.0f;
-	KeyFrame[0].giroMonito = 67.0f;
+	KeyFrame[0].RotPD = 0.0f;
+	KeyFrame[0].RotPI = 0.0f;
+	KeyFrame[0].giroMonito = 0.0f;
 
-	KeyFrame[1].posX = 18.60f;
+	KeyFrame[1].posX = 0.0f;
 	KeyFrame[1].posY = 0.0f;
 	KeyFrame[1].posZ = 0.0f;
-	KeyFrame[1].RotPD = -8.0f;
-	KeyFrame[1].RotPI = -7.0f;
-	KeyFrame[1].giroMonito = 67.0f;
+	KeyFrame[1].RotPD = 8.0f;
+	KeyFrame[1].RotPI = 13.0f;
+	KeyFrame[1].giroMonito = 85.0f;
 
-	KeyFrame[2].posX = 18.60f;
+	KeyFrame[2].posX = 2.0f;
 	KeyFrame[2].posY = 0.0f;
-	KeyFrame[2].posZ = -6.89f;
-	KeyFrame[2].RotPD = 0.0f;
-	KeyFrame[2].RotPI = -3.0f;
-	KeyFrame[2].giroMonito = 168.0f;
+	KeyFrame[2].posZ = 0.0f;
+	KeyFrame[2].RotPD = -20.0f;
+	KeyFrame[2].RotPI = -5.0f;
+	KeyFrame[2].giroMonito = 85.0f;
 
-	KeyFrame[3].posX = 18.60f;
+	KeyFrame[3].posX = 4.0f;
 	KeyFrame[3].posY = 0.0f;
-	KeyFrame[3].posZ = -10.40f;
-	KeyFrame[3].RotPD = -24.0f;
-	KeyFrame[3].RotPI = -25.0f;
-	KeyFrame[3].giroMonito = 168.0f;
+	KeyFrame[3].posZ = 0.0f;
+	KeyFrame[3].RotPD = 7.0f;
+	KeyFrame[3].RotPI = 19.0f;
+	KeyFrame[3].giroMonito = 85.0f;
 
-	KeyFrame[4].posX = 18.60f;
+	KeyFrame[4].posX = 4.0f;
 	KeyFrame[4].posY = 0.0f;
-	KeyFrame[4].posZ = -18.0f;
-	KeyFrame[4].RotPD = 21.0f;
-	KeyFrame[4].RotPI = 21.0f;
-	KeyFrame[4].giroMonito = 168.0f;
+	KeyFrame[4].posZ = 0.0f;
+	KeyFrame[4].RotPD = -29.0f;
+	KeyFrame[4].RotPI = -14.0f;
+	KeyFrame[4].giroMonito = 85.0f;
 
-	KeyFrame[5].posX = 17.80f;
+	KeyFrame[5].posX = 6.0f;
 	KeyFrame[5].posY = 0.0f;
-	KeyFrame[5].posZ = -18.0f;
-	KeyFrame[5].RotPD = 31.0f;
-	KeyFrame[5].RotPI = 31.0f;
-	KeyFrame[5].giroMonito = 249.0f;
+	KeyFrame[5].posZ = 0.0f;
+	KeyFrame[5].RotPD = 12.0f;
+	KeyFrame[5].RotPI = 26.0f;
+	KeyFrame[5].giroMonito = 85.0f;
 
-	KeyFrame[6].posX = 9.50f;
+	KeyFrame[6].posX = 8.0f;
 	KeyFrame[6].posY = 0.0f;
-	KeyFrame[6].posZ = -18.0f;
-	KeyFrame[6].RotPD = 1.0f;
-	KeyFrame[6].RotPI = -1.0f;
-	KeyFrame[6].giroMonito = 249.0f;
+	KeyFrame[6].posZ = 0.0f;
+	KeyFrame[6].RotPD = -21.0f;
+	KeyFrame[6].RotPI = -7.0f;
+	KeyFrame[6].giroMonito = 85.0f;
+
+	KeyFrame[7].posX = 10.0f;
+	KeyFrame[7].posY = 0.0f;
+	KeyFrame[7].posZ = 0.0f;
+	KeyFrame[7].RotPD = -8.0f;
+	KeyFrame[7].RotPI = 6.0f;
+	KeyFrame[7].giroMonito = -10.0f;
+
+	KeyFrame[8].posX = 10.0f;
+	KeyFrame[8].posY = 0.0f;
+	KeyFrame[8].posZ = 0.0f;
+	KeyFrame[8].RotPD = -28.0f;
+	KeyFrame[8].RotPI = -13.0f;
+	KeyFrame[8].giroMonito = -10.0f;
+
+	KeyFrame[9].posX = 10.0f;
+	KeyFrame[9].posY = 0.0f;
+	KeyFrame[9].posZ = 2.0f;
+	KeyFrame[9].RotPD = 8.0f;
+	KeyFrame[9].RotPI = 22.0f;
+	KeyFrame[9].giroMonito = -10.0f;
+
+	KeyFrame[10].posX = 10.0f;
+	KeyFrame[10].posY = 0.0f;
+	KeyFrame[10].posZ = 4.0f;
+	KeyFrame[10].RotPD = -25.0f;
+	KeyFrame[10].RotPI = -10.0f;
+	KeyFrame[10].giroMonito = -10.0f;
+
+	KeyFrame[11].posX = 10.0f;
+	KeyFrame[11].posY = -10.0f;
+	KeyFrame[11].posZ = 4.0f;
+	KeyFrame[11].RotPD = -25.0f;
+	KeyFrame[11].RotPI = -10.0f;
+	KeyFrame[11].giroMonito = -10.0f;
+
+	KeyFrame[12].posX = 40.0f;
+	KeyFrame[12].posY = -10.0f;
+	KeyFrame[12].posZ = -14.0f;
+	KeyFrame[12].RotPD = -25.0f;
+	KeyFrame[12].RotPI = -10.0f;
+	KeyFrame[12].giroMonito = -10.0f;
+
+	KeyFrame[13].posX = 40.0f;
+	KeyFrame[13].posY = 0.0f;
+	KeyFrame[13].posZ = -14.0f;
+	KeyFrame[13].RotPD = -25.0f;
+	KeyFrame[13].RotPI = -10.0f;
+	KeyFrame[13].giroMonito = -10.0f;
+
+	KeyFrame[14].posX = 40.0f;
+	KeyFrame[14].posY = 0.0f;
+	KeyFrame[14].posZ = -12.0f;
+	KeyFrame[14].RotPD = 8.0f;
+	KeyFrame[14].RotPI = 22.0f;
+	KeyFrame[14].giroMonito = -10.0f;
+
+
 
 	// Load textures
 	vector<const GLchar*> faces;
@@ -3417,7 +3426,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 
 	//To play KeyFrame animation 
 	if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS) {
-		if (play == false && (FrameIndex > 1)) {
+		if (play == false && (FrameIndex > 0)) {
 			resetElements();
 			//First Interpolation				
 			interpolation();
@@ -3431,15 +3440,17 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 	}
 
 
-	/*//To Save a KeyFrame
-	if (glfwGetKey(window, GLFW_KEY_F5) == GLFW_PRESS)
+	//To Save a KeyFrame
+	/*if (glfwGetKey(window, GLFW_KEY_F6) == GLFW_PRESS)
 		if (FrameIndex < MAX_FRAMES)
-			saveFrame();
-	*/
+			saveFrame();*/
+	
 
 
-	printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", posX, posY, posZ, escala, rotacion);
+	//printf("Posicion: %f, %f, %f\tEscala: %f\tRotacion:%f\n", posX, posY, posZ, escala, rotacion);
+	printf("Posicion: %f, %f, %f\tRotacion:%f \tRotPD: %f\tRotPI: %f\n", posX, posY, posZ, giroMonito, RotPD, RotPI);
 }
+
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
 // ---------------------------------------------------------------------------------------------
